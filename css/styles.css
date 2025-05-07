@@ -64,7 +64,8 @@ section {
 .cta {
   text-align: center;
   padding: 2rem;
-  background: #e0f7fa;
+  background: #000;
+  color: #e0e0e0;
 }
 
 .whatsapp-btn {
