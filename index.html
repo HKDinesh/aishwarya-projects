@@ -1,71 +1,94 @@
+<!-- index.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Aishwarya Projects & Services</title>
-  <link rel="stylesheet" href="styles.css" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
+  <header>
+    <h1>🚀 Aishwarya Projects & Services</h1>
+    <p id="typed-text"></p>
+    <button id="dark-mode-toggle">🌙 Dark Mode</button>
+  </header>
 
-<header>
-  <h1>🚀 Aishwarya Projects & Services</h1>
-  <p>Ready-made & Custom Projects | Final Year Projects | Project Modules</p>
-</header>
+  <section class="services-section">
+    <h2>🔥 Our Services</h2>
+    <div class="card-grid">
+      <div class="card">
+        <h3>Mini Projects & Final Year Projects</h3>
+        <p>Get unique, working projects in Web, Python, Android, and more.</p>
+      </div>
+      <div class="card">
+        <h3>Documentation Help</h3>
+        <p>Professional synopsis, SRS, UML diagrams, and reports.</p>
+      </div>
+      <div class="card">
+        <h3>Mentoring & Explanation</h3>
+        <p>We explain the code and help you prepare for your viva.</p>
+      </div>
+      <div class="card">
+        <h3>College ERP Modules</h3>
+        <p>Attendance, internal marks, timetable – customized solutions.</p>
+      </div>
+    </div>
+  </section>
 
-<section>
-  <h2>🔥 Our Services</h2>
-  <div class="services">
-    <div class="card">
-      <h3>Mini Projects & Final Year Projects</h3>
-      <p>Get unique, working projects in Web, Python, Android, and more.</p>
+  <section class="projects-section">
+    <h2>📦 Sample Projects</h2>
+    <div class="filter-section">
+      <label for="project-filter">Filter by:</label>
+      <select id="project-filter">
+        <option value="all">All</option>
+        <option value="web">Web</option>
+        <option value="android">Android</option>
+        <option value="fullstack">Full Stack</option>
+      </select>
     </div>
-    <div class="card">
-      <h3>Documentation Help</h3>
-      <p>Professional synopsis, SRS, UML diagrams, and reports.</p>
+    <div class="card-grid">
+      <div class="card project-card" data-type="android">
+        <h3>Attendance Marking App</h3>
+        <p>Android + Firebase</p>
+        <span class="price">₹2800</span>
+      </div>
+      <div class="card project-card" data-type="android">
+        <h3>Messenger App</h3>
+        <p>Android + Firebase | Realtime Chat</p>
+        <span class="price">₹3000</span>
+      </div>
+      <div class="card project-card" data-type="web">
+        <h3>College Result Portal</h3>
+        <p>PHP + MySQL | Student Dashboard</p>
+        <span class="price">₹2500</span>
+      </div>
+      <div class="card project-card" data-type="fullstack">
+        <h3>Project Management System</h3>
+        <p>React, Node.js, MongoDB | Full Stack</p>
+        <span class="price">₹3500</span>
+      </div>
     </div>
-    <div class="card">
-      <h3>Mentoring & Explanation</h3>
-      <p>We explain the code and help you prepare for your viva.</p>
-    </div>
-    <div class="card">
-      <h3>College ERP Modules</h3>
-      <p>Attendance, internal marks, timetable – customized solutions.</p>
-    </div>
-  </div>
-</section>
+  </section>
 
-<section>
-  <h2>📦 Sample Projects</h2>
-  <div class="projects">
-    <div class="card">
-      <h3>Student Leave Management System</h3>
-      <p>PHP + MySQL with login, CRUD, and reports.</p>
-    </div>
-    <div class="card">
-      <h3>Online Book Store (MERN)</h3>
-      <p>MongoDB, Express, React, Node.js – full stack project.</p>
-    </div>
-    <div class="card">
-      <h3>Bus Tracking App</h3>
-      <p>Android + Firebase – live tracking + notifications.</p>
-    </div>
-  </div>
-</section>
+  <section class="cta">
+    <h2>📞 Need Project Help?</h2>
+    <p>We’re here to assist you 24x7 on WhatsApp!</p>
+    <a href="https://wa.me/918825527193" target="_blank" class="whatsapp-btn">
+      <i class="fab fa-whatsapp"></i> Chat Now
+    </a>
+  </section>
 
-<div class="cta">
-  <h2>📞 Need a Project Help?</h2>
-  <p>We’re here to help you 24x7 on WhatsApp!</p>
-  <a href="https://wa.me/918825527193" target="_blank">
-    <i class="fab fa-whatsapp"></i> Chat Now
+  <a href="https://wa.me/918825527193" class="floating-whatsapp" target="_blank" title="Chat with us!">
+    <i class="fab fa-whatsapp"></i>
   </a>
-</div>
 
-<footer>
-  &copy; 2025 Aishwarya Projects & Services | Built with ❤️ 
-</footer>
+  <footer>
+    &copy; 2025 Aishwarya Projects & Services | Built with ❤️
+    <span id="live-clock"></span>
+  </footer>
 
-<script src="script.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>

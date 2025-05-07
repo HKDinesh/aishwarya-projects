@@ -1,0 +1,127 @@
+/* styles.css */
+body {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background: #f4f4f4;
+  color: #333;
+}
+
+header {
+  background: linear-gradient(to right, #007cf0, #00dfd8);
+  color: white;
+  padding: 2rem;
+  text-align: center;
+  position: relative;
+}
+
+#dark-mode-toggle {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  padding: 0.5rem 1rem;
+  border: none;
+  background: #ffffff20;
+  color: white;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+section {
+  padding: 2rem;
+  max-width: 1200px;
+  margin: auto;
+}
+
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.5rem;
+  margin-top: 1rem;
+}
+
+.card {
+  background: white;
+  padding: 1.5rem;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  transition: transform 0.3s ease;
+}
+
+.card:hover {
+  transform: scale(1.03);
+}
+
+.price {
+  display: inline-block;
+  background: #007cf0;
+  color: white;
+  padding: 0.3rem 0.6rem;
+  border-radius: 6px;
+  margin-top: 0.8rem;
+  font-weight: bold;
+}
+
+.cta {
+  text-align: center;
+  padding: 2rem;
+  background: #e0f7fa;
+}
+
+.whatsapp-btn {
+  background-color: #25D366;
+  color: white;
+  padding: 1rem 2rem;
+  border-radius: 5px;
+  text-decoration: none;
+  display: inline-block;
+  margin-top: 1rem;
+  font-weight: bold;
+}
+
+footer {
+  text-align: center;
+  padding: 1rem;
+  background: #222;
+  color: white;
+  font-size: 0.9rem;
+}
+
+.floating-whatsapp {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: #25D366;
+  color: white;
+  padding: 15px;
+  border-radius: 50%;
+  font-size: 24px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+  text-decoration: none;
+  z-index: 1000;
+}
+
+.filter-section {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+/* Dark mode styles */
+body.dark-mode {
+  background: #121212;
+  color: #e0e0e0;
+}
+
+body.dark-mode .card,
+body.dark-mode header,
+body.dark-mode footer {
+  background-color: #1e1e1e;
+  color: #e0e0e0;
+}
+
+body.dark-mode .whatsapp-btn,
+body.dark-mode .floating-whatsapp {
+  background-color: #128C7E;
+}
