@@ -1,20 +1,39 @@
-<!-- index.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Aishwarya Projects & Services</title>
-  <link rel="stylesheet" href="css/styles.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="css/styles.css"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
 </head>
 <body>
+
+  <!-- Navigation Bar -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <img src="images/AD.png" alt="Aishwarya Logo" class="nav-logo"/>
+      <span class="brand-name">Aishwarya InnovateX</span>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#">Home</a></li>
+        <li><a href="#about-us">About Us</a></li>
+        <li><a href="#contact-us">Contact Us</a></li>
+        <li><a href="#our-vision">Our Vision</a></li>
+      </ul>
+      <button id="nav-toggle"><i class="fas fa-bars"></i></button>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
   <header>
-    <h1>🚀 Aishwarya Projects & Services</h1>
+    <img src="images/AD.png" alt="Aishwarya Logo" class="logo" style="height: 160px; width: auto;" />
+
+    <h1>Aishwarya InnovateX</h1>
     <p id="typed-text"></p>
     <button id="dark-mode-toggle">🌙 Dark Mode</button>
   </header>
 
+  <!-- Services -->
   <section class="services-section">
     <h2>🔥 Our Services</h2>
     <div class="card-grid">
@@ -36,9 +55,11 @@
       </div>
     </div>
   </section>
-  <h1 align=center>Order Now</h1>
+
+  <!-- Project Section -->
+  <h1 align="center">Order Now</h1>
   <section class="projects-section">
-    <h2>📦Make Projects Yours Within Minutes</h2>
+    <h2>📦 Make Projects Yours Within Minutes</h2>
     <div class="filter-section">
       <label for="project-filter">Filter by:</label>
       <select id="project-filter">
@@ -72,7 +93,8 @@
     </div>
   </section>
 
-  <section class="cta">
+  <!-- CTA -->
+  <section class="cta" id="contact-us">
     <h2>📞 Need Project Help?</h2>
     <p>We’re here to assist you 24x7 on WhatsApp!</p>
     <a href="https://wa.me/918825527193" target="_blank" class="whatsapp-btn">
@@ -80,15 +102,26 @@
     </a>
   </section>
 
+  <section class="our-vision" id="our-vision">
+    <h2>🌟 Our Vision</h2>
+    <p>To empower every student with practical project experience and industry-standard mentoring for a brighter tech future.</p>
+  </section>
+
   <a href="https://wa.me/918825527193" class="floating-whatsapp" target="_blank" title="Chat with us!">
     <i class="fab fa-whatsapp"></i>
   </a>
 
+  <!-- Footer -->
   <footer>
-    All Rights Reserved &copy; 2025 Aishwarya Projects & Services | Built with ❤️
+    All Rights Reserved &copy; 2025 Aishwarya InnovateX | Built with ❤️
     <span id="live-clock"></span>
   </footer>
 
+  <script>
+    document.getElementById("nav-toggle").addEventListener("click", () => {
+      document.getElementById("navLinks").classList.toggle("active");
+    });
+  </script>
   <script src="js/script.js"></script>
 </body>
 </html>

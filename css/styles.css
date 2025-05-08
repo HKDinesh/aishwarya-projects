@@ -126,3 +126,112 @@ body.dark-mode .whatsapp-btn,
 body.dark-mode .floating-whatsapp {
   background-color: #128C7E;
 }
+
+/* Responsive Navbar */
+.navbar {
+  background: #1a1a1a;
+  color: white;
+  padding: 0.75rem 1.5rem;
+  position: sticky;
+  top: 0;
+  z-index: 999;
+}
+
+.nav-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  max-width: 1200px;
+  margin: auto;
+}
+
+.nav-logo {
+  height: 40px;
+  margin-right: 10px;
+}
+
+.brand-name {
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-right: auto;
+  color: #fff;
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 1.5rem;
+}
+
+.nav-links li a {
+  text-decoration: none;
+  color: white;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.nav-links li a:hover {
+  color: #00dfd8;
+}
+
+#nav-toggle {
+  display: none;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  color: white;
+  cursor: pointer;
+}
+
+.our-vision {
+  padding: 2rem;
+  background: linear-gradient(to right, #007cf0, #00dfd8);
+  color: white;
+  text-align: center;
+  border-radius: 12px;
+  margin: 2rem auto;
+  max-width: 1000px;
+}
+
+.our-vision h2 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+.our-vision p {
+  font-size: 1.1rem;
+  line-height: 1.6;
+}
+
+/* Mobile responsive nav */
+@media (max-width: 768px) {
+  .nav-links {
+    display: none;
+    flex-direction: column;
+    width: 100%;
+    background: #1a1a1a;
+    margin-top: 1rem;
+  }
+
+  .nav-links.active {
+    display: flex;
+  }
+
+  #nav-toggle {
+    display: block;
+  }
+}
+
+/* Add spacing for sections under navbar */
+header,
+section {
+  margin-top: 1rem;
+}
+
+/* Existing dark mode styles kept as-is */
+body.dark-mode .navbar,
+body.dark-mode .nav-links li a {
+  background-color: #1e1e1e;
+  color: #e0e0e0;
+}
