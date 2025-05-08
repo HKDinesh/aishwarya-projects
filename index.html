@@ -3,12 +3,17 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Aishwarya Projects & Services</title>
+  <title>Aishwarya InnovateX</title>
+  <link rel="icon" type="image/png" href="images/AD.png" />
   <link rel="stylesheet" href="css/styles.css"/>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
 </head>
-<body>
 
+
+<body>
+  <div id="splash-screen">
+    <img src="images/AD.png" alt="Loading Logo" class="splash-logo">
+  </div>
   <!-- Navigation Bar -->
   <nav class="navbar">
     <div class="nav-container">
@@ -118,10 +123,30 @@
   </footer>
 
   <script>
-    document.getElementById("nav-toggle").addEventListener("click", () => {
-      document.getElementById("navLinks").classList.toggle("active");
+    const navToggle = document.getElementById('nav-toggle');
+const navLinks = document.getElementById('navLinks');
+const navIcon = navToggle.querySelector('i');
+
+navToggle.addEventListener('click', () => {
+  navLinks.classList.toggle('active');
+
+  // Toggle icon class
+  if (navLinks.classList.contains('active')) {
+    navIcon.classList.remove('fa-bars');
+    navIcon.classList.add('fa-times'); // ✖ icon
+  } else {
+    navIcon.classList.remove('fa-times');
+    navIcon.classList.add('fa-bars'); // ☰ icon
+  }
+});
+
+  </script>
+  <script>
+    window.addEventListener("load", () => {
+      document.body.classList.add("loaded");
     });
   </script>
+  
   <script src="js/script.js"></script>
 </body>
 </html>
