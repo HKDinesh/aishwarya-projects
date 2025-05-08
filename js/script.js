@@ -31,6 +31,8 @@ document.getElementById("project-filter").addEventListener("change", function ()
   });
 });
 
+
+
 // Dark mode toggle
 const toggleBtn = document.getElementById("dark-mode-toggle");
 toggleBtn.addEventListener("click", () => {
@@ -48,3 +50,4 @@ setInterval(updateClock, 1000);
 updateClock();
 
 typeMessage();
+
