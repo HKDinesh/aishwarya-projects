@@ -6,12 +6,26 @@ body {
   color: #333;
 }
 
+
+
+
+html {
+  scroll-behavior: smooth;
+}
+
+
 header {
   background: linear-gradient(to right,#90ee90,#90ee90);
   color: white;
   padding: 2rem;
   text-align: center;
   position: relative;
+}
+
+header h1 {
+  font-size: 2.5rem;
+  margin-top: 1rem;
+  color: #fff;
 }
 
 #dark-mode-toggle {
@@ -184,6 +198,10 @@ body.dark-mode .floating-whatsapp {
   cursor: pointer;
 }
 
+#dark-mode-toggle:hover {
+  background: #ffffff40;
+}
+
 .our-vision {
   padding: 2rem;
   background: linear-gradient(to right, #90ee90, #90ee90);
@@ -267,4 +285,34 @@ body.dark-mode .navbar,
 body.dark-mode .nav-links li a {
   background-color: #1e1e1e;
   color: #e0e0e0;
+}
+
+
+#progressContainer {
+  width: 100%;
+  background-color: #ddd;
+  border-radius: 6px;
+  margin: 10px 0;
+}
+
+#progressBar {
+  height: 24px;
+  background-color: #4caf50;
+  color: white;
+  text-align: center;
+  line-height: 24px;
+  border-radius: 6px;
+}
+
+#badges ul {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+#badges li {
+  background-color: gold;
+  padding: 5px 10px;
+  margin: 5px 0;
+  border-radius: 4px;
+  display: inline-block;
 }

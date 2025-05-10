@@ -1,4 +1,5 @@
 // script.js
+
 // Typing effect
 const typedText = document.getElementById("typed-text");
 const messages = [
@@ -31,8 +32,6 @@ document.getElementById("project-filter").addEventListener("change", function ()
   });
 });
 
-
-
 // Dark mode toggle
 const toggleBtn = document.getElementById("dark-mode-toggle");
 toggleBtn.addEventListener("click", () => {
@@ -49,5 +48,46 @@ function updateClock() {
 setInterval(updateClock, 1000);
 updateClock();
 
+// Start typing message loop
 typeMessage();
+
+
+// ─────────────────────────────────────────────
+// 🎮 Gamification Logic: Points, Progress, Badges
+// ─────────────────────────────────────────────
+
+let userPoints = 0;
+
+function awardPoints(action) {
+  const pointsMap = {
+    'explore': 20,
+    'completeTutorial': 50
+  };
+  userPoints += pointsMap[action] || 0;
+  updateProgressBar(userPoints, 100);
+  checkForBadges();
+}
+
+function updateProgressBar(current, total) {
+  const percent = Math.min(Math.round((current / total) * 100), 100);
+  const bar = document.getElementById('progressBar');
+  if (bar) {
+    bar.style.width = percent + '%';
+    bar.textContent = percent + '%';
+  }
+}
+
+function checkForBadges() {
+  const badgeList = document.getElementById('badgeList');
+  if (!badgeList) return;
+  badgeList.innerHTML = '';
+  if (userPoints >= 20) badgeList.innerHTML += '<li>🎯 Explorer</li>';
+  if (userPoints >= 50) badgeList.innerHTML += '<li>✅ Tutorial Pro</li>';
+}
+
+// Trigger example actions after page load
+document.addEventListener('DOMContentLoaded', () => {
+  awardPoints('explore');
+  setTimeout(() => awardPoints('completeTutorial'), 2000);
+});
 
