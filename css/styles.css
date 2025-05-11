@@ -380,9 +380,10 @@ body.dark-mode .nav-links li a {
   
 
   .about-us-card {
-    padding: 15px;
-    margin: 15px 0;
-    margin-left: 100px;
+    margin-left: 50px;
+    margin-right: 0;
+    width: 100%;
+    box-sizing: border-box;
   }
 
   .about-us-card p {
