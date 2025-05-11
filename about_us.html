@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>About Us - Aishwarya InnovateX</title>
+  <link rel="icon" type="image/png" href="images/AD.png" />
+  <link rel="stylesheet" href="css/styles.css"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+</head>
+<body>
+  <div class="navbar">
+    <div class="nav-container">
+      <img src="images/AD.png" alt="Aishwarya Logo" class="nav-logo"/>
+      <span class="brand-name">Aishwarya InnovateX</span>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about_us.html" class="smooth-scroll">About Us</a></li>
+        <li><a href="contact_us.html" class="smooth-scroll">Contact Us</a></li>
+        <li><a href="our_vision.html" class="smooth-scroll">Our Vision</a></li>
+      </ul>
+      <button id="nav-toggle"><i class="fas fa-bars"></i></button>
+    </div>
+  </div>
+
+  <header>
+    <h1>About Us</h1>
+  </header>
+
+  <section id="about-us">
+    <h2>Who We Are</h2>
+    <div class="about-us-card">
+      <p>We are Aishwarya InnovateX, a company dedicated to helping students with projects, mentoring, and industry-standard solutions. Our mission is to provide comprehensive support and guidance to students in their educational journey, making learning practical and impactful.</p>
+    </div>
+
+    <h2>Our Mission</h2>
+    <div class="about-us-card">
+      <p>At Aishwarya InnovateX, we aim to bridge the gap between classroom learning and real-world challenges. We believe in providing hands-on experiences, personalized mentorship, and access to the latest technologies to help students succeed in their projects and careers.</p>
+    </div>
+
+    <h2>Our Values</h2>
+    <div class="about-us-card">
+      <ul>
+        <li><strong>Innovation:</strong> We encourage out-of-the-box thinking and creative problem solving.</li>
+        <li><strong>Collaboration:</strong> Working together with students, mentors, and industry professionals to achieve excellence.</li>
+        <li><strong>Integrity:</strong> Upholding the highest standards of honesty, transparency, and ethics.</li>
+      </ul>
+    </div>
+
+    <h2>Why Choose Us?</h2>
+    <div class="about-us-card">
+      <p>We are committed to providing personalized support to students, understanding their unique needs, and guiding them through the entire project development process. Whether you're working on a technical project, seeking mentorship, or need help with an industry-standard solution, we're here for you.</p>
+    </div>
+  </section>
+
+  <a href="https://wa.me/918825527193" class="floating-whatsapp" target="_blank" title="Chat with us!">
+    <i class="fab fa-whatsapp"></i>
+  </a>
+
+  <footer>
+    All Rights Reserved &copy; 2025 Aishwarya InnovateX | Built with 🤍💚
+  </footer>
+
+  <script>
+    gsap.from(".about-us-card", {
+      opacity: 0,
+      x: -100,
+      duration: 1,
+      stagger: 0.2,
+      delay: 0.5
+    });
+  </script>
+
+  <script>
+    const navToggle = document.getElementById('nav-toggle');
+const navLinks = document.getElementById('navLinks');
+const navIcon = navToggle.querySelector('i');
+
+navToggle.addEventListener('click', () => {
+  navLinks.classList.toggle('active');
+
+  // Toggle icon class
+  if (navLinks.classList.contains('active')) {
+    navIcon.classList.remove('fa-bars');
+    navIcon.classList.add('fa-times'); // ✖ icon
+  } else {
+    navIcon.classList.remove('fa-times');
+    navIcon.classList.add('fa-bars'); // ☰ icon
+  }
+});
+
+  </script>
+  <script>
+    window.addEventListener("load", () => {
+      document.body.classList.add("loaded");
+    });
+  </script>
+</body>
+</html>

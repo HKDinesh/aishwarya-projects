@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Our Vision - Aishwarya InnovateX</title>
+  <link rel="icon" type="image/png" href="images/AD.png" />
+  <link rel="stylesheet" href="css/styles.css"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+</head>
+<body>
+  <div class="navbar">
+    <div class="nav-container">
+      <img src="images/AD.png" alt="Aishwarya Logo" class="nav-logo"/>
+      <span class="brand-name">Aishwarya InnovateX</span>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about_us.html" class="smooth-scroll">About Us</a></li>
+        <li><a href="contact_us.html" class="smooth-scroll">Contact Us</a></li>
+        <li><a href="our_vision.html" class="smooth-scroll">Our Vision</a></li>
+      </ul>
+      <button id="nav-toggle"><i class="fas fa-bars"></i></button>
+    </div>
+  </div>
+
+  <header>
+    <h1>Our Vision</h1>
+  </header>
+
+  <section id="our-vision">
+    <h2>What Drives Us</h2>
+    <div class="vision-card">
+      <p>Our vision is to empower students with practical project experience and industry-standard mentoring. We believe that hands-on experience is key to success in the technology field. Our goal is to equip students with the skills they need to thrive in a fast-paced and evolving industry.</p>
+    </div>
+  </section>
+
+  <a href="https://wa.me/918825527193" class="floating-whatsapp" target="_blank" title="Chat with us!">
+    <i class="fab fa-whatsapp"></i>
+  </a>
+
+  <footer>
+    All Rights Reserved &copy; 2025 Aishwarya InnovateX | Built with 🤍💚
+  </footer>
+
+  <script>
+    gsap.from(".vision-card", {
+      opacity: 0,
+      x: 100,
+      duration: 1,
+      stagger: 0.2,
+      delay: 0.5
+    });
+  </script>
+
+  <script>
+    const navToggle = document.getElementById('nav-toggle');
+const navLinks = document.getElementById('navLinks');
+const navIcon = navToggle.querySelector('i');
+
+navToggle.addEventListener('click', () => {
+  navLinks.classList.toggle('active');
+
+  // Toggle icon class
+  if (navLinks.classList.contains('active')) {
+    navIcon.classList.remove('fa-bars');
+    navIcon.classList.add('fa-times'); // ✖ icon
+  } else {
+    navIcon.classList.remove('fa-times');
+    navIcon.classList.add('fa-bars'); // ☰ icon
+  }
+});
+
+  </script>
+  <script>
+    window.addEventListener("load", () => {
+      document.body.classList.add("loaded");
+    });
+  </script>
+</body>
+</html>

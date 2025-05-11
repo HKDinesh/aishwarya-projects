@@ -222,6 +222,8 @@ body.dark-mode .floating-whatsapp {
   line-height: 1.6;
 }
 
+
+
 /* Mobile responsive nav */
 @media (max-width: 768px) {
   .nav-links {
@@ -272,6 +274,57 @@ body.loaded #splash-screen {
   pointer-events: none;
 }
 
+#about-us {
+  padding: 30px 10%;
+  padding-left: 80px;
+}
+
+.about-us-card {
+  background-color: #fff;
+  padding: 20px;
+  margin: 20px 0;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  margin-left: 80px;
+}
+
+.about-us-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.about-us-card p {
+  line-height: 1.6;
+}
+
+.about-us-card ul {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+.about-us-card ul li {
+  margin-bottom: 10px;
+}
+
+/* Floating WhatsApp Button */
+.floating-whatsapp {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  background-color: #25d366;
+  color: white;
+  padding: 15px;
+  border-radius: 50%;
+  font-size: 30px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  text-decoration: none;
+  transition: transform 0.3s ease;
+}
+
+.floating-whatsapp:hover {
+  transform: scale(1.1);
+}
 
 
 /* Add spacing for sections under navbar */
@@ -316,3 +369,31 @@ body.dark-mode .nav-links li a {
   border-radius: 4px;
   display: inline-block;
 }
+
+/* Responsive styles for About Us Page */
+@media screen and (max-width: 768px) {
+  #about-us {
+    padding: 20px 5%;
+    padding-left: 100px;
+  }
+
+  
+
+  .about-us-card {
+    padding: 15px;
+    margin: 15px 0;
+    margin-left: 100px;
+  }
+
+  .about-us-card p {
+    font-size: 1em;
+    line-height: 1.5;
+  }
+
+  .about-us-card ul li {
+    font-size: 1em;
+    margin-bottom: 8px;
+  }
+}
+
+

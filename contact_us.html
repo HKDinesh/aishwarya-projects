@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Contact Us | Aishwarya InnovateX</title>
+  <link rel="icon" type="image/png" href="images/AD.png" />
+  <link rel="stylesheet" href="css/styles.css"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+</head>
+<body>
+
+  <!-- Navigation Bar -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <img src="images/AD.png" alt="Aishwarya Logo" class="nav-logo"/>
+      <span class="brand-name">Aishwarya InnovateX</span>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about_us.html">About Us</a></li>
+        <li><a href="our_vision.html">Our Vision</a></li>
+        <li><a href="contact_us.html">Contact Us</a></li>
+      </ul>
+      <button id="nav-toggle"><i class="fas fa-bars"></i></button>
+    </div>
+  </nav>
+
+  <header>
+    <h1>Contact Us</h1>
+  </header>
+  <!-- Contact Us Section -->
+  <section class="contact-us-section">
+    <div class="contact-us-card" id="contact">
+      <p>We are here to help you with any questions or project assistance. Feel free to reach out to us:</p>
+    </div>
+    
+    
+    <div class="contact-details">
+      <h2>Email</h2>
+      <p>📧 <a href="mailto:dineshkanna2601@gmail.com">dineshkanna2601@gmail.com</a></p>
+      
+      <h2>WhatsApp</h2>
+      <p>📱 <a href="https://wa.me/918825527193" target="_blank">Chat with us on WhatsApp</a></p>
+
+      <h2>Phone</h2>
+      <p>📞 +91 88255 27193</p>
+    </div>
+
+    <div class="form-section">
+      <h3>Drop us a message</h3>
+      <form id="contact-form">
+        <label for="name">Your Name</label>
+        <input type="text" id="name" name="name" required placeholder="Enter your name">
+
+        <label for="email">Your Email</label>
+        <input type="email" id="email" name="email" required placeholder="Enter your email">
+
+        <label for="message">Your Message</label>
+        <textarea id="message" name="message" required placeholder="Write your message"></textarea>
+
+        <button type="submit" id="submit-btn">Send Message</button>
+      </form>
+    </div>
+  </section>
+
+  <a href="https://wa.me/918825527193" class="floating-whatsapp" target="_blank" title="Chat with us!">
+    <i class="fab fa-whatsapp"></i>
+  </a>
+
+  <!-- Footer -->
+  <footer>
+    All Rights Reserved &copy; 2025 Aishwarya InnovateX | Built with 🤍💚
+  </footer>
+
+  <script src="js/script.js"></script>
+
+  <script>
+    gsap.from(".contact-us-card", {
+      opacity: 0,
+      x: -100,
+      duration: 1,
+      stagger: 0.2,
+      delay: 0.5
+    });
+  </script>
+
+  <script>
+    const navToggle = document.getElementById('nav-toggle');
+const navLinks = document.getElementById('navLinks');
+const navIcon = navToggle.querySelector('i');
+
+navToggle.addEventListener('click', () => {
+  navLinks.classList.toggle('active');
+
+  // Toggle icon class
+  if (navLinks.classList.contains('active')) {
+    navIcon.classList.remove('fa-bars');
+    navIcon.classList.add('fa-times'); // ✖ icon
+  } else {
+    navIcon.classList.remove('fa-times');
+    navIcon.classList.add('fa-bars'); // ☰ icon
+  }
+});
+
+  </script>
+  <script>
+    window.addEventListener("load", () => {
+      document.body.classList.add("loaded");
+    });
+  </script>
+
+</body>
+</html>
