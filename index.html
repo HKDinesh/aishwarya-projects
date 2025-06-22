@@ -67,13 +67,6 @@
     .logo { height: 100px; margin-bottom: 1rem; }
     header h1 { font-size: 2.5rem; margin: 0.5rem 0; }
     #typed-text { font-size: 1.1rem; color: var(--muted); min-height: 24px; }
-    #dark-mode-toggle {
-      margin-top: 1.2rem; padding: 0.5rem 1.2rem;
-      border: none; border-radius: var(--radius);
-      background: var(--primary); color: #fff; font-size: 1rem;
-      cursor: pointer; transition: background 0.2s;
-    }
-    #dark-mode-toggle:hover { background: #155ab6; }
 
     /* Announcements */
     .announcements {
@@ -221,7 +214,6 @@
     <a href="index.html"><img src="images/AD.png" alt="Aishwarya Logo" class="logo" /></a>
     <h1>Aishwarya InnovateX</h1>
     <p id="typed-text">Empowering students with real-world projects and mentoring.</p>
-    <button id="dark-mode-toggle">🌙 Dark Mode</button>
   </header>
 
   <!-- Announcements Area -->
@@ -375,25 +367,6 @@
         now.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit', second:'2-digit'});
     }
     setInterval(updateClock, 1000); updateClock();
-
-    // Dark mode toggle
-    const darkBtn = document.getElementById('dark-mode-toggle');
-    darkBtn.addEventListener('click', () => {
-      document.body.classList.toggle('dark');
-      if(document.body.classList.contains('dark')) {
-        document.documentElement.style.setProperty('--bg', '#181a1b');
-        document.documentElement.style.setProperty('--card-bg', '#23272a');
-        document.documentElement.style.setProperty('--text', '#f1f1f1');
-        document.documentElement.style.setProperty('--muted', '#aaa');
-        darkBtn.textContent = '☀️ Light Mode';
-      } else {
-        document.documentElement.style.setProperty('--bg', '#f9f9f9');
-        document.documentElement.style.setProperty('--card-bg', '#fff');
-        document.documentElement.style.setProperty('--text', '#222');
-        document.documentElement.style.setProperty('--muted', '#666');
-        darkBtn.textContent = '🌙 Dark Mode';
-      }
-    });
   </script>
 </body>
 </html>
