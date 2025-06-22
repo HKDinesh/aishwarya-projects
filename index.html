@@ -6,371 +6,199 @@
   <title>Aishwarya InnovateX</title>
   <link rel="icon" type="image/png" href="images/AD.png" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
-  <link rel="stylesheet" href="css/styles.css"/>
   <style>
-    /* Modern Dark Glassmorphism Theme */
-    body {
-      margin: 0;
-      font-family: 'Segoe UI', 'Roboto', Arial, sans-serif;
-      background: linear-gradient(135deg, #18181b 0%, #232526 100%);
-      color: #fff;
-      min-height: 100vh;
-      overflow-x: hidden;
+    :root {
+      --primary: #1a73e8;
+      --accent: #fbbc05;
+      --bg: #f9f9f9;
+      --card-bg: #fff;
+      --text: #222;
+      --muted: #666;
+      --radius: 12px;
+      --shadow: 0 2px 8px rgba(0,0,0,0.06);
     }
-    .navbar {
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      background: rgba(24,24,27,0.8);
-      backdrop-filter: blur(12px);
-      box-shadow: 0 2px 24px rgba(0,0,0,0.2);
-      padding: 0.5rem 0;
-      transition: background 0.3s;
-    }
-    .nav-container {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 0 2rem;
-    }
-    .nav-logo {
-      height: 48px;
-      border-radius: 12px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.15);
-      transition: transform 0.2s;
-    }
-    .nav-logo:hover { transform: scale(1.08);}
-    .brand-name {
-      font-size: 2rem;
-      font-weight: 700;
-      letter-spacing: 2px;
-      margin-left: 1rem;
-      background: linear-gradient(90deg, #00ffe7, #ff6a00);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-    .nav-links {
-      display: flex;
-      gap: 2rem;
-      list-style: none;
+    html, body {
       margin: 0;
       padding: 0;
-      align-items: center;
+      font-family: 'Segoe UI', Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+    }
+    body.loaded #splash-screen { display: none; }
+    #splash-screen {
+      position: fixed; inset: 0; background: #fff; z-index: 9999;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .splash-logo { width: 80px; animation: splash 1.2s infinite alternate; }
+    @keyframes splash { to { transform: scale(1.1); opacity: 0.8; } }
+
+    /* Navbar */
+    .navbar {
+      background: #fff;
+      box-shadow: var(--shadow);
+      position: sticky; top: 0; z-index: 100;
+    }
+    .nav-container {
+      display: flex; align-items: center; justify-content: space-between;
+      max-width: 1200px; margin: 0 auto; padding: 0.5rem 1rem;
+    }
+    .nav-logo { height: 40px; }
+    .brand-name { font-weight: 700; font-size: 1.2rem; margin-left: 0.5rem; }
+    .nav-links {
+      display: flex; gap: 1.5rem; list-style: none; margin: 0; padding: 0;
     }
     .nav-links li a {
-      color: #fff;
-      font-size: 1.1rem;
-      font-weight: 500;
-      text-decoration: none;
-      padding: 0.5rem 1rem;
-      border-radius: 8px;
-      transition: background 0.2s, color 0.2s;
+      text-decoration: none; color: var(--text); font-weight: 500;
+      transition: color 0.2s;
     }
-    .nav-links li a:hover {
-      background: rgba(0,255,231,0.1);
-      color: #00ffe7;
-    }
+    .nav-links li a:hover { color: var(--primary); }
     #nav-toggle {
-      display: none;
-      background: none;
-      border: none;
-      color: #fff;
-      font-size: 2rem;
-      cursor: pointer;
-    }
-    /* Responsive Nav */
-    @media (max-width: 900px) {
-      .nav-links {
-        position: absolute;
-        top: 70px;
-        right: 0;
-        background: rgba(24,24,27,0.98);
-        flex-direction: column;
-        width: 220px;
-        gap: 1.5rem;
-        padding: 2rem 1rem;
-        border-radius: 0 0 0 24px;
-        box-shadow: -2px 8px 24px rgba(0,0,0,0.2);
-        opacity: 0;
-        pointer-events: none;
-        transform: translateY(-20px);
-        transition: all 0.3s;
-      }
-      .nav-links.active {
-        opacity: 1;
-        pointer-events: auto;
-        transform: translateY(0);
-      }
-      #nav-toggle { display: block; }
+      display: none; background: none; border: none; font-size: 1.5rem; color: var(--text);
     }
 
     /* Hero Section */
     header {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      min-height: 70vh;
-      text-align: center;
-      position: relative;
-      overflow: hidden;
-      padding-top: 3rem;
+      background: linear-gradient(90deg, #e3f0ff 0%, #f9f9f9 100%);
+      text-align: center; padding: 3rem 1rem 2rem 1rem;
+      border-radius: 0 0 var(--radius) var(--radius);
+      margin-bottom: 1.5rem;
     }
-    header::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: radial-gradient(circle at 60% 40%, #00ffe7 0%, transparent 60%),
-                  radial-gradient(circle at 30% 80%, #ff6a00 0%, transparent 70%);
-      opacity: 0.18;
-      z-index: 0;
-      pointer-events: none;
-      animation: bgMove 10s infinite alternate;
-    }
-    @keyframes bgMove {
-      0% { background-position: 60% 40%, 30% 80%; }
-      100% { background-position: 70% 50%, 40% 90%; }
-    }
-    .logo {
-      height: 140px;
-      margin-bottom: 1rem;
-      border-radius: 24px;
-      box-shadow: 0 4px 32px rgba(0,255,231,0.12);
-      animation: fadeInDown 1s;
-      z-index: 1;
-    }
-    @keyframes fadeInDown {
-      from { opacity: 0; transform: translateY(-40px);}
-      to { opacity: 1; transform: translateY(0);}
-    }
-    header h1 {
-      font-size: 3.5rem;
-      font-weight: 800;
-      letter-spacing: 3px;
-      margin: 0.5rem 0;
-      background: linear-gradient(90deg, #00ffe7, #ff6a00);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      animation: fadeIn 1.2s 0.2s both;
-    }
-    @keyframes fadeIn {
-      from { opacity: 0;}
-      to { opacity: 1;}
-    }
-    #typed-text {
-      font-size: 1.5rem;
-      color: #fff;
-      margin-bottom: 2rem;
-      min-height: 2.5rem;
-      animation: fadeIn 1.2s 0.4s both;
-    }
+    .logo { height: 100px; margin-bottom: 1rem; }
+    header h1 { font-size: 2.5rem; margin: 0.5rem 0; }
+    #typed-text { font-size: 1.1rem; color: var(--muted); min-height: 24px; }
     #dark-mode-toggle {
-      background: rgba(0,255,231,0.15);
-      color: #00ffe7;
-      border: none;
-      border-radius: 24px;
-      padding: 0.7rem 2rem;
-      font-size: 1.1rem;
-      font-weight: 600;
-      cursor: pointer;
-      box-shadow: 0 2px 12px rgba(0,255,231,0.08);
-      transition: background 0.2s, color 0.2s, transform 0.2s;
-      z-index: 1;
+      margin-top: 1.2rem; padding: 0.5rem 1.2rem;
+      border: none; border-radius: var(--radius);
+      background: var(--primary); color: #fff; font-size: 1rem;
+      cursor: pointer; transition: background 0.2s;
     }
-    #dark-mode-toggle:hover {
-      background: #00ffe7;
-      color: #18181b;
-      transform: scale(1.05);
+    #dark-mode-toggle:hover { background: #155ab6; }
+
+    /* Announcements */
+    .announcements {
+      max-width: 900px; margin: 1.5rem auto 0 auto;
+      background: var(--card-bg); border-radius: var(--radius);
+      box-shadow: var(--shadow); padding: 1rem 1.5rem;
+      display: flex; align-items: center; gap: 1rem;
+    }
+    .announcements i { color: var(--accent); font-size: 1.5rem; }
+    .announcements span { font-weight: 500; }
+
+    /* Dashboard Layout */
+    .dashboard {
+      display: grid; grid-template-columns: 1fr 350px;
+      gap: 2rem; max-width: 1200px; margin: 2rem auto;
+    }
+    @media (max-width: 900px) {
+      .dashboard { grid-template-columns: 1fr; }
     }
 
-    /* Services Section */
-    .services-section {
-      max-width: 1200px;
-      margin: 4rem auto 2rem auto;
-      padding: 2rem;
-      border-radius: 32px;
-      background: rgba(36,36,40,0.7);
-      box-shadow: 0 4px 32px rgba(0,255,231,0.05);
-      animation: fadeInUp 1.2s 0.2s both;
-    }
-    .services-section h2 {
-      font-size: 2.5rem;
-      margin-bottom: 2rem;
-      background: linear-gradient(90deg, #ff6a00, #00ffe7);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
+    /* Card Grid */
     .card-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 2rem;
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.5rem; margin: 1.5rem 0;
     }
     .card {
-      background: rgba(255,255,255,0.07);
-      border-radius: 24px;
-      padding: 2rem 1.5rem;
-      box-shadow: 0 2px 24px rgba(0,255,231,0.08);
-      transition: transform 0.2s, box-shadow 0.2s;
-      position: relative;
+      background: var(--card-bg); border-radius: var(--radius);
+      box-shadow: var(--shadow); padding: 1.2rem 1rem;
+      display: flex; flex-direction: column; gap: 0.5rem;
+      transition: transform 0.15s;
+    }
+    .card:hover { transform: translateY(-4px) scale(1.02); }
+    .card h3 { margin: 0 0 0.3rem 0; font-size: 1.1rem; }
+    .price { color: var(--primary); font-weight: 700; }
+
+    /* Progress & Badges */
+    .progressContainer {
+      background: var(--card-bg); border-radius: var(--radius);
+      box-shadow: var(--shadow); padding: 1.2rem 1rem; margin-bottom: 1.5rem;
+    }
+    #progressContainer {
+      background: #e3eafc; border-radius: 8px; height: 18px; width: 100%; margin: 0.7rem 0;
       overflow: hidden;
-      animation: fadeInUp 1s;
     }
-    .card:hover {
-      transform: translateY(-8px) scale(1.03);
-      box-shadow: 0 8px 32px rgba(0,255,231,0.18);
-      background: rgba(0,255,231,0.08);
+    #progressBar {
+      background: var(--primary); color: #fff; height: 100%; width: 0%;
+      border-radius: 8px; text-align: center; font-size: 0.9rem; transition: width 0.6s;
     }
-    .card h3 {
-      font-size: 1.4rem;
-      font-weight: 700;
-      margin-bottom: 0.7rem;
-      color: #00ffe7;
-    }
-    .card p {
-      font-size: 1.1rem;
-      color: #fff;
-      opacity: 0.85;
-    }
-    @keyframes fadeInUp {
-      from { opacity: 0; transform: translateY(40px);}
-      to { opacity: 1; transform: translateY(0);}
+    #badges ul { display: flex; gap: 0.7rem; padding: 0; margin: 0; list-style: none; }
+    #badges li {
+      background: #e3f0ff; border-radius: 50%; width: 36px; height: 36px;
+      display: flex; align-items: center; justify-content: center; font-size: 1.2rem;
     }
 
-    /* Projects Section */
-    .projects-section {
-      max-width: 1200px;
-      margin: 4rem auto 2rem auto;
-      padding: 2rem;
-      border-radius: 32px;
-      background: rgba(36,36,40,0.7);
-      box-shadow: 0 4px 32px rgba(255,106,0,0.05);
-      animation: fadeInUp 1.2s 0.4s both;
-    }
-    .projects-section h2 {
-      font-size: 2.2rem;
-      margin-bottom: 1.5rem;
-      background: linear-gradient(90deg, #ff6a00, #00ffe7);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
+    /* Filter Section */
     .filter-section {
-      margin-bottom: 2rem;
-      display: flex;
-      align-items: center;
-      gap: 1rem;
+      display: flex; align-items: center; gap: 0.7rem; margin-bottom: 1rem;
     }
+    .filter-section label { font-weight: 500; }
     #project-filter {
-      background: rgba(0,255,231,0.12);
-      color: #fff;
-      border: none;
-      border-radius: 12px;
-      padding: 0.5rem 1.2rem;
+      border-radius: 6px; border: 1px solid #ddd; padding: 0.3rem 0.7rem;
       font-size: 1rem;
-      font-weight: 500;
-      outline: none;
-      transition: background 0.2s;
-    }
-    #project-filter:focus {
-      background: #00ffe7;
-      color: #18181b;
-    }
-    .project-card {
-      border: 2px solid transparent;
-      transition: border 0.2s, box-shadow 0.2s;
-    }
-    .project-card:hover {
-      border: 2px solid #00ffe7;
-      box-shadow: 0 8px 32px rgba(0,255,231,0.18);
-    }
-    .price {
-      display: inline-block;
-      margin-top: 1rem;
-      font-size: 1.2rem;
-      font-weight: 700;
-      color: #ff6a00;
-      background: rgba(255,106,0,0.08);
-      border-radius: 8px;
-      padding: 0.3rem 1rem;
     }
 
-    /* CTA Section */
+    /* CTA */
     .cta {
-      max-width: 900px;
-      margin: 3rem auto 2rem auto;
-      padding: 2rem;
-      border-radius: 24px;
-      background: rgba(0,255,231,0.08);
-      text-align: center;
-      box-shadow: 0 2px 24px rgba(0,255,231,0.08);
-      animation: fadeInUp 1.2s 0.6s both;
-    }
-    .cta h2 {
-      font-size: 2rem;
-      margin-bottom: 1rem;
-      color: #00ffe7;
-    }
-    .cta p {
-      font-size: 1.2rem;
-      margin-bottom: 1.5rem;
-      color: #fff;
-      opacity: 0.85;
+      background: linear-gradient(90deg, #e3f0ff 0%, #f9f9f9 100%);
+      border-radius: var(--radius); box-shadow: var(--shadow);
+      text-align: center; padding: 2rem 1rem; margin: 2rem 0;
     }
     .whatsapp-btn {
-      display: inline-block;
-      background: #25d366;
-      color: #fff;
-      font-size: 1.2rem;
-      font-weight: 700;
-      padding: 0.8rem 2.2rem;
-      border-radius: 24px;
-      text-decoration: none;
-      box-shadow: 0 2px 12px rgba(37,211,102,0.18);
-      transition: background 0.2s, transform 0.2s;
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      background: #25d366; color: #fff; padding: 0.7rem 1.5rem;
+      border-radius: 30px; font-size: 1.1rem; text-decoration: none;
+      font-weight: 600; margin-top: 1rem; transition: background 0.2s;
     }
-    .whatsapp-btn:hover {
-      background: #128c7e;
-      transform: scale(1.05);
-    }
+    .whatsapp-btn:hover { background: #1ebe57; }
 
     /* Floating WhatsApp */
     .floating-whatsapp {
-      position: fixed;
-      bottom: 32px;
-      right: 32px;
-      background: #25d366;
-      color: #fff;
-      font-size: 2.2rem;
-      border-radius: 50%;
-      padding: 0.7rem 0.9rem;
-      box-shadow: 0 4px 24px rgba(37,211,102,0.25);
-      z-index: 999;
-      transition: background 0.2s, transform 0.2s;
-      animation: floatPulse 2s infinite alternate;
+      position: fixed; bottom: 24px; right: 24px; z-index: 1000;
+      background: #25d366; color: #fff; border-radius: 50%;
+      width: 54px; height: 54px; display: flex; align-items: center; justify-content: center;
+      font-size: 2rem; box-shadow: var(--shadow); text-decoration: none;
+      transition: background 0.2s;
     }
-    .floating-whatsapp:hover {
-      background: #128c7e;
-      transform: scale(1.12);
-    }
-    @keyframes floatPulse {
-      from { box-shadow: 0 4px 24px rgba(37,211,102,0.25);}
-      to { box-shadow: 0 8px 32px rgba(37,211,102,0.35);}
-    }
+    .floating-whatsapp:hover { background: #1ebe57; }
 
     /* Footer */
     footer {
-      text-align: center;
-      padding: 2rem 0 1rem 0;
-      font-size: 1.1rem;
-      color: #fff;
-      opacity: 0.7;
-      background: transparent;
-      letter-spacing: 1px;
+      text-align: center; padding: 1.2rem 0; color: var(--muted);
+      font-size: 1rem; background: #fff; margin-top: 2rem;
+      border-top: 1px solid #eee;
+    }
+
+    /* Live Comments */
+    .live-comments {
+      background: var(--card-bg); border-radius: var(--radius);
+      box-shadow: var(--shadow); padding: 1rem 1.5rem; margin: 2rem auto 0 auto;
+      max-width: 900px; text-align: center;
+    }
+
+    /* Responsive */
+    @media (max-width: 700px) {
+      .nav-container { flex-wrap: wrap; }
+      .brand-name { font-size: 1rem; }
+      .nav-links {
+        position: absolute; top: 60px; left: 0; right: 0;
+        background: #fff; flex-direction: column; gap: 0;
+        display: none; box-shadow: var(--shadow);
+      }
+      .nav-links.active { display: flex; }
+      .nav-links li { border-bottom: 1px solid #eee; }
+      #nav-toggle { display: block; }
+      .dashboard { gap: 1rem; }
+      .card-grid { gap: 1rem; }
+      .announcements, .live-comments, .progressContainer { padding: 1rem; }
+      .floating-whatsapp { right: 12px; bottom: 12px; width: 44px; height: 44px; font-size: 1.5rem; }
     }
   </style>
 </head>
 <body>
+  <div id="splash-screen">
+    <img src="images/AD.png" alt="Loading Logo" class="splash-logo">
+  </div>
   <!-- Navigation Bar -->
   <nav class="navbar">
     <div class="nav-container">
@@ -380,9 +208,9 @@
       <span class="brand-name">Aishwarya InnovateX</span>
       <ul class="nav-links" id="navLinks">
         <li><a href="#">Home</a></li>
-        <li><a href="about_us.html" class="smooth-scroll">About Us</a></li>
-        <li><a href="contact_us.html" class="smooth-scroll">Contact Us</a></li>
-        <li><a href="our_vision.html" class="smooth-scroll">Our Vision</a></li>
+        <li><a href="about_us.html">About Us</a></li>
+        <li><a href="contact_us.html">Contact Us</a></li>
+        <li><a href="our_vision.html">Our Vision</a></li>
       </ul>
       <button id="nav-toggle"><i class="fas fa-bars"></i></button>
     </div>
@@ -390,83 +218,120 @@
 
   <!-- Hero Section -->
   <header>
-    <a href="index.html"><img src="images/AD.png" alt="Aishwarya Logo" class="logo" /></a> 
+    <a href="index.html"><img src="images/AD.png" alt="Aishwarya Logo" class="logo" /></a>
     <h1>Aishwarya InnovateX</h1>
-    <p id="typed-text"></p>
+    <p id="typed-text">Empowering students with real-world projects and mentoring.</p>
     <button id="dark-mode-toggle">🌙 Dark Mode</button>
   </header>
 
-  <!-- Services -->
-  <section class="services-section">
-    <h2>🔥 Our Services</h2>
-    <div class="card-grid">
-      <div class="card">
-        <h3>Mini Projects & Final Year Projects</h3>
-        <p>Get unique, working projects in Web, Python, Android, and more.</p>
-      </div>
-      <div class="card">
-        <h3>Documentation Help</h3>
-        <p>Professional synopsis, SRS, UML diagrams, and reports.</p>
-      </div>
-      <div class="card">
-        <h3>Mentoring & Explanation</h3>
-        <p>We explain the code and help you prepare for your viva.</p>
-      </div>
-      <div class="card">
-        <h3>College ERP Modules</h3>
-        <p>Attendance, internal marks, timetable – customized solutions.</p>
-      </div>
-    </div>
-  </section>
+  <!-- Announcements Area -->
+  <div class="announcements">
+    <i class="fas fa-bullhorn"></i>
+    <span>New: Summer Project Bootcamp registrations open! <a href="contact_us.html" style="color:var(--primary);text-decoration:underline;">Join now</a></span>
+  </div>
 
-  <!-- Project Section -->
-  <section class="projects-section">
-    <h2>📦 Make Projects Yours Within Minutes</h2>
-    <div class="filter-section">
-      <label for="project-filter">Filter by:</label>
-      <select id="project-filter">
-        <option value="all">All</option>
-        <option value="web">Web</option>
-        <option value="android">Android</option>
-        <option value="fullstack">Full Stack</option>
-      </select>
-    </div>
-    <div class="card-grid">
-      <div class="card project-card" data-type="android">
-        <h3>Attendance Marking App</h3>
-        <p>React Native</p>
-        <span class="price">₹2000</span>
-      </div>
-      <div class="card project-card" data-type="android">
-        <h3>Messenger App</h3>
-        <p>React Native + Firebase | Realtime Chat</p>
-        <span class="price">₹2500</span>
-      </div>
-      <div class="card project-card" data-type="web">
-        <h3>College Student Dashboard</h3>
-        <p>PHP + MySQL | Student Dashboard</p>
-        <span class="price">₹2500</span>
-      </div>
-      <div class="card project-card" data-type="fullstack">
-        <h3>Project Management System</h3>
-        <p>React, Node.js, MongoDB | Full Stack</p>
-        <span class="price">₹3500</span>
-      </div>
-    </div>
-  </section>
+  <!-- Dashboard Layout -->
+  <div class="dashboard">
+    <main>
+      <!-- Services -->
+      <section class="services-section">
+        <h2>🔥 Our Services</h2>
+        <div class="card-grid">
+          <div class="card">
+            <h3>Mini Projects & Final Year Projects</h3>
+            <p>Get unique, working projects in Web, Python, Android, and more.</p>
+          </div>
+          <div class="card">
+            <h3>Documentation Help</h3>
+            <p>Professional synopsis, SRS, UML diagrams, and reports.</p>
+          </div>
+          <div class="card">
+            <h3>Mentoring & Explanation</h3>
+            <p>We explain the code and help you prepare for your viva.</p>
+          </div>
+          <div class="card">
+            <h3>College ERP Modules</h3>
+            <p>Attendance, internal marks, timetable – customized solutions.</p>
+          </div>
+        </div>
+      </section>
 
-  <!-- CTA -->
-  <section class="cta" id="contact-us">
-    <h2>📞 Need Project Help?</h2>
-    <p>We’re here to assist you 24x7 on WhatsApp!</p>
-    <a href="https://wa.me/918825527193" target="_blank" class="whatsapp-btn">
-      <i class="fab fa-whatsapp"></i> Chat Now
-    </a>
-  </section>
+      <!-- Project Section -->
+      <section class="projects-section">
+        <h2>📦 Make Projects Yours Within Minutes</h2>
+        <div class="filter-section">
+          <label for="project-filter">Filter by:</label>
+          <select id="project-filter">
+            <option value="all">All</option>
+            <option value="web">Web</option>
+            <option value="android">Android</option>
+            <option value="fullstack">Full Stack</option>
+          </select>
+        </div>
+        <div class="card-grid" id="projects-list">
+          <div class="card project-card" data-type="android">
+            <h3>Attendance Marking App</h3>
+            <p>React Native</p>
+            <span class="price">₹2000</span>
+          </div>
+          <div class="card project-card" data-type="android">
+            <h3>Messenger App</h3>
+            <p>React Native + Firebase | Realtime Chat</p>
+            <span class="price">₹2500</span>
+          </div>
+          <div class="card project-card" data-type="web">
+            <h3>College Student Dashboard</h3>
+            <p>PHP + MySQL | Student Dashboard</p>
+            <span class="price">₹2500</span>
+          </div>
+          <div class="card project-card" data-type="fullstack">
+            <h3>Project Management System</h3>
+            <p>React, Node.js, MongoDB | Full Stack</p>
+            <span class="price">₹3500</span>
+          </div>
+        </div>
+      </section>
+    </main>
+    <aside>
+      <!-- Progress & Badges -->
+      <section class="progressContainer">
+        <h2>🏅 Your Progress</h2>
+        <div id="progressContainer">
+          <div id="progressBar" style="width: 60%;">60%</div>
+        </div>
+        <div id="badges">
+          <h3>Unlocked Badges</h3>
+          <ul id="badgeList">
+            <li title="Starter"><i class="fas fa-star"></i></li>
+            <li title="Achiever"><i class="fas fa-trophy"></i></li>
+          </ul>
+        </div>
+      </section>
+      <!-- CTA -->
+      <section class="cta" id="contact-us">
+        <h2>📞 Need Project Help?</h2>
+        <p>We’re here to assist you 24x7 on WhatsApp!</p>
+        <a href="https://wa.me/918825527193" target="_blank" class="whatsapp-btn">
+          <i class="fab fa-whatsapp"></i> Chat Now
+        </a>
+      </section>
+      <!-- Vision -->
+      <section class="our-vision" id="our-vision">
+        <h2>🌟 Our Vision</h2>
+        <p>To empower every student with practical project experience and industry-standard mentoring for a brighter tech future.</p>
+      </section>
+    </aside>
+  </div>
 
+  <!-- Floating WhatsApp -->
   <a href="https://wa.me/918825527193" class="floating-whatsapp" target="_blank" title="Chat with us!">
     <i class="fab fa-whatsapp"></i>
   </a>
+
+  <!-- Live Comments -->
+  <section class="live-comments" id="live-comments">
+    <h2>Need more help? Contact us at <a href="mailto:dineshkanna2601@gmail.com">dineshkanna2601@gmail.com</a></h2>
+  </section>
 
   <!-- Footer -->
   <footer>
@@ -475,7 +340,7 @@
   </footer>
 
   <script>
-    // Responsive Nav
+    // Navbar toggle
     const navToggle = document.getElementById('nav-toggle');
     const navLinks = document.getElementById('navLinks');
     const navIcon = navToggle.querySelector('i');
@@ -490,65 +355,45 @@
       }
     });
 
-    // Typed Text Animation
-    const typedText = document.getElementById('typed-text');
-    const phrases = [
-      "Empowering Students with Real Projects.",
-      "Mentoring for a Brighter Tech Future.",
-      "Get Your Project Ready in Minutes.",
-      "24x7 Support for Your Success."
-    ];
-    let phraseIndex = 0, charIndex = 0, isDeleting = false;
-    function typeLoop() {
-      let currentPhrase = phrases[phraseIndex];
-      if (isDeleting) {
-        typedText.textContent = currentPhrase.substring(0, charIndex--);
-        if (charIndex < 0) {
-          isDeleting = false;
-          phraseIndex = (phraseIndex + 1) % phrases.length;
-          setTimeout(typeLoop, 700);
-        } else {
-          setTimeout(typeLoop, 40);
-        }
-      } else {
-        typedText.textContent = currentPhrase.substring(0, charIndex++);
-        if (charIndex > currentPhrase.length) {
-          isDeleting = true;
-          setTimeout(typeLoop, 1200);
-        } else {
-          setTimeout(typeLoop, 70);
-        }
-      }
-    }
-    typeLoop();
+    // Splash screen
+    window.addEventListener("load", () => {
+      document.body.classList.add("loaded");
+    });
 
-    // Project Filter
+    // Project filter
     document.getElementById('project-filter').addEventListener('change', function() {
-      const value = this.value;
+      const val = this.value;
       document.querySelectorAll('.project-card').forEach(card => {
-        card.style.display = (value === 'all' || card.dataset.type === value) ? 'block' : 'none';
+        card.style.display = (val === 'all' || card.dataset.type === val) ? '' : 'none';
       });
     });
 
-    // Dark Mode Toggle
-    const darkModeBtn = document.getElementById('dark-mode-toggle');
-    darkModeBtn.addEventListener('click', () => {
-      document.body.classList.toggle('dark-mode');
-      if(document.body.classList.contains('dark-mode')) {
-        darkModeBtn.textContent = "☀️ Light Mode";
-      } else {
-        darkModeBtn.textContent = "🌙 Dark Mode";
-      }
-    });
-
-    // Live Clock
+    // Live clock
     function updateClock() {
       const now = new Date();
       document.getElementById('live-clock').textContent =
-        now.toLocaleTimeString();
+        now.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit', second:'2-digit'});
     }
-    setInterval(updateClock, 1000);
-    updateClock();
+    setInterval(updateClock, 1000); updateClock();
+
+    // Dark mode toggle
+    const darkBtn = document.getElementById('dark-mode-toggle');
+    darkBtn.addEventListener('click', () => {
+      document.body.classList.toggle('dark');
+      if(document.body.classList.contains('dark')) {
+        document.documentElement.style.setProperty('--bg', '#181a1b');
+        document.documentElement.style.setProperty('--card-bg', '#23272a');
+        document.documentElement.style.setProperty('--text', '#f1f1f1');
+        document.documentElement.style.setProperty('--muted', '#aaa');
+        darkBtn.textContent = '☀️ Light Mode';
+      } else {
+        document.documentElement.style.setProperty('--bg', '#f9f9f9');
+        document.documentElement.style.setProperty('--card-bg', '#fff');
+        document.documentElement.style.setProperty('--text', '#222');
+        document.documentElement.style.setProperty('--muted', '#666');
+        darkBtn.textContent = '🌙 Dark Mode';
+      }
+    });
   </script>
 </body>
 </html>
