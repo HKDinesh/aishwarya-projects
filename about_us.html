@@ -9,24 +9,24 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Montserrat:wght@700&display=swap" rel="stylesheet">
   <style>
     :root {
-      --primary: #1a237e;
-      --accent: #00bfae;
-      --bg: #f5f7fa;
+      --primary: #fff;
+      --accent: #fff;
+      --bg: #fff;
       --card-bg: #fff;
-      --text: #222;
-      --muted: #6c757d;
+      --text: #111;
+      --muted: #444;
     }
     html, body {
       margin: 0;
       padding: 0;
-      font-family: 'Inter', Arial, sans-serif;
+      font-family: 'Segoe UI', 'Inter', Arial, sans-serif;
       background: var(--bg);
       color: var(--text);
       min-height: 100%;
     }
     .navbar {
       background: var(--primary);
-      color: #fff;
+      color: #111;
       padding: 0.5rem 0;
       box-shadow: 0 2px 8px rgba(26,35,126,0.05);
     }
@@ -43,10 +43,11 @@
       margin-right: 0.5rem;
     }
     .brand-name {
-      font-family: 'Montserrat', sans-serif;
+      font-family: 'Segoe UI', 'Montserrat', sans-serif;
       font-size: 1.3rem;
       font-weight: 700;
       letter-spacing: 1px;
+      color: #111;
     }
     .nav-links {
       list-style: none;
@@ -56,42 +57,44 @@
       padding: 0;
     }
     .nav-links li a {
-      color: #fff;
+      color: #111;
       text-decoration: none;
       font-weight: 600;
       transition: color 0.2s;
     }
     .nav-links li a:hover {
-      color: var(--accent);
+      color: #0078d4;
     }
     #nav-toggle {
       background: none;
       border: none;
-      color: #fff;
+      color: #111;
       font-size: 1.5rem;
       display: none;
       cursor: pointer;
     }
     header.hero {
-      background: linear-gradient(90deg, var(--primary) 60%, var(--accent) 100%);
-      color: #fff;
+      background: var(--primary);
+      color: #111;
       padding: 3rem 1rem 2rem 1rem;
       text-align: center;
       position: relative;
       overflow: hidden;
     }
     header.hero h1 {
-      font-family: 'Montserrat', sans-serif;
+      font-family: 'Segoe UI', 'Montserrat', sans-serif;
       font-size: 2.5rem;
       margin-bottom: 0.5rem;
       letter-spacing: 2px;
       animation: fadeInDown 1s;
+      color: #111;
     }
     header.hero p {
       font-size: 1.2rem;
       max-width: 600px;
       margin: 0 auto;
       animation: fadeInUp 1.2s;
+      color: #222;
     }
     @keyframes fadeInDown {
       from { opacity: 0; transform: translateY(-40px);}
@@ -116,13 +119,14 @@
       padding: 2rem 1.5rem;
       margin-bottom: 1.5rem;
       animation: fadeInCard 1s;
+      color: #111;
     }
     @keyframes fadeInCard {
       from { opacity: 0; transform: translateY(30px);}
       to { opacity: 1; transform: translateY(0);}
     }
     .timeline {
-      border-left: 3px solid var(--accent);
+      border-left: 3px solid #0078d4;
       padding-left: 1.5rem;
       margin: 1rem 0;
     }
@@ -137,16 +141,17 @@
       top: 0.3rem;
       width: 0.9rem;
       height: 0.9rem;
-      background: var(--accent);
+      background: #0078d4;
       border-radius: 50%;
       border: 2px solid #fff;
-      box-shadow: 0 0 0 2px var(--accent);
+      box-shadow: 0 0 0 2px #0078d4;
     }
     .timeline-event h4 {
       margin: 0 0 0.2rem 0;
       font-size: 1.1rem;
-      color: var(--primary);
+      color: #0078d4;
       font-weight: 700;
+      font-family: 'Segoe UI', 'Montserrat', sans-serif;
     }
     .timeline-event p {
       margin: 0;
@@ -167,6 +172,7 @@
       text-align: center;
       box-shadow: 0 1px 6px rgba(26,35,126,0.05);
       transition: transform 0.2s;
+      color: #111;
     }
     .team-member:hover {
       transform: translateY(-5px) scale(1.03);
@@ -177,13 +183,14 @@
       border-radius: 50%;
       object-fit: cover;
       margin-bottom: 0.7rem;
-      border: 3px solid var(--accent);
+      border: 3px solid #0078d4;
     }
     .team-member h5 {
       margin: 0.3rem 0 0.1rem 0;
       font-size: 1.1rem;
-      color: var(--primary);
+      color: #0078d4;
       font-weight: 700;
+      font-family: 'Segoe UI', 'Montserrat', sans-serif;
     }
     .team-member span {
       font-size: 0.97rem;
@@ -196,19 +203,20 @@
       margin: 0;
     }
     .vision {
-      background: linear-gradient(90deg, #e3f9f7 60%, #f5f7fa 100%);
-      border-left: 5px solid var(--accent);
+      background: #f5f7fa;
+      border-left: 5px solid #0078d4;
       padding: 1.5rem 1.5rem 1.5rem 2rem;
       border-radius: 1rem;
       font-size: 1.1rem;
-      color: var(--primary);
+      color: #0078d4;
       font-weight: 600;
       margin-top: 1rem;
       animation: fadeInCard 1.2s;
+      font-family: 'Segoe UI', 'Montserrat', sans-serif;
     }
     footer {
       background: var(--primary);
-      color: #fff;
+      color: #111;
       text-align: center;
       padding: 1rem 0;
       font-size: 1rem;
