@@ -7,20 +7,29 @@
   <link rel="icon" type="image/png" href="images/AD.png" />
   <!-- CDNs for required libraries -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+
+
+
+
   <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r165/three.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.12.2/lottie.min.js"></script>
+
+
+
+
   <script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.12.2/lottie.min.js"></script>
   <style>
     :root {
       --primary: #1a73e8;
       --accent: #fbbc05;
-      --bg: #121212;
+      --bg: #0a0a0a;
       --card-bg: #1c1c1e;
       --text: #ffffff;
       --muted: #aaaaaa;
       --radius: 16px;
-      --shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+      --shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
       --green: rgb(151, 200, 14);
+      --glow: rgba(151, 200, 14, 0.5);
     }
 
     * {
@@ -34,7 +43,7 @@
       background: var(--bg);
       color: var(--text);
       overflow-x: hidden;
-      scroll-behavior: smooth;
+      position: relative;
     }
 
     body.loaded #splash-screen {
@@ -55,27 +64,28 @@
     }
 
     .splash-logo {
-      width: 100px;
+      width: 120px;
       animation: splash 1.5s infinite alternate ease-in-out;
     }
 
     @keyframes splash {
       to {
-        transform: scale(1.15);
-        opacity: 0.85;
+        transform: scale(1.2);
+        opacity: 0.9;
       }
     }
 
-    /* Custom Cursor */
-    .cursor {
+    /* WebGL Background */
+    #webgl-background {
       position: fixed;
-      width: 60px;
-      height: 60px;
-      pointer-events: none;
-      z-index: 10000;
-      transform: translate(-50%, -50%) scale(1);
-      transition: transform 0.3s ease;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
     }
+
+    
 
     .cursor--hidden {
       opacity: 0;
@@ -122,8 +132,8 @@
       position: fixed;
       top: 0;
       width: 100%;
-      background: rgba(0, 0, 0, 0.8);
-      backdrop-filter: blur(10px);
+      background: rgba(0, 0, 0, 0.85);
+      backdrop-filter: blur(12px);
       z-index: 1000;
       padding: 1rem 2rem;
     }
@@ -137,33 +147,35 @@
     }
 
     .nav-logo {
-      height: 36px;
+      height: 40px;
     }
 
     .brand-name {
-      font-size: 1.2rem;
-      font-weight: 700;
-      margin-left: 0.8rem;
+      font-size: 1.3rem;
+      font-weight: 800;
+      margin-left: 1rem;
       color: var(--text);
+      text-shadow: 0 0 10px var(--glow);
     }
 
     .nav-links {
       display: flex;
-      gap: 2rem;
+      gap: 2.5rem;
       list-style: none;
     }
 
     .nav-links a {
       color: var(--muted);
       text-decoration: none;
-      font-weight: 500;
-      font-size: 0.9rem;
+      font-weight: 600;
+      font-size: 1rem;
       position: relative;
       transition: color 0.3s ease;
     }
 
     .nav-links a:hover {
       color: var(--green);
+      text-shadow: 0 0 8px var(--glow);
     }
 
     .nav-links a::after {
@@ -172,7 +184,7 @@
       width: 0;
       height: 2px;
       background: var(--green);
-      bottom: -4px;
+      bottom: -6px;
       left: 0;
       transition: width 0.3s ease;
     }
@@ -186,7 +198,7 @@
       background: none;
       border: none;
       color: var(--text);
-      font-size: 1.5rem;
+      font-size: 1.8rem;
       cursor: pointer;
     }
 
@@ -194,10 +206,11 @@
     header {
       position: relative;
       text-align: center;
-      padding: 5rem 2rem;
-      background: linear-gradient(180deg, #1c1c1e 0%, #121212 100%);
+      padding: 6rem 2rem;
+      background: linear-gradient(180deg, #1c1c1e 0%, #0a0a0a 100%);
       border-radius: 0 0 var(--radius) var(--radius);
       overflow: hidden;
+      min-height: 100vh;
     }
 
     .hero-canvas {
@@ -207,154 +220,206 @@
       width: 100%;
       height: 100%;
       z-index: 0;
+      opacity: 0.5;
     }
 
     .logo {
-      height: 120px;
+      height: 140px;
       position: relative;
       z-index: 1;
+      animation: pulse 3s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% {
+        transform: scale(1);
+      }
+      50% {
+        transform: scale(1.05);
+      }
     }
 
     header h1 {
-      font-size: 3rem;
-      font-weight: 800;
-      margin: 1rem 0;
+      font-size: 3.5rem;
+      font-weight: 900;
+      margin: 1.5rem 0;
       position: relative;
       z-index: 1;
       animation: glitch 2s infinite;
+      text-shadow: 0 0 12px var(--glow);
     }
 
     @keyframes glitch {
       0% {
         transform: translate(0);
+        text-shadow: 0 0 12px var(--glow);
       }
       20% {
-        transform: translate(-2px, 2px);
+        transform: translate(-3px, 3px);
+        text-shadow: 0 0 8px var(--glow);
       }
       40% {
-        transform: translate(2px, -2px);
+        transform: translate(3px, -3px);
+        text-shadow: 0 0 10px var(--glow);
       }
       60% {
-        transform: translate(-2px, 0);
+        transform: translate(-3px, 0);
+        text-shadow: 0 0 12px var(--glow);
       }
       80% {
-        transform: translate(2px, 0);
+        transform: translate(3px, 0);
+        text-shadow: 0 0 8px var(--glow);
       }
       100% {
         transform: translate(0);
+        text-shadow: 0 0 12px var(--glow);
       }
     }
 
     #typed-text {
-      font-size: 1.2rem;
+      font-size: 1.3rem;
       color: var(--muted);
       position: relative;
       z-index: 1;
+      animation: fadeInUp 1s ease-out;
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
 
     /* Announcements */
     .announcements {
       max-width: 900px;
-      margin: 2rem auto;
+      margin: 3rem auto;
       background: var(--card-bg);
       border-radius: var(--radius);
-      padding: 1.5rem;
+      padding: 2rem;
       display: flex;
       align-items: center;
-      gap: 1rem;
+      gap: 1.5rem;
       box-shadow: var(--shadow);
-      transition: transform 0.3s ease;
+      position: relative;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
 
     .announcements:hover {
-      transform: translateY(-4px);
+      transform: translateY(-8px);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
     }
 
     .announcements i {
       color: var(--accent);
-      font-size: 1.8rem;
+      font-size: 2rem;
     }
 
     .announcements span {
-      font-weight: 500;
-      font-size: 1rem;
+      font-weight: 600;
+      font-size: 1.1rem;
     }
 
     /* Dashboard Layout */
     .dashboard {
       display: grid;
       grid-template-columns: 1fr 350px;
-      gap: 2rem;
+      gap: 3rem;
       max-width: 1200px;
-      margin: 3rem auto;
+      margin: 4rem auto;
       padding: 0 2rem;
     }
 
     /* Card Grid */
     .card-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 2rem;
-      margin: 2rem 0;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2.5rem;
+      margin: 3rem 0;
     }
 
     .card {
       background: var(--card-bg);
       border-radius: var(--radius);
-      padding: 1.5rem;
+      padding: 2rem;
       box-shadow: var(--shadow);
+      position: relative;
+      overflow: hidden;
       transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
 
     .card:hover {
-      transform: translateY(-8px);
-      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+      transform: translateY(-10px);
+      box-shadow: 0 12px 32px rgba(0, 0, 0, 0.5);
     }
 
     .card h3 {
-      font-size: 1.2rem;
-      margin: 0 0 0.5rem 0;
+      font-size: 1.3rem;
+      margin: 0 0 0.7rem 0;
       font-weight: 700;
+      text-shadow: 0 0 8px var(--glow);
     }
 
     .price {
       color: var(--green);
-      font-weight: 600;
-      font-size: 1.1rem;
+      font-weight: 700;
+      font-size: 1.2rem;
+    }
+
+    .card .lottie-animation-container {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .card:hover .lottie-animation-container {
+      opacity: 0.3;
     }
 
     /* Progress & Badges */
     .progressContainer {
       background: var(--card-bg);
       border-radius: var(--radius);
-      padding: 1.5rem;
+      padding: 2rem;
       box-shadow: var(--shadow);
-      margin-bottom: 2rem;
+      margin-bottom: 3rem;
     }
 
     #progressContainer {
       background: #2c2c2e;
-      border-radius: 8px;
-      height: 20px;
+      border-radius: 10px;
+      height: 24px;
       width: 100%;
-      margin: 1rem 0;
+      margin: 1.2rem 0;
       overflow: hidden;
     }
 
     #progressBar {
-      background: var(--green);
+      background: linear-gradient(90deg, var(--green), #c0ff0e);
       height: 100%;
       width: 60%;
-      border-radius: 8px;
+      border-radius: 10px;
       text-align: center;
-      font-size: 0.9rem;
+      font-size: 1rem;
       color: var(--text);
+      display: flex;
+      align-items: center;
+      justify-content: center;
       transition: width 0.6s ease;
     }
 
     #badges ul {
       display: flex;
-      gap: 1rem;
+      gap: 1.2rem;
       padding: 0;
       margin: 0;
       list-style: none;
@@ -363,87 +428,107 @@
     #badges li {
       background: #2c2c2e;
       border-radius: 50%;
-      width: 40px;
-      height: 40px;
+      width: 48px;
+      height: 48px;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 1.4rem;
-      transition: transform 0.3s ease;
+      font-size: 1.6rem;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
 
     #badges li:hover {
-      transform: scale(1.1);
+      transform: scale(1.15);
+      box-shadow: 0 0 12px var(--glow);
     }
 
     /* Filter Section */
     .filter-section {
       display: flex;
       align-items: center;
-      gap: 1rem;
-      margin-bottom: 1.5rem;
+      gap: 1.2rem;
+      margin-bottom: 2rem;
     }
 
     .filter-section label {
-      font-weight: 500;
+      font-weight: 600;
       color: var(--muted);
     }
 
     #project-filter {
-      border-radius: 8px;
+      border-radius: 10px;
       border: 1px solid var(--muted);
-      padding: 0.5rem 1rem;
+      padding: 0.6rem 1.2rem;
       font-size: 1rem;
       background: var(--card-bg);
       color: var(--text);
+      transition: border-color 0.3s ease;
+    }
+
+    #project-filter:hover {
+      border-color: var(--green);
     }
 
     /* CTA */
     .cta {
-      background: linear-gradient(90deg, #1c1c1e 0%, #121212 100%);
+      background: linear-gradient(90deg, #1c1c1e 0%, #0a0a0a 100%);
       border-radius: var(--radius);
-      padding: 3rem 2rem;
+      padding: 4rem 2rem;
       text-align: center;
       box-shadow: var(--shadow);
-      margin: 3rem 0;
+      margin: 4rem 0;
       position: relative;
+      overflow: hidden;
+    }
+
+    .cta .lottie-animation-container {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      opacity: 0.2;
+      z-index: 0;
     }
 
     .whatsapp-btn {
       display: inline-flex;
       align-items: center;
-      gap: 0.8rem;
+      gap: 1rem;
       background: var(--green);
       color: var(--text);
-      padding: 0.8rem 2rem;
-      border-radius: 30px;
-      font-size: 1.1rem;
+      padding: 1rem 2.5rem;
+      border-radius: 40px;
+      font-size: 1.2rem;
       text-decoration: none;
-      font-weight: 600;
-      margin-top: 1.5rem;
-      transition: background 0.3s ease, transform 0.3s ease;
+      font-weight: 700;
+      margin-top: 2rem;
+      position: relative;
+      z-index: 1;
+      transition: background 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
     }
 
     .whatsapp-btn:hover {
       background: #c0ff0e;
-      transform: scale(1.05);
+      transform: scale(1.08);
+      box-shadow: 0 0 16px var(--glow);
     }
 
     /* Floating WhatsApp */
     .floating-whatsapp {
       position: fixed;
-      bottom: 24px;
-      right: 24px;
+      bottom: 32px;
+      right: 32px;
       z-index: 1000;
       background: var(--green);
       color: var(--text);
       border-radius: 50%;
-      width: 60px;
-      height: 60px;
+      width: 70px;
+      height: 70px;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 2rem;
+      font-size: 2.2rem;
       box-shadow: var(--shadow);
       text-decoration: none;
       transition: background 0.3s ease, transform 0.3s ease;
@@ -451,29 +536,51 @@
 
     .floating-whatsapp:hover {
       background: #c0ff0e;
-      transform: scale(1.1);
+      transform: scale(1.15);
+    }
+
+    .floating-whatsapp .lottie-animation-container {
+      position: absolute;
+      width: 120px;
+      height: 120px;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .floating-whatsapp:hover .lottie-animation-container {
+      opacity: 0.4;
     }
 
     /* Live Comments */
     .live-comments {
       background: var(--card-bg);
       border-radius: var(--radius);
-      padding: 2rem;
-      margin: 3rem auto;
+      padding: 3rem;
+      margin: 4rem auto;
       max-width: 900px;
       text-align: center;
       box-shadow: var(--shadow);
+      position: relative;
     }
 
     /* Footer */
     footer {
       text-align: center;
-      padding: 2rem 0;
+      padding: 3rem 0;
       color: var(--muted);
-      font-size: 0.9rem;
+      font-size: 1rem;
       background: var(--card-bg);
       border-top: 1px solid #2c2c2e;
-      margin-top: 3rem;
+      margin-top: 4rem;
+    }
+
+    /* Parallax Sections */
+    .services-section, .projects-section, .progressContainer, .cta, .our-vision, .live-comments {
+      transform: translateY(0);
+      transition: transform 0.5s ease-out;
     }
 
     /* Responsive */
@@ -490,7 +597,7 @@
 
       .nav-links {
         position: absolute;
-        top: 60px;
+        top: 70px;
         left: 0;
         right: 0;
         background: var(--card-bg);
@@ -505,7 +612,7 @@
       }
 
       .nav-links li {
-        padding: 1rem;
+        padding: 1.2rem;
         border-bottom: 1px solid #2c2c2e;
       }
 
@@ -514,16 +621,25 @@
       }
 
       .floating-whatsapp {
-        width: 50px;
-        height: 50px;
-        font-size: 1.8rem;
+        width: 60px;
+        height: 60px;
+        font-size: 2rem;
+      }
+
+      header h1 {
+        font-size: 2.5rem;
       }
     }
   </style>
 </head>
 <body>
+  <!-- WebGL Background -->
+  <canvas id="webgl-background"></canvas>
+
+  <!-- Splash Screen -->
   <div id="splash-screen">
     <img src="images/AD.png" alt="Loading Logo" class="splash-logo" />
+    <div class="lottie-animation-container" style="width: 200px; height: 200px; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);"></div>
   </div>
 
   <!-- Custom Cursor -->
@@ -576,18 +692,22 @@
           <div class="card">
             <h3>Mini Projects & Final Year Projects</h3>
             <p>Get unique, working projects in Web, Python, Android, and more.</p>
+            <div class="lottie-animation-container" style="width: 100%; height: 100%;"></div>
           </div>
           <div class="card">
             <h3>Documentation Help</h3>
             <p>Professional synopsis, SRS, UML diagrams, and reports.</p>
+            <div class="lottie-animation-container" style="width: 100%; height: 100%;"></div>
           </div>
           <div class="card">
             <h3>Mentoring & Explanation</h3>
             <p>We explain the code and help you prepare for your viva.</p>
+            <div class="lottie-animation-container" style="width: 100%; height: 100%;"></div>
           </div>
           <div class="card">
             <h3>College ERP Modules</h3>
             <p>Attendance, internal marks, timetable – customized solutions.</p>
+            <div class="lottie-animation-container" style="width: 100%; height: 100%;"></div>
           </div>
         </div>
       </section>
@@ -609,21 +729,25 @@
             <h3>Attendance Marking App</h3>
             <p>React Native</p>
             <span class="price">₹2000</span>
+            <div class="lottie-animation-container" style="width: 100%; height: 100%;"></div>
           </div>
           <div class="card project-card" data-type="android">
             <h3>Messenger App</h3>
             <p>React Native + Firebase | Realtime Chat</p>
             <span class="price">₹2500</span>
+            <div class="lottie-animation-container" style="width: 100%; height: 100%;"></div>
           </div>
           <div class="card project-card" data-type="web">
             <h3>College Student Dashboard</h3>
             <p>PHP + MySQL | Student Dashboard</p>
             <span class="price">₹2500</span>
+            <div class="lottie-animation-container" style="width: 100%; height: 100%;"></div>
           </div>
           <div class="card project-card" data-type="fullstack">
             <h3>Project Management System</h3>
             <p>React, Node.js, MongoDB | Full Stack</p>
             <span class="price">₹3500</span>
+            <div class="lottie-animation-container" style="width: 100%; height: 100%;"></div>
           </div>
         </div>
       </section>
@@ -645,10 +769,12 @@
       </section>
       <!-- CTA -->
       <section class="cta" id="contact-us">
+        <div class="lottie-animation-container" style="width: 100%; height: 100%;"></div>
         <h2>📞 Need Project Help?</h2>
         <p>We’re here to assist you 24x7 on WhatsApp!</p>
         <a href="https://wa.me/918825527193" target="_blank" class="whatsapp-btn">
           <i class="fab fa-whatsapp"></i> Chat Now
+          <div class="lottie-animation-container" style="width: 100px; height: 100px; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); opacity: 0;"></div>
         </a>
       </section>
       <!-- Vision -->
@@ -662,6 +788,7 @@
   <!-- Floating WhatsApp -->
   <a href="https://wa.me/918825527193" class="floating-whatsapp" target="_blank" title="Chat with us!">
     <i class="fab fa-whatsapp"></i>
+    <div class="lottie-animation-container" style="width: 120px; height: 120px;"></div>
   </a>
 
   <!-- Live Comments -->
@@ -676,9 +803,9 @@
   </footer>
 
   <script>
-    // Initialize Lenis for smooth scrolling
+    // Initialize Lenis for smooth scrolling with parallax
     const lenis = new Lenis({
-      duration: 1.2,
+      duration: 1.5,
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
       smooth: true,
     });
@@ -689,6 +816,14 @@
     }
 
     requestAnimationFrame(raf);
+
+    // Parallax effect on scroll
+    lenis.on('scroll', ({ scroll }) => {
+      document.querySelectorAll('.services-section, .projects-section, .progressContainer, .cta, .our-vision, .live-comments').forEach((section, index) => {
+        const offset = scroll - section.offsetTop;
+        section.style.transform = `translateY(${offset * (0.05 * (index + 1))}px)`;
+      });
+    });
 
     // Navbar toggle
     const navToggle = document.getElementById('nav-toggle');
@@ -707,7 +842,9 @@
 
     // Splash screen
     window.addEventListener('load', () => {
-      document.body.classList.add('loaded');
+      setTimeout(() => {
+        document.body.classList.add('loaded');
+      }, 2000); // Delay for splash screen
     });
 
     // Project filter
@@ -742,7 +879,7 @@
       cursor.classList.add('cursor--hidden');
     });
 
-    document.querySelectorAll('a, button').forEach((el) => {
+    document.querySelectorAll('a, button, .card').forEach((el) => {
       el.addEventListener('mouseenter', () => {
         cursor.classList.add('cursor--active');
       });
@@ -751,24 +888,60 @@
       });
     });
 
-    // Three.js Background Effect
-    const canvas = document.querySelector('.hero-canvas');
+    // Three.js Particle Background
+    const canvas = document.getElementById('webgl-background');
     const scene = new THREE.Scene();
     const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
     const renderer = new THREE.WebGLRenderer({ canvas, alpha: true });
     renderer.setSize(window.innerWidth, window.innerHeight);
 
-    const geometry = new THREE.SphereGeometry(5, 32, 32);
-    const material = new THREE.MeshBasicMaterial({ color: 0x1a73e8, wireframe: true });
-    const sphere = new THREE.Mesh(geometry, material);
-    scene.add(sphere);
+    const particlesGeometry = new THREE.BufferGeometry();
+    const particleCount = 5000;
+    const posArray = new Float32Array(particleCount * 3);
+    const velocities = new Float32Array(particleCount * 3);
 
-    camera.position.z = 10;
+    for (let i = 0; i < particleCount * 3; i += 3) {
+      posArray[i] = (Math.random() - 0.5) * 100;
+      posArray[i + 1] = (Math.random() - 0.5) * 100;
+      posArray[i + 2] = (Math.random() - 0.5) * 100;
+      velocities[i] = (Math.random() - 0.5) * 0.01;
+      velocities[i + 1] = (Math.random() - 0.5) * 0.01;
+      velocities[i + 2] = (Math.random() - 0.5) * 0.01;
+    }
+
+    particlesGeometry.setAttribute('position', new THREE.BufferAttribute(posArray, 3));
+    const material = new THREE.PointsMaterial({
+      size: 0.05,
+      color: 0x97c80e,
+      transparent: true,
+      opacity: 0.6,
+    });
+
+    const particles = new THREE.Points(particlesGeometry, material);
+    scene.add(particles);
+
+    camera.position.z = 5;
+
+    // Mouse interaction
+    let mouseX = 0, mouseY = 0;
+    document.addEventListener('mousemove', (e) => {
+      mouseX = (e.clientX / window.innerWidth) * 2 - 1;
+      mouseY = -(e.clientY / window.innerHeight) * 2 + 1;
+    });
 
     function animate() {
       requestAnimationFrame(animate);
-      sphere.rotation.x += 0.01;
-      sphere.rotation.y += 0.01;
+      particles.rotation.y += 0.002;
+      const positions = particlesGeometry.attributes.position.array;
+      for (let i = 0; i < particleCount * 3; i += 3) {
+        positions[i] += velocities[i] + mouseX * 0.001;
+        positions[i + 1] += velocities[i + 1] + mouseY * 0.001;
+        positions[i + 2] += velocities[i + 2];
+        if (Math.abs(positions[i]) > 50) velocities[i] *= -1;
+        if (Math.abs(positions[i + 1]) > 50) velocities[i + 1] *= -1;
+        if (Math.abs(positions[i + 2]) > 50) velocities[i + 2] *= -1;
+      }
+      particlesGeometry.attributes.position.needsUpdate = true;
       renderer.render(scene, camera);
     }
     animate();
@@ -779,36 +952,74 @@
       camera.updateProjectionMatrix();
     });
 
-    // Lottie Animation for WhatsApp Button
-    const whatsappBtn = document.querySelector('.whatsapp-btn');
-    const lottieContainer = document.createElement('div');
-    lottieContainer.className = 'lottie-animation-container';
-    lottieContainer.style.cssText = `
-      position: absolute;
-      width: 100px;
-      height: 100px;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      pointer-events: none;
-      opacity: 0;
-      transition: opacity 0.3s ease;
-    `;
-    whatsappBtn.appendChild(lottieContainer);
+    // Hero Section Three.js Effect
+    const heroCanvas = document.querySelector('.hero-canvas');
+    const heroScene = new THREE.Scene();
+    const heroCamera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+    const heroRenderer = new THREE.WebGLRenderer({ canvas: heroCanvas, alpha: true });
+    heroRenderer.setSize(window.innerWidth, window.innerHeight);
 
-    whatsappBtn.addEventListener('mouseenter', () => {
-      lottieContainer.style.opacity = '1';
-    });
-    whatsappBtn.addEventListener('mouseleave', () => {
-      lottieContainer.style.opacity = '0';
+    const heroGeometry = new THREE.TorusGeometry(2, 0.4, 16, 100);
+    const heroMaterial = new THREE.MeshBasicMaterial({ color: 0x1a73e8, wireframe: true });
+    const torus = new THREE.Mesh(heroGeometry, heroMaterial);
+    heroScene.add(torus);
+
+    heroCamera.position.z = 5;
+
+    function animateHero() {
+      requestAnimationFrame(animateHero);
+      torus.rotation.x += 0.01;
+      torus.rotation.y += 0.01;
+      heroRenderer.render(heroScene, heroCamera);
+    }
+    animateHero();
+
+    window.addEventListener('resize', () => {
+      heroRenderer.setSize(window.innerWidth, window.innerHeight);
+      heroCamera.aspect = window.innerWidth / window.innerHeight;
+      heroCamera.updateProjectionMatrix();
     });
 
+    // Lottie Animations
+    const lottieContainers = document.querySelectorAll('.lottie-animation-container');
+    lottieContainers.forEach((container, index) => {
+      lottie.loadAnimation({
+        container,
+        renderer: 'svg',
+        loop: true,
+        autoplay: true,
+        path: `https://assets.lottiefiles.com/packages/lf20_${index % 2 ? '3pgxyh' : 'j3t2y0'}.json`, // Alternating animations
+      });
+    });
+
+    // Lottie for Splash Screen
+    const splashLottie = document.querySelector('#splash-screen .lottie-animation-container');
     lottie.loadAnimation({
-      container: lottieContainer,
+      container: splashLottie,
       renderer: 'svg',
       loop: true,
       autoplay: true,
-      path: 'https://assets.lottiefiles.com/packages/lf20_3pgxyh.json', // Example Lottie animation
+      path: 'https://assets.lottiefiles.com/packages/lf20_1z4b6k.json', // Splash-specific animation
+    });
+
+    // Lottie for WhatsApp Button
+    const whatsappBtn = document.querySelector('.whatsapp-btn');
+    const whatsappLottie = whatsappBtn.querySelector('.lottie-animation-container');
+    whatsappBtn.addEventListener('mouseenter', () => {
+      whatsappLottie.style.opacity = '1';
+    });
+    whatsappBtn.addEventListener('mouseleave', () => {
+      whatsappLottie.style.opacity = '0';
+    });
+
+    // Lottie for Floating WhatsApp
+    const floatingWhatsapp = document.querySelector('.floating-whatsapp');
+    const floatingLottie = floatingWhatsapp.querySelector('.lottie-animation-container');
+    floatingWhatsapp.addEventListener('mouseenter', () => {
+      floatingLottie.style.opacity = '0.4';
+    });
+    floatingWhatsapp.addEventListener('mouseleave', () => {
+      floatingLottie.style.opacity = '0';
     });
   </script>
 </body>
