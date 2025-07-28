@@ -1,15 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
-  // Check if dependencies are loaded
+  // Check if THREE is defined
   if (typeof THREE === 'undefined') {
     console.error('Three.js failed to load. Please check the CDN or network connection.');
-    return;
-  }
-  if (typeof Lenis === 'undefined') {
-    console.error('Lenis failed to load. Please check the CDN or network connection.');
-    return;
-  }
-  if (typeof lottie === 'undefined') {
-    console.error('Lottie failed to load. Please check the CDN or network connection.');
     return;
   }
 
@@ -30,7 +22,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // Parallax effect on scroll
   lenis.on('scroll', ({ scroll }) => {
     document.querySelectorAll('.services-section, .projects-section, .progressContainer, .cta, .our-vision, .live-comments').forEach((section, index) => {
-      const offset = scroll - (section.offsetTop || 0);
+      const offset = scroll - section.offsetTop;
       section.style.transform = `translateY(${offset * (0.05 * (index + 1))}px)`;
     });
   });
@@ -193,32 +185,24 @@ document.addEventListener('DOMContentLoaded', () => {
   // Lottie Animations
   const lottieContainers = document.querySelectorAll('.lottie-animation-container');
   lottieContainers.forEach((container, index) => {
-    try {
-      lottie.loadAnimation({
-        container,
-        renderer: 'svg',
-        loop: true,
-        autoplay: true,
-        path: `https://assets.lottiefiles.com/packages/lf20_${index % 2 ? '3pgxyh' : 'j3t2y0'}.json`, // Alternating animations
-      });
-    } catch (e) {
-      console.error('Failed to load Lottie animation:', e);
-    }
+    lottie.loadAnimation({
+      container,
+      renderer: 'svg',
+      loop: true,
+      autoplay: true,
+      path: `https://assets.lottiefiles.com/packages/lf20_${index % 2 ? '3pgxyh' : 'j3t2y0'}.json`, // Alternating animations
+    });
   });
 
   // Lottie for Splash Screen
   const splashLottie = document.querySelector('#splash-screen .lottie-animation-container');
-  try {
-    lottie.loadAnimation({
-      container: splashLottie,
-      renderer: 'svg',
-      loop: true,
-      autoplay: true,
-      path: 'https://assets.lottiefiles.com/packages/lf20_1z4b6k.json', // Splash-specific animation
-    });
-  } catch (e) {
-    console.error('Failed to load splash Lottie animation:', e);
-  }
+  lottie.loadAnimation({
+    container: splashLottie,
+    renderer: 'svg',
+    loop: true,
+    autoplay: true,
+    path: 'https://assets.lottiefiles.com/packages/lf20_1z4b6k.json', // Splash-specific animation
+  });
 
   // Lottie for WhatsApp Button
   const whatsappBtn = document.querySelector('.whatsapp-btn');
