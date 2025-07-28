@@ -112,6 +112,26 @@
       stroke-width: 2;
     }
 
+    .egg, .egg--light {
+      width: 195px;
+      height: 263px;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) scale(0.3);
+      transition: transform 0.3s ease;
+    }
+
+    .egg__inner {
+      stroke: var(--text);
+      stroke-width: 2;
+      fill: none;
+    }
+
+    .cursor--active .egg {
+      transform: translate(-50%, -50%) scale(0.4);
+    }
+
     .cursor__text {
       position: absolute;
       top: 50%;
@@ -203,6 +223,35 @@
       cursor: pointer;
     }
 
+    .sound-button {
+      background: none;
+      border: none;
+      color: var(--text);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      position: relative;
+    }
+
+    .sound-button svg {
+      width: 13px;
+      height: 18px;
+    }
+
+    .sound-button_egg {
+      stroke: var(--text);
+      stroke-width: 0.9;
+      fill: none;
+    }
+
+    .sound-button_line {
+      stroke: var(--text);
+      stroke-width: 1;
+    }
+
     /* Hero Section */
     header {
       position: relative;
@@ -250,7 +299,17 @@
       text-shadow: 0 0 12px var(--glow);
     }
 
-    @keyframes glitch {
+    .glitch-title {
+      display: inline-block;
+    }
+
+    .glitch-title div {
+      position: relative;
+      display: inline-block;
+      animation: glitch-word 2s infinite;
+    }
+
+    @keyframes glitch-word {
       0% {
         transform: translate(0);
         text-shadow: 0 0 12px var(--glow);
@@ -515,6 +574,53 @@
       box-shadow: 0 0 16px var(--glow);
     }
 
+    /* Focus Button */
+    .focus-button {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.8rem 2rem;
+      background: none;
+      border: none;
+      color: var(--text);
+      font-size: 1.1rem;
+      font-weight: 600;
+      cursor: pointer;
+      overflow: hidden;
+    }
+
+    .focus-button_line {
+      position: absolute;
+      stroke: var(--green);
+      stroke-width: 2;
+      transition: transform 0.3s ease;
+    }
+
+    .focus-button_line-1 {
+      top: 0;
+      left: 0;
+      transform: translateX(-100%);
+    }
+
+    .focus-button_line-2 {
+      bottom: 0;
+      left: 0;
+      transform: translateX(100%);
+    }
+
+    .focus-button_line-3 {
+      top: 0;
+      right: 0;
+      transform: translateX(100%);
+    }
+
+    .focus-button:hover .focus-button_line-1,
+    .focus-button:hover .focus-button_line-2,
+    .focus-button:hover .focus-button_line-3 {
+      transform: translateX(0);
+    }
+
     /* Floating WhatsApp */
     .floating-whatsapp {
       position: fixed;
@@ -567,6 +673,67 @@
       position: relative;
     }
 
+    /* Phase Sections */
+    .phase {
+      margin: 4rem 0;
+      text-align: center;
+      position: relative;
+    }
+
+    .phase_content_caption {
+      font-size: 1.2rem;
+      color: var(--muted);
+      margin-bottom: 1rem;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.5s ease, transform 0.5s ease;
+    }
+
+    .phase_content_title {
+      font-size: 2.5rem;
+      font-weight: 800;
+      margin-bottom: 1rem;
+    }
+
+    .phase_bottom {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+
+    /* Pagination */
+    .pagination {
+      position: fixed;
+      right: 2rem;
+      top: 50%;
+      transform: translateY(-50%);
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      z-index: 1000;
+    }
+
+    .pagination_item {
+      background: none;
+      border: none;
+      cursor: pointer;
+    }
+
+    .pagination_dot {
+      width: 10px;
+      height: 10px;
+      background: var(--muted);
+      border-radius: 50%;
+      transition: background 0.3s ease, transform 0.3s ease;
+    }
+
+    .pagination_item--active .pagination_dot {
+      background: var(--green);
+      transform: scale(1.5);
+    }
+
     /* Footer */
     footer {
       text-align: center;
@@ -579,7 +746,7 @@
     }
 
     /* Parallax Sections */
-    .services-section, .projects-section, .progressContainer, .cta, .our-vision, .live-comments {
+    .services-section, .projects-section, .progressContainer, .cta, .our-vision, .live-comments, .phase {
       transform: translateY(0);
       transition: transform 0.5s ease-out;
     }
@@ -649,7 +816,11 @@
     <svg class="cursor__circle" viewBox="0 0 600 600" xmlns="http://www.w3.org/2000/svg">
       <circle cx="300" cy="300" r="270" />
     </svg>
+    <svg class="egg egg--light" width="195" height="263" viewBox="0 0 195 263" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path class="egg__inner" d="M145.772 150.639L145.77 150.65L145.769 150.66C144.149 163.559 140.408 173.399 134.224 181.902C132.762 183.897 128.427 188.536 126.496 190.163C121.647 194.224 115.101 197.642 109.261 199.179L109.249 199.182C104.413 200.464 97.8192 201.001 92.9584 200.502L92.949 200.501C73.2785 198.51 57.2957 184.366 51.2035 161.884L51.202 161.879C48.3304 151.317 47.8382 137.75 50.0562 124.456L50.057 124.452C52.743 108.287 59.137 92.6338 67.852 80.538C70.6214 76.7195 76.0473 71.0092 79.0171 68.7308L79.0258 68.7241L79.0345 68.7174C84.4445 64.5397 89.7587 62.3368 94.9523 61.7651C97.1853 61.5275 97.9536 61.5253 100.289 61.7856C105.092 62.3453 110.552 64.6393 115.934 68.7949C118.345 70.6949 123.864 76.3284 125.968 79.103C136.207 92.6069 143.074 110.212 145.653 130.325C145.852 131.91 146.009 136.066 146.036 140.63C146.063 145.239 145.949 149.261 145.772 150.639Z" />
+    </svg>
     <div class="cursor__text">Click &amp; hold</div>
+    <div class="lottie-animation-container cursor__animation" style="width: 72px; height: 72px; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);"></div>
   </div>
 
   <!-- Navigation Bar -->
@@ -665,6 +836,13 @@
         <li><a href="contact_us.html">Contact Us</a></li>
         <li><a href="our_vision.html">Our Vision</a></li>
       </ul>
+      <button class="sound-button">
+        <p>Sound</p>
+        <svg width="13" height="18" viewBox="0 0 13 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path class="sound-button_egg sound-button_egg-inner" d="M9.45438 10.2646L9.45438 10.2646L9.45421 10.266C9.34909 11.1026 9.10645 11.7409 8.70533 12.2925C8.61051 12.4219 8.32934 12.7227 8.20406 12.8282C7.88956 13.0917 7.46499 13.3133 7.08618 13.4131L7.08542 13.4133C6.77172 13.4964 6.34402 13.5312 6.02874 13.4989L6.02812 13.4988C4.75223 13.3697 3.71554 12.4522 3.32038 10.994L3.32028 10.9936C3.13402 10.3086 3.1021 9.4286 3.24597 8.5663L3.24601 8.56601C3.42023 7.51755 3.83495 6.50225 4.40022 5.71769C4.57984 5.47001 4.93181 5.09959 5.12446 4.95179L5.12558 4.95092C5.47649 4.67994 5.82119 4.53705 6.15806 4.49997C6.30291 4.48456 6.35274 4.48441 6.50425 4.5013C6.81581 4.53761 7.16996 4.68642 7.51908 4.95599C7.67546 5.07927 8.0333 5.44454 8.16981 5.6245C8.83395 6.50041 9.2794 7.64234 9.44665 8.94695C9.45955 9.04981 9.46976 9.31933 9.4715 9.61535C9.47325 9.91435 9.46589 10.1752 9.45438 10.2646Z" stroke="white" stroke-width="0.90219"></path>
+          <path class="sound-button_line" d="M4 17L9 1" stroke="white"></path>
+        </svg>
+      </button>
       <button id="nav-toggle"><i class="fas fa-bars"></i></button>
     </div>
   </nav>
@@ -673,7 +851,10 @@
   <header>
     <canvas class="hero-canvas" data-engine="three.js r165"></canvas>
     <a href="index.html"><img src="images/AD.png" alt="Aishwarya Logo" class="logo" /></a>
-    <h1>Aishwarya InnovateX</h1>
+    <h1 class="glitch-title">
+      <div>Aishwarya</div>
+      <div>InnovateX</div>
+    </h1>
     <p id="typed-text">Empowering students with real-world projects and mentoring.</p>
   </header>
 
@@ -686,69 +867,110 @@
   <!-- Dashboard Layout -->
   <div class="dashboard">
     <main>
-      <!-- Services -->
-      <section class="services-section">
-        <h2>🔥 Our Services</h2>
-        <div class="card-grid">
-          <div class="card">
-            <h3>Mini Projects & Final Year Projects</h3>
-            <p>Get unique, working projects in Web, Python, Android, and more.</p>
-            <div class="lottie-animation-container" style="width: 100%; height: 100%;"></div>
+      <!-- Phase 1: Services -->
+      <section class="phase phase--1">
+        <div class="phase_content">
+          <div class="phase_content_caption">Phase 01</div>
+          <div class="glitch-title phase_content_title">
+            <div>Our</div>
+            <div>Services</div>
           </div>
-          <div class="card">
-            <h3>Documentation Help</h3>
-            <p>Professional synopsis, SRS, UML diagrams, and reports.</p>
-            <div class="lottie-animation-container" style="width: 100%; height: 100%;"></div>
+          <div class="card-grid">
+            <div class="card">
+              <h3>Mini Projects & Final Year Projects</h3>
+              <p>Get unique, working projects in Web, Python, Android, and more.</p>
+              <div class="lottie-animation-container" style="width: 100%; height: 100%;"></div>
+            </div>
+            <div class="card">
+              <h3>Documentation Help</h3>
+              <p>Professional synopsis, SRS, UML diagrams, and reports.</p>
+              <div class="lottie-animation-container" style="width: 100%; height: 100%;"></div>
+            </div>
+            <div class="card">
+              <h3>Mentoring & Explanation</h3>
+              <p>We explain the code and help you prepare for your viva.</p>
+              <div class="lottie-animation-container" style="width: 100%; height: 100%;"></div>
+            </div>
+            <div class="card">
+              <h3>College ERP Modules</h3>
+              <p>Attendance, internal marks, timetable – customized solutions.</p>
+              <div class="lottie-animation-container" style="width: 100%; height: 100%;"></div>
+            </div>
           </div>
-          <div class="card">
-            <h3>Mentoring & Explanation</h3>
-            <p>We explain the code and help you prepare for your viva.</p>
-            <div class="lottie-animation-container" style="width: 100%; height: 100%;"></div>
-          </div>
-          <div class="card">
-            <h3>College ERP Modules</h3>
-            <p>Attendance, internal marks, timetable – customized solutions.</p>
-            <div class="lottie-animation-container" style="width: 100%; height: 100%;"></div>
+          <div class="phase_bottom">
+            <button class="focus-button">
+              <span>Find Out More</span>
+              <svg class="focus-button_line focus-button_line-1" width="127" height="2" viewBox="0 0 127 2" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M0 1H127"></path>
+              </svg>
+              <svg class="focus-button_line focus-button_line-2" width="127" height="2" viewBox="0 0 127 2" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M0 1H127"></path>
+              </svg>
+              <svg class="focus-button_line focus-button_line-3" width="127" height="2" viewBox="0 0 127 2" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M0 1H127"></path>
+              </svg>
+            </button>
           </div>
         </div>
       </section>
 
-      <!-- Project Section -->
-      <section class="projects-section">
-        <h2>📦 Make Projects Yours Within Minutes</h2>
-        <div class="filter-section">
-          <label for="project-filter">Filter by:</label>
-          <select id="project-filter">
-            <option value="all">All</option>
-            <option value="web">Web</option>
-            <option value="android">Android</option>
-            <option value="fullstack">Full Stack</option>
-          </select>
-        </div>
-        <div class="card-grid" id="projects-list">
-          <div class="card project-card" data-type="android">
-            <h3>Attendance Marking App</h3>
-            <p>React Native</p>
-            <span class="price">₹2000</span>
-            <div class="lottie-animation-container" style="width: 100%; height: 100%;"></div>
+      <!-- Phase 2: Projects -->
+      <section class="phase phase--2">
+        <div class="phase_content">
+          <div class="phase_content_caption">Phase 02</div>
+          <div class="glitch-title phase_content_title">
+            <div>Make</div>
+            <div>Projects</div>
+            <div>Yours</div>
           </div>
-          <div class="card project-card" data-type="android">
-            <h3>Messenger App</h3>
-            <p>React Native + Firebase | Realtime Chat</p>
-            <span class="price">₹2500</span>
-            <div class="lottie-animation-container" style="width: 100%; height: 100%;"></div>
+          <div class="filter-section">
+            <label for="project-filter">Filter by:</label>
+            <select id="project-filter">
+              <option value="all">All</option>
+              <option value="web">Web</option>
+              <option value="android">Android</option>
+              <option value="fullstack">Full Stack</option>
+            </select>
           </div>
-          <div class="card project-card" data-type="web">
-            <h3>College Student Dashboard</h3>
-            <p>PHP + MySQL | Student Dashboard</p>
-            <span class="price">₹2500</span>
-            <div class="lottie-animation-container" style="width: 100%; height: 100%;"></div>
+          <div class="card-grid" id="projects-list">
+            <div class="card project-card" data-type="android">
+              <h3>Attendance Marking App</h3>
+              <p>React Native</p>
+              <span class="price">₹2000</span>
+              <div class="lottie-animation-container" style="width: 100%; height: 100%;"></div>
+            </div>
+            <div class="card project-card" data-type="android">
+              <h3>Messenger App</h3>
+              <p>React Native + Firebase | Realtime Chat</p>
+              <span class="price">₹2500</span>
+              <div class="lottie-animation-container" style="width: 100%; height: 100%;"></div>
+            </div>
+            <div class="card project-card" data-type="web">
+              <h3>College Student Dashboard</h3>
+              <p>PHP + MySQL | Student Dashboard</p>
+              <span class="price">₹2500</span>
+              <div class="lottie-animation-container" style="width: 100%; height: 100%;"></div>
+            </div>
+            <div class="card project-card" data-type="fullstack">
+              <h3>Project Management System</h3>
+              <p>React, Node.js, MongoDB | Full Stack</p>
+              <span class="price">₹3500</span>
+              <div class="lottie-animation-container" style="width: 100%; height: 100%;"></div>
+            </div>
           </div>
-          <div class="card project-card" data-type="fullstack">
-            <h3>Project Management System</h3>
-            <p>React, Node.js, MongoDB | Full Stack</p>
-            <span class="price">₹3500</span>
-            <div class="lottie-animation-container" style="width: 100%; height: 100%;"></div>
+          <div class="phase_bottom">
+            <button class="focus-button">
+              <span>Find Out More</span>
+              <svg class="focus-button_line focus-button_line-1" width="127" height="2" viewBox="0 0 127 2" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M0 1H127"></path>
+              </svg>
+              <svg class="focus-button_line focus-button_line-2" width="127" height="2" viewBox="0 0 127 2" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M0 1H127"></path>
+              </svg>
+              <svg class="focus-button_line focus-button_line-3" width="127" height="2" viewBox="0 0 127 2" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M0 1H127"></path>
+              </svg>
+            </button>
           </div>
         </div>
       </section>
@@ -756,7 +978,10 @@
     <aside>
       <!-- Progress & Badges -->
       <section class="progressContainer">
-        <h2>🏅 Your Progress</h2>
+        <h2 class="glitch-title">
+          <div>Your</div>
+          <div>Progress</div>
+        </h2>
         <div id="progressContainer">
           <div id="progressBar">60%</div>
         </div>
@@ -771,7 +996,11 @@
       <!-- CTA -->
       <section class="cta" id="contact-us">
         <div class="lottie-animation-container" style="width: 100%; height: 100%;"></div>
-        <h2>📞 Need Project Help?</h2>
+        <h2 class="glitch-title">
+          <div>Need</div>
+          <div>Project</div>
+          <div>Help?</div>
+        </h2>
         <p>We’re here to assist you 24x7 on WhatsApp!</p>
         <a href="https://wa.me/918825527193" target="_blank" class="whatsapp-btn">
           <i class="fab fa-whatsapp"></i> Chat Now
@@ -780,10 +1009,21 @@
       </section>
       <!-- Vision -->
       <section class="our-vision" id="our-vision">
-        <h2>🌟 Our Vision</h2>
+        <h2 class="glitch-title">
+          <div>Our</div>
+          <div>Vision</div>
+        </h2>
         <p>To empower every student with practical project experience and industry-standard mentoring for a brighter tech future.</p>
       </section>
     </aside>
+  </div>
+
+  <!-- Pagination -->
+  <div class="pagination">
+    <button class="pagination_item"><div class="pagination_dot"></div></button>
+    <button class="pagination_item"><div class="pagination_dot"></div></button>
+    <button class="pagination_item pagination_item--active"><div class="pagination_dot"></div></button>
+    <button class="pagination_item"><div class="pagination_dot"></div></button>
   </div>
 
   <!-- Floating WhatsApp -->
@@ -794,7 +1034,12 @@
 
   <!-- Live Comments -->
   <section class="live-comments" id="live-comments">
-    <h2>Need more help? Contact us at <a href="mailto:dineshkanna2601@gmail.com">dineshkanna2601@gmail.com</a></h2>
+    <h2 class="glitch-title">
+      <div>Need</div>
+      <div>More</div>
+      <div>Help?</div>
+    </h2>
+    <p>Contact us at <a href="mailto:dineshkanna2601@gmail.com">dineshkanna2601@gmail.com</a></p>
   </section>
 
   <!-- Footer -->
@@ -820,9 +1065,16 @@
 
     // Parallax effect on scroll
     lenis.on('scroll', ({ scroll }) => {
-      document.querySelectorAll('.services-section, .projects-section, .progressContainer, .cta, .our-vision, .live-comments').forEach((section, index) => {
+      document.querySelectorAll('.phase, .progressContainer, .cta, .our-vision, .live-comments').forEach((section, index) => {
         const offset = scroll - section.offsetTop;
         section.style.transform = `translateY(${offset * (0.05 * (index + 1))}px)`;
+        if (section.classList.contains('phase')) {
+          const caption = section.querySelector('.phase_content_caption');
+          if (caption && scroll > section.offsetTop - window.innerHeight / 2) {
+            caption.style.opacity = '1';
+            caption.style.transform = 'translateY(0)';
+          }
+        }
       });
     });
 
@@ -845,7 +1097,7 @@
     window.addEventListener('load', () => {
       setTimeout(() => {
         document.body.classList.add('loaded');
-      }, 2000); // Delay for splash screen
+      }, 2000);
     });
 
     // Project filter
@@ -897,23 +1149,28 @@
     renderer.setSize(window.innerWidth, window.innerHeight);
 
     const particlesGeometry = new THREE.BufferGeometry();
-    const particleCount = 5000;
+    const particleCount = 8000;
     const posArray = new Float32Array(particleCount * 3);
     const velocities = new Float32Array(particleCount * 3);
+    const colors = new Float32Array(particleCount * 3);
 
     for (let i = 0; i < particleCount * 3; i += 3) {
       posArray[i] = (Math.random() - 0.5) * 100;
       posArray[i + 1] = (Math.random() - 0.5) * 100;
       posArray[i + 2] = (Math.random() - 0.5) * 100;
-      velocities[i] = (Math.random() - 0.5) * 0.01;
-      velocities[i + 1] = (Math.random() - 0.5) * 0.01;
-      velocities[i + 2] = (Math.random() - 0.5) * 0.01;
+      velocities[i] = (Math.random() - 0.5) * 0.02;
+      velocities[i + 1] = (Math.random() - 0.5) * 0.02;
+      velocities[i + 2] = (Math.random() - 0.5) * 0.02;
+      colors[i] = Math.random();
+      colors[i + 1] = Math.random();
+      colors[i + 2] = 1;
     }
 
     particlesGeometry.setAttribute('position', new THREE.BufferAttribute(posArray, 3));
+    particlesGeometry.setAttribute('color', new THREE.BufferAttribute(colors, 3));
     const material = new THREE.PointsMaterial({
       size: 0.05,
-      color: 0x97c80e,
+      vertexColors: true,
       transparent: true,
       opacity: 0.6,
     });
@@ -923,7 +1180,6 @@
 
     camera.position.z = 5;
 
-    // Mouse interaction
     let mouseX = 0, mouseY = 0;
     document.addEventListener('mousemove', (e) => {
       mouseX = (e.clientX / window.innerWidth) * 2 - 1;
@@ -935,8 +1191,8 @@
       particles.rotation.y += 0.002;
       const positions = particlesGeometry.attributes.position.array;
       for (let i = 0; i < particleCount * 3; i += 3) {
-        positions[i] += velocities[i] + mouseX * 0.001;
-        positions[i + 1] += velocities[i + 1] + mouseY * 0.001;
+        positions[i] += velocities[i] + mouseX * 0.002;
+        positions[i + 1] += velocities[i + 1] + mouseY * 0.002;
         positions[i + 2] += velocities[i + 2];
         if (Math.abs(positions[i]) > 50) velocities[i] *= -1;
         if (Math.abs(positions[i + 1]) > 50) velocities[i + 1] *= -1;
@@ -960,17 +1216,17 @@
     const heroRenderer = new THREE.WebGLRenderer({ canvas: heroCanvas, alpha: true });
     heroRenderer.setSize(window.innerWidth, window.innerHeight);
 
-    const heroGeometry = new THREE.TorusGeometry(2, 0.4, 16, 100);
-    const heroMaterial = new THREE.MeshBasicMaterial({ color: 0x1a73e8, wireframe: true });
-    const torus = new THREE.Mesh(heroGeometry, heroMaterial);
-    heroScene.add(torus);
+    const heroGeometry = new THREE.TorusKnotGeometry(2, 0.4, 100, 16);
+    const heroMaterial = new THREE.MeshBasicMaterial({ color: 0x97c80e, wireframe: true });
+    const torusKnot = new THREE.Mesh(heroGeometry, heroMaterial);
+    heroScene.add(torusKnot);
 
     heroCamera.position.z = 5;
 
     function animateHero() {
       requestAnimationFrame(animateHero);
-      torus.rotation.x += 0.01;
-      torus.rotation.y += 0.01;
+      torusKnot.rotation.x += 0.01;
+      torusKnot.rotation.y += 0.01;
       heroRenderer.render(heroScene, heroCamera);
     }
     animateHero();
@@ -989,8 +1245,18 @@
         renderer: 'svg',
         loop: true,
         autoplay: true,
-        path: `https://assets.lottiefiles.com/packages/lf20_${index % 2 ? '3pgxyh' : 'j3t2y0'}.json`, // Alternating animations
+        path: `https://assets.lottiefiles.com/packages/lf20_${index % 3 ? '3pgxyh' : 'j3t2y0'}.json`,
       });
+    });
+
+    // Lottie for Cursor
+    const cursorLottie = document.querySelector('.cursor__animation');
+    lottie.loadAnimation({
+      container: cursorLottie,
+      renderer: 'svg',
+      loop: true,
+      autoplay: true,
+      path: 'https://assets.lottiefiles.com/packages/lf20_3pgxyh.json',
     });
 
     // Lottie for Splash Screen
@@ -1000,7 +1266,7 @@
       renderer: 'svg',
       loop: true,
       autoplay: true,
-      path: 'https://assets.lottiefiles.com/packages/lf20_1z4b6k.json', // Splash-specific animation
+      path: 'https://assets.lottiefiles.com/packages/lf20_1z4b6k.json',
     });
 
     // Lottie for WhatsApp Button
@@ -1021,6 +1287,17 @@
     });
     floatingWhatsapp.addEventListener('mouseleave', () => {
       floatingLottie.style.opacity = '0';
+    });
+
+    // Pagination
+    const paginationItems = document.querySelectorAll('.pagination_item');
+    paginationItems.forEach((item, index) => {
+      item.addEventListener('click', () => {
+        document.querySelector('.pagination_item--active').classList.remove('pagination_item--active');
+        item.classList.add('pagination_item--active');
+        const section = document.querySelectorAll('.phase, .cta')[index];
+        lenis.scrollTo(section, { duration: 1.5 });
+      });
     });
   </script>
 </body>
