@@ -1,6 +1,200 @@
+/* Custom styles to complement Tailwind CSS */
+body {
+  font-family: 'Inter', sans-serif;
+  max-width: 100%;
+  overflow-x: hidden;
+}
 
-/* styles.css index.html*/
+/* WebGL Background */
+#webgl-background {
+  pointer-events: none;
+}
 
+/* Splash Screen */
+#splash-screen {
+  transition: opacity 0.5s ease-out;
+  opacity: 1;
+}
+#splash-screen.hidden {
+  opacity: 0;
+  display: none;
+  pointer-events: none;
+}
+#splash-logo {
+  position: absolute;
+  will-change: transform;
+}
 
+/* Hamburger Toggle (Mobile Only) */
+#hamburger-toggle {
+  z-index: 50;
+}
+.hamburger-icon span {
+  transition: all 0.3s ease;
+}
+#hamburger-toggle.open .hamburger-icon span:nth-child(1) {
+  transform: translateY(8px) rotate(45deg);
+}
+#hamburger-toggle.open .hamburger-icon span:nth-child(2) {
+  opacity: 0;
+}
+#hamburger-toggle.open .hamburger-icon span:nth-child(3) {
+  transform: translateY(-8px) rotate(-45deg);
+}
 
+/* Sidebar */
+#sidebar {
+  transition: transform 0.3s ease-in-out;
+  width: 80vw;
+  max-width: 260px;
+}
+@media (min-width: 768px) {
+  #sidebar {
+    width: 15rem;
+  }
+}
+#sidebar.open {
+  transform: translateX(0);
+}
 
+/* Hero Canvas */
+.hero-canvas {
+  height: 200px;
+}
+@media (min-width: 640px) {
+  .hero-canvas {
+    height: 300px;
+  }
+}
+
+/* Card Hover Effect */
+.card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.card:hover {
+  transform: translateY(-3px);
+}
+
+/* Lottie Animation Containers */
+.lottie-animation-container {
+  width: 100%;
+  max-height: 60px;
+  margin-top: 0.5rem;
+}
+@media (min-width: 640px) {
+  .lottie-animation-container {
+    max-height: 80px;
+  }
+}
+
+/* Progress Bar */
+#progressContainer {
+  position: relative;
+}
+#progressBar {
+  text-align: center;
+  font-size: 0.8rem;
+  font-weight: bold;
+}
+
+/* Live Clock */
+#live-clock {
+  display: block;
+  margin-top: 0.5rem;
+}
+
+/* Dark Mode Overrides */
+.dark .sound-button svg {
+  stroke: #ffffff;
+}
+
+/* Touch-Friendly Buttons */
+button, a {
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+}
+
+/* Ensure no extra space */
+main, aside, section, header, footer {
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+/* Animation Container */
+.animation-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+/* Splash Screen: Spinning Ring */
+.spin-ring {
+  animation: spin 2s linear infinite;
+}
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* Service Cards */
+.spin-gear {
+  animation: spin 3s linear infinite;
+}
+
+.pulse-document {
+  animation: pulse 1.5s ease-in-out infinite;
+}
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+}
+
+.bounce-lightbulb {
+  animation: bounce 2s ease-in-out infinite;
+}
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+.spin-dashboard {
+  animation: spin 4s linear infinite;
+}
+
+/* Project Cards */
+.draw-checkmark path {
+  stroke-dasharray: 100;
+  stroke-dashoffset: 100;
+  animation: draw 2s linear infinite;
+}
+@keyframes draw {
+  to { stroke-dashoffset: 0; }
+}
+
+.pulse-chat {
+  animation: pulse 1.5s ease-in-out infinite;
+}
+
+.spin-pie {
+  animation: spin 3s linear infinite;
+}
+
+.move-board rect {
+  animation: slide 2s ease-in-out infinite;
+}
+@keyframes slide {
+  0%, 100% { transform: translateX(0); }
+  50% { transform: translateX(10px); }
+}
+
+/* Dark Mode Adjustments */
+.dark .animation-container svg path,
+.dark .animation-container svg circle,
+.dark .animation-container svg rect {
+  stroke: #60a5fa; /* Lighter blue for dark mode */
+  fill: #60a5fa;
+}
+.dark .animation-container svg circle[fill="#fff"] {
+  fill: #1f2937; /* Darker fill for dashboard icon */
+}

@@ -1,113 +1,126 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Contact Us | Aishwarya InnovateX</title>
-  <link rel="icon" type="image/png" href="images/AD.png" />
-  <link rel="stylesheet" href="css/styles.css"/>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Contact Us - Aishwarya InnovateX</title>
+  <link rel="icon" type="image/png" href="images/AD.png">
+  <!-- CDNs -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r165/three.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.12.2/lottie.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="css/styles.css">
 </head>
-<body>
+<body class="antialiased font-sans text-gray-900 bg-gray-50 dark:bg-gray-900 dark:text-gray-100 overflow-x-hidden">
+  <canvas id="webgl-background" class="fixed inset-0 z-0"></canvas>
+  <div id="splash-screen" class="fixed inset-0 flex items-center justify-center bg-gray-900 bg-opacity-80 z-50">
+    <div class="flex flex-col items-center">
+      <img id="splash-logo" src="images/AD.png" alt="Loading Logo" class="w-12 h-12 md:w-16 md:h-16">
+      <div class="lottie-animation-container" style="width: 120px; height: 120px;"></div>
+    </div>
+  </div>
 
-  <!-- Navigation Bar -->
-  <nav class="navbar">
-    <div class="nav-container">
-      <img src="images/AD.png" alt="Aishwarya Logo" class="nav-logo"/>
-      <span class="brand-name">Aishwarya InnovateX</span>
-      <ul class="nav-links" id="navLinks">
-        <li><a href="index.html">Home</a></li>
-        <li><a href="about_us.html">About Us</a></li>
-        <li><a href="our_vision.html">Our Vision</a></li>
-        <li><a href="contact_us.html">Contact Us</a></li>
+  <!-- Hamburger Toggle (Mobile Only) -->
+  <button id="hamburger-toggle" class="md:hidden fixed top-2 left-2 z-50 p-2 bg-gray-800 dark:bg-gray-700 text-white rounded-full shadow-lg hover:bg-gray-700 dark:hover:bg-gray-600 transition-colors">
+    <span class="hamburger-icon">
+      <span class="block w-5 h-0.5 bg-white mb-1"></span>
+      <span class="block w-5 h-0.5 bg-white mb-1"></span>
+      <span class="block w-5 h-0.5 bg-white"></span>
+    </span>
+  </button>
+
+  <!-- Sidebar -->
+  <div id="sidebar" class="fixed inset-y-0 left-0 w-64 bg-white dark:bg-gray-800 shadow-lg z-40 transform transition-transform md:translate-x-0 -translate-x-full">
+    <div class="flex items-center justify-between p-3 border-b border-gray-200 dark:border-gray-700">
+      <a href="/" class="flex items-center space-x-2">
+        <img src="images/AD.png" alt="Aishwarya Logo" class="w-6 h-6">
+        <span class="text-base font-bold">Aishwarya InnovateX</span>
+      </a>
+    </div>
+    <nav class="flex-1 p-3">
+      <ul class="space-y-1">
+        <li><a href="/index.html" class="block p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 text-sm">Home</a></li>
+        <li><a href="/about_us.html" class="block p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 text-sm">About Us</a></li>
+        <li><a href="/contact_us.html" class="block p-2 rounded-lg bg-gray-100 dark:bg-gray-700 text-sm">Contact Us</a></li>
+        <li><a href="/our_vision.html" class="block p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 text-sm">Our Vision</a></li>
       </ul>
-      <button id="nav-toggle"><i class="fas fa-bars"></i></button>
+    </nav>
+    <div class="p-3 border-t border-gray-200 dark:border-gray-700">
+      <button class="sound-button flex items-center space-x-2 text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-gray-100 text-sm">
+        <svg width="13" height="18" viewBox="0 0 13 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path class="sound-button_egg sound-button_egg-inner" d="M9.45438 10.2646L9.45438 10.2646L9.45421 10.266C9.34909 11.1026 9.10645 11.7409 8.70533 12.2925C8.61051 12.4219 8.32934 12.7227 8.20406 12.8282C7.88956 13.0917 7.46499 13.3133 7.08618 13.4131L7.08542 13.4133C6.77172 13.4964 6.34402 13.5312 6.02874 13.4989L6.02812 13.4988C4.75223 13.3697 3.71554 12.4522 3.32038 10.994L3.32028 10.9936C3.13402 10.3086 3.1021 9.4286 3.24597 8.5663L3.24601 8.56601C3.42023 7.51755 3.83495 6.50225 4.40022 5.71769C4.57984 5.47001 4.93181 5.09959 5.12446 4.95179L5.12558 4.95092C5.47649 4.67994 5.82119 4.53705 6.15806 4.49997C6.30291 4.48456 6.35274 4.48441 6.50425 4.5013C6.81581 4.53761 7.16996 4.68642 7.51908 4.95599C7.67546 5.07927 8.0333 5.44454 8.16981 5.6245C8.83395 6.50041 9.2794 7.64234 9.44665 8.94695C9.45955 9.04981 9.46976 9.31933 9.4715 9.61535C9.47325 9.91435 9.46589 10.1752 9.45438 10.2646Z" stroke="currentColor" stroke-width="0.90219"></path>
+          <path class="sound-button_line" d="M4 17L9 1" stroke="currentColor"></path>
+        </svg>
+        <span>Sound</span>
+      </button>
     </div>
-  </nav>
+  </div>
 
-  <header>
-    <h1>Contact Us</h1>
-  </header>
-  <!-- Contact Us Section -->
-  <section class="contact-us-section">
-    <div class="contact-us-card" id="contact">
-      <p>We are here to help you with any questions or project assistance. Feel free to reach out to us:</p>
+  <!-- Main Content -->
+  <div class="md:ml-64 p-2 sm:p-4 max-w-full">
+    <header class="relative text-center py-8 sm:py-12">
+      <canvas class="hero-canvas absolute inset-0 z-0" data-engine="three.js r165"></canvas>
+      <div class="relative z-10">
+        <a href="/contact_us.html"><img src="images/AD.png" alt="Aishwarya Logo" class="mx-auto w-10 h-10 sm:w-12 sm:h-12 mb-2"></a>
+        <h1 class="text-2xl sm:text-3xl md:text-4xl font-bold mb-2">Contact Us</h1>
+        <p class="text-sm sm:text-base text-gray-600 dark:text-gray-400">Get in touch with us for any queries or support.</p>
+      </div>
+    </header>
+
+    <div class="flex flex-col md:flex-row gap-3 sm:gap-4">
+      <main class="flex-1">
+        <section class="mb-6 sm:mb-8">
+          <h2 class="text-xl sm:text-2xl font-bold mb-3">Reach Out</h2>
+          <p class="text-xs sm:text-sm text-gray-600 dark:text-gray-400 mb-3">
+            We’re available 24x7 to assist you with your project needs. Whether you have questions about our services, need help with a project, or want to discuss custom solutions, feel free to contact us via:
+          </p>
+          <ul class="space-y-2">
+            <li class="flex items-center text-xs sm:text-sm">
+              <i class="fab fa-whatsapp mr-2 text-green-600"></i>
+              <a href="https://wa.me/918825527193" target="_blank" class="text-blue-600 dark:text-blue-400 underline">WhatsApp: +91 88255 27193</a>
+            </li>
+            <li class="flex items-center text-xs sm:text-sm">
+              <i class="fas fa-envelope mr-2 text-blue-600"></i>
+              <a href="mailto:dineshkanna2601@gmail.com" class="text-blue-600 dark:text-blue-400 underline">Email: dineshkanna2601@gmail.com</a>
+            </li>
+          </ul>
+        </section>
+      </main>
+
+      <aside class="w-full md:w-72">
+        <section class="mb-3 sm:mb-4 bg-white dark:bg-gray-800 p-3 sm:p-4 rounded-lg shadow-md">
+          <h2 class="text-lg sm:text-xl font-bold mb-3">Need Project Help?</h2>
+          <p class="text-xs sm:text-sm text-gray-600 dark:text-gray-400 mb-3">We’re here to assist you 24x7 on WhatsApp!</p>
+          <a href="https://wa.me/918825527193" target="_blank" class="flex items-center justify-center bg-green-600 text-white px-3 py-1.5 rounded-full hover:bg-green-700 transition-colors text-xs sm:text-sm">
+            <i class="fab fa-whatsapp mr-1 text-base"></i> Chat Now
+          </a>
+        </section>
+        <section class="bg-white dark:bg-gray-800 p-3 sm:p-4 rounded-lg shadow-md">
+          <h2 class="text-lg sm:text-xl font-bold mb-3">Our Vision</h2>
+          <p class="text-xs sm:text-sm text-gray-600 dark:text-gray-400">To empower every student with practical project experience and industry-standard mentoring for a brighter tech future.</p>
+        </section>
+      </aside>
     </div>
-    
-    
-    <div class="contact-details">
-      <h2>Email</h2>
-      <p>📧 <a href="mailto:dineshkanna2601@gmail.com">dineshkanna2601@gmail.com</a></p>
-      
-      <h2>WhatsApp</h2>
-      <p>📱 <a href="https://wa.me/918825527193" target="_blank">Chat with us on WhatsApp</a></p>
 
-      <h2>Phone</h2>
-      <p>📞 +91 88255 27193</p>
-    </div>
+    <a href="https://wa.me/918825527193" class="fixed bottom-2 right-2 bg-green-600 text-white p-2 sm:p-3 rounded-full shadow-lg hover:bg-green-700 transition-colors" target="_blank" title="Chat with us!">
+      <i class="fab fa-whatsapp text-lg sm:text-xl"></i>
+    </a>
 
-    <div class="form-section">
-      <h3>Drop us a message</h3>
-      <form id="contact-form">
-        <label for="name">Your Name</label>
-        <input type="text" id="name" name="name" required placeholder="Enter your name">
+    <section class="text-center my-6 sm:my-8">
+      <h2 class="text-lg sm:text-xl font-bold mb-3">Need More Help?</h2>
+      <p class="text-xs sm:text-sm">Contact us at <a href="mailto:dineshkanna2601@gmail.com" class="text-blue-600 dark:text-blue-400 underline">dineshkanna2601@gmail.com</a></p>
+    </section>
 
-        <label for="email">Your Email</label>
-        <input type="email" id="email" name="email" required placeholder="Enter your email">
-
-        <label for="message">Your Message</label>
-        <textarea id="message" name="message" required placeholder="Write your message"></textarea>
-
-        <button type="submit" id="submit-btn">Send Message</button>
-        
-      </form>
-    </div>
-  </section>
-
-  
-
-  <!-- Footer -->
-  <footer>
-    All Rights Reserved &copy; 2025 Aishwarya InnovateX | Built with 🤍💚
-  </footer>
+    <footer class="text-center py-4 border-t border-gray-200 dark:border-gray-700">
+      <p class="text-xs sm:text-sm">All Rights Reserved © 2025 Aishwarya InnovateX | Built with 🤍💚</p>
+      <span id="live-clock" class="text-gray-600 dark:text-gray-400 text-xs sm:text-sm">12:55 PM IST</span>
+    </footer>
+  </div>
 
   <script src="js/script.js"></script>
-
-  <script>
-    gsap.from(".contact-us-card", {
-      opacity: 0,
-      x: -100,
-      duration: 1,
-      stagger: 0.2,
-      delay: 0.5
-    });
-  </script>
-
-  <script>
-    const navToggle = document.getElementById('nav-toggle');
-const navLinks = document.getElementById('navLinks');
-const navIcon = navToggle.querySelector('i');
-
-navToggle.addEventListener('click', () => {
-  navLinks.classList.toggle('active');
-
-  // Toggle icon class
-  if (navLinks.classList.contains('active')) {
-    navIcon.classList.remove('fa-bars');
-    navIcon.classList.add('fa-times'); // ✖ icon
-  } else {
-    navIcon.classList.remove('fa-times');
-    navIcon.classList.add('fa-bars'); // ☰ icon
-  }
-});
-
-  </script>
-  <script>
-    window.addEventListener("load", () => {
-      document.body.classList.add("loaded");
-    });
-  </script>
-
 </body>
 </html>

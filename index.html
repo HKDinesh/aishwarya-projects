@@ -1,1304 +1,243 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>Aishwarya InnovateX</title>
-  <link rel="icon" type="image/png" href="images/AD.png" />
-  <!-- CDNs for required libraries -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <link rel="icon" type="image/png" href="images/AD.png">
+  <!-- CDNs -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r165/three.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.12.2/lottie.min.js"></script>
-  <style>
-    :root {
-      --primary: #1a73e8;
-      --accent: #fbbc05;
-      --bg: #0a0a0a;
-      --card-bg: #1c1c1e;
-      --text: #ffffff;
-      --muted: #aaaaaa;
-      --radius: 16px;
-      --shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
-      --green: rgb(151, 200, 14);
-      --glow: rgba(151, 200, 14, 0.5);
-    }
-
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    html, body {
-      font-family: 'Inter', -apple-system, Arial, sans-serif;
-      background: var(--bg);
-      color: var(--text);
-      overflow-x: hidden;
-      position: relative;
-    }
-
-    body.loaded #splash-screen {
-      opacity: 0;
-      visibility: hidden;
-      transition: opacity 0.5s ease-out;
-    }
-
-    #splash-screen {
-      position: fixed;
-      inset: 0;
-      background: var(--bg);
-      z-index: 9999;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: opacity 0.5s ease-out;
-    }
-
-    .splash-logo {
-      width: 120px;
-      animation: splash 1.5s infinite alternate ease-in-out;
-    }
-
-    @keyframes splash {
-      to {
-        transform: scale(1.2);
-        opacity: 0.9;
-      }
-    }
-
-    /* WebGL Background */
-    #webgl-background {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: -1;
-    }
-
-    /* Custom Cursor */
-    .cursor {
-      position: fixed;
-      width: 60px;
-      height: 60px;
-      pointer-events: none;
-      z-index: 10000;
-      transform: translate(-50%, -50%) scale(1);
-      transition: transform 0.3s ease;
-    }
-
-    .cursor--hidden {
-      opacity: 0;
-    }
-
-    .cursor__canvas {
-      width: 120px;
-      height: 120px;
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-    }
-
-    .cursor__circle {
-      width: 100%;
-      height: 100%;
-      position: absolute;
-      top: 0;
-      left: 0;
-      fill: none;
-      stroke: var(--green);
-      stroke-width: 2;
-    }
-
-    .egg, .egg--light {
-      width: 195px;
-      height: 263px;
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%) scale(0.3);
-      transition: transform 0.3s ease;
-    }
-
-    .egg__inner {
-      stroke: var(--text);
-      stroke-width: 2;
-      fill: none;
-    }
-
-    .cursor--active .egg {
-      transform: translate(-50%, -50%) scale(0.4);
-    }
-
-    .cursor__text {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      font-size: 0.7rem;
-      color: var(--text);
-      text-align: center;
-      opacity: 0;
-      transition: opacity 0.3s ease;
-    }
-
-    .cursor--active .cursor__text {
-      opacity: 1;
-    }
-
-    /* Navbar */
-    .navbar {
-      position: fixed;
-      top: 0;
-      width: 100%;
-      background: rgba(0, 0, 0, 0.85);
-      backdrop-filter: blur(12px);
-      z-index: 1000;
-      padding: 1rem 2rem;
-    }
-
-    .nav-container {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-
-    .nav-logo {
-      height: 40px;
-    }
-
-    .brand-name {
-      font-size: 1.3rem;
-      font-weight: 800;
-      margin-left: 1rem;
-      color: var(--text);
-      text-shadow: 0 0 10px var(--glow);
-    }
-
-    .nav-links {
-      display: flex;
-      gap: 2.5rem;
-      list-style: none;
-    }
-
-    .nav-links a {
-      color: var(--muted);
-      text-decoration: none;
-      font-weight: 600;
-      font-size: 1rem;
-      position: relative;
-      transition: color 0.3s ease;
-    }
-
-    .nav-links a:hover {
-      color: var(--green);
-      text-shadow: 0 0 8px var(--glow);
-    }
-
-    .nav-links a::after {
-      content: '';
-      position: absolute;
-      width: 0;
-      height: 2px;
-      background: var(--green);
-      bottom: -6px;
-      left: 0;
-      transition: width 0.3s ease;
-    }
-
-    .nav-links a:hover::after {
-      width: 100%;
-    }
-
-    #nav-toggle {
-      display: none;
-      background: none;
-      border: none;
-      color: var(--text);
-      font-size: 1.8rem;
-      cursor: pointer;
-    }
-
-    .sound-button {
-      background: none;
-      border: none;
-      color: var(--text);
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      font-size: 1rem;
-      font-weight: 600;
-      cursor: pointer;
-      position: relative;
-    }
-
-    .sound-button svg {
-      width: 13px;
-      height: 18px;
-    }
-
-    .sound-button_egg {
-      stroke: var(--text);
-      stroke-width: 0.9;
-      fill: none;
-    }
-
-    .sound-button_line {
-      stroke: var(--text);
-      stroke-width: 1;
-    }
-
-    /* Hero Section */
-    header {
-      position: relative;
-      text-align: center;
-      padding: 6rem 2rem;
-      background: linear-gradient(180deg, #1c1c1e 0%, #0a0a0a 100%);
-      border-radius: 0 0 var(--radius) var(--radius);
-      overflow: hidden;
-      min-height: 100vh;
-    }
-
-    .hero-canvas {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: 0;
-      opacity: 0.5;
-    }
-
-    .logo {
-      height: 140px;
-      position: relative;
-      z-index: 1;
-      animation: pulse 3s infinite;
-    }
-
-    @keyframes pulse {
-      0%, 100% {
-        transform: scale(1);
-      }
-      50% {
-        transform: scale(1.05);
-      }
-    }
-
-    header h1 {
-      font-size: 3.5rem;
-      font-weight: 900;
-      margin: 1.5rem 0;
-      position: relative;
-      z-index: 1;
-      animation: glitch 2s infinite;
-      text-shadow: 0 0 12px var(--glow);
-    }
-
-    .glitch-title {
-      display: inline-block;
-    }
-
-    .glitch-title div {
-      position: relative;
-      display: inline-block;
-      animation: glitch-word 2s infinite;
-    }
-
-    @keyframes glitch-word {
-      0% {
-        transform: translate(0);
-        text-shadow: 0 0 12px var(--glow);
-      }
-      20% {
-        transform: translate(-3px, 3px);
-        text-shadow: 0 0 8px var(--glow);
-      }
-      40% {
-        transform: translate(3px, -3px);
-        text-shadow: 0 0 10px var(--glow);
-      }
-      60% {
-        transform: translate(-3px, 0);
-        text-shadow: 0 0 12px var(--glow);
-      }
-      80% {
-        transform: translate(3px, 0);
-        text-shadow: 0 0 8px var(--glow);
-      }
-      100% {
-        transform: translate(0);
-        text-shadow: 0 0 12px var(--glow);
-      }
-    }
-
-    #typed-text {
-      font-size: 1.3rem;
-      color: var(--muted);
-      position: relative;
-      z-index: 1;
-      animation: fadeInUp 1s ease-out;
-    }
-
-    @keyframes fadeInUp {
-      from {
-        opacity: 0;
-        transform: translateY(20px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    /* Announcements */
-    .announcements {
-      max-width: 900px;
-      margin: 3rem auto;
-      background: var(--card-bg);
-      border-radius: var(--radius);
-      padding: 2rem;
-      display: flex;
-      align-items: center;
-      gap: 1.5rem;
-      box-shadow: var(--shadow);
-      position: relative;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-
-    .announcements:hover {
-      transform: translateY(-8px);
-      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
-    }
-
-    .announcements i {
-      color: var(--accent);
-      font-size: 2rem;
-    }
-
-    .announcements span {
-      font-weight: 600;
-      font-size: 1.1rem;
-    }
-
-    /* Dashboard Layout */
-    .dashboard {
-      display: grid;
-      grid-template-columns: 1fr 350px;
-      gap: 3rem;
-      max-width: 1200px;
-      margin: 4rem auto;
-      padding: 0 2rem;
-    }
-
-    /* Card Grid */
-    .card-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 2.5rem;
-      margin: 3rem 0;
-    }
-
-    .card {
-      background: var(--card-bg);
-      border-radius: var(--radius);
-      padding: 2rem;
-      box-shadow: var(--shadow);
-      position: relative;
-      overflow: hidden;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-
-    .card:hover {
-      transform: translateY(-10px);
-      box-shadow: 0 12px 32px rgba(0, 0, 0, 0.5);
-    }
-
-    .card h3 {
-      font-size: 1.3rem;
-      margin: 0 0 0.7rem 0;
-      font-weight: 700;
-      text-shadow: 0 0 8px var(--glow);
-    }
-
-    .price {
-      color: var(--green);
-      font-weight: 700;
-      font-size: 1.2rem;
-    }
-
-    .card .lottie-animation-container {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      opacity: 0;
-      transition: opacity 0.3s ease;
-    }
-
-    .card:hover .lottie-animation-container {
-      opacity: 0.3;
-    }
-
-    /* Progress & Badges */
-    .progressContainer {
-      background: var(--card-bg);
-      border-radius: var(--radius);
-      padding: 2rem;
-      box-shadow: var(--shadow);
-      margin-bottom: 3rem;
-    }
-
-    #progressContainer {
-      background: #2c2c2e;
-      border-radius: 10px;
-      height: 24px;
-      width: 100%;
-      margin: 1.2rem 0;
-      overflow: hidden;
-    }
-
-    #progressBar {
-      background: linear-gradient(90deg, var(--green), #c0ff0e);
-      height: 100%;
-      width: 60%;
-      border-radius: 10px;
-      text-align: center;
-      font-size: 1rem;
-      color: var(--text);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: width 0.6s ease;
-    }
-
-    #badges ul {
-      display: flex;
-      gap: 1.2rem;
-      padding: 0;
-      margin: 0;
-      list-style: none;
-    }
-
-    #badges li {
-      background: #2c2c2e;
-      border-radius: 50%;
-      width: 48px;
-      height: 48px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.6rem;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-
-    #badges li:hover {
-      transform: scale(1.15);
-      box-shadow: 0 0 12px var(--glow);
-    }
-
-    /* Filter Section */
-    .filter-section {
-      display: flex;
-      align-items: center;
-      gap: 1.2rem;
-      margin-bottom: 2rem;
-    }
-
-    .filter-section label {
-      font-weight: 600;
-      color: var(--muted);
-    }
-
-    #project-filter {
-      border-radius: 10px;
-      border: 1px solid var(--muted);
-      padding: 0.6rem 1.2rem;
-      font-size: 1rem;
-      background: var(--card-bg);
-      color: var(--text);
-      transition: border-color 0.3s ease;
-    }
-
-    #project-filter:hover {
-      border-color: var(--green);
-    }
-
-    /* CTA */
-    .cta {
-      background: linear-gradient(90deg, #1c1c1e 0%, #0a0a0a 100%);
-      border-radius: var(--radius);
-      padding: 4rem 2rem;
-      text-align: center;
-      box-shadow: var(--shadow);
-      margin: 4rem 0;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .cta .lottie-animation-container {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      opacity: 0.2;
-      z-index: 0;
-    }
-
-    .whatsapp-btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 1rem;
-      background: var(--green);
-      color: var(--text);
-      padding: 1rem 2.5rem;
-      border-radius: 40px;
-      font-size: 1.2rem;
-      text-decoration: none;
-      font-weight: 700;
-      margin-top: 2rem;
-      position: relative;
-      z-index: 1;
-      transition: background 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
-    }
-
-    .whatsapp-btn:hover {
-      background: #c0ff0e;
-      transform: scale(1.08);
-      box-shadow: 0 0 16px var(--glow);
-    }
-
-    /* Focus Button */
-    .focus-button {
-      position: relative;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      padding: 0.8rem 2rem;
-      background: none;
-      border: none;
-      color: var(--text);
-      font-size: 1.1rem;
-      font-weight: 600;
-      cursor: pointer;
-      overflow: hidden;
-    }
-
-    .focus-button_line {
-      position: absolute;
-      stroke: var(--green);
-      stroke-width: 2;
-      transition: transform 0.3s ease;
-    }
-
-    .focus-button_line-1 {
-      top: 0;
-      left: 0;
-      transform: translateX(-100%);
-    }
-
-    .focus-button_line-2 {
-      bottom: 0;
-      left: 0;
-      transform: translateX(100%);
-    }
-
-    .focus-button_line-3 {
-      top: 0;
-      right: 0;
-      transform: translateX(100%);
-    }
-
-    .focus-button:hover .focus-button_line-1,
-    .focus-button:hover .focus-button_line-2,
-    .focus-button:hover .focus-button_line-3 {
-      transform: translateX(0);
-    }
-
-    /* Floating WhatsApp */
-    .floating-whatsapp {
-      position: fixed;
-      bottom: 32px;
-      right: 32px;
-      z-index: 1000;
-      background: var(--green);
-      color: var(--text);
-      border-radius: 50%;
-      width: 70px;
-      height: 70px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 2.2rem;
-      box-shadow: var(--shadow);
-      text-decoration: none;
-      transition: background 0.3s ease, transform 0.3s ease;
-    }
-
-    .floating-whatsapp:hover {
-      background: #c0ff0e;
-      transform: scale(1.15);
-    }
-
-    .floating-whatsapp .lottie-animation-container {
-      position: absolute;
-      width: 120px;
-      height: 120px;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      opacity: 0;
-      transition: opacity 0.3s ease;
-    }
-
-    .floating-whatsapp:hover .lottie-animation-container {
-      opacity: 0.4;
-    }
-
-    /* Live Comments */
-    .live-comments {
-      background: var(--card-bg);
-      border-radius: var(--radius);
-      padding: 3rem;
-      margin: 4rem auto;
-      max-width: 900px;
-      text-align: center;
-      box-shadow: var(--shadow);
-      position: relative;
-    }
-
-    /* Phase Sections */
-    .phase {
-      margin: 4rem 0;
-      text-align: center;
-      position: relative;
-    }
-
-    .phase_content_caption {
-      font-size: 1.2rem;
-      color: var(--muted);
-      margin-bottom: 1rem;
-      opacity: 0;
-      transform: translateY(20px);
-      transition: opacity 0.5s ease, transform 0.5s ease;
-    }
-
-    .phase_content_title {
-      font-size: 2.5rem;
-      font-weight: 800;
-      margin-bottom: 1rem;
-    }
-
-    .phase_bottom {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 2rem;
-      margin-top: 2rem;
-    }
-
-    /* Pagination */
-    .pagination {
-      position: fixed;
-      right: 2rem;
-      top: 50%;
-      transform: translateY(-50%);
-      display: flex;
-      flex-direction: column;
-      gap: 1rem;
-      z-index: 1000;
-    }
-
-    .pagination_item {
-      background: none;
-      border: none;
-      cursor: pointer;
-    }
-
-    .pagination_dot {
-      width: 10px;
-      height: 10px;
-      background: var(--muted);
-      border-radius: 50%;
-      transition: background 0.3s ease, transform 0.3s ease;
-    }
-
-    .pagination_item--active .pagination_dot {
-      background: var(--green);
-      transform: scale(1.5);
-    }
-
-    /* Footer */
-    footer {
-      text-align: center;
-      padding: 3rem 0;
-      color: var(--muted);
-      font-size: 1rem;
-      background: var(--card-bg);
-      border-top: 1px solid #2c2c2e;
-      margin-top: 4rem;
-    }
-
-    /* Parallax Sections */
-    .services-section, .projects-section, .progressContainer, .cta, .our-vision, .live-comments, .phase {
-      transform: translateY(0);
-      transition: transform 0.5s ease-out;
-    }
-
-    /* Responsive */
-    @media (max-width: 900px) {
-      .dashboard {
-        grid-template-columns: 1fr;
-      }
-    }
-
-    @media (max-width: 700px) {
-      .nav-container {
-        flex-wrap: wrap;
-      }
-
-      .nav-links {
-        position: absolute;
-        top: 70px;
-        left: 0;
-        right: 0;
-        background: var(--card-bg);
-        flex-direction: column;
-        gap: 0;
-        display: none;
-        box-shadow: var(--shadow);
-      }
-
-      .nav-links.active {
-        display: flex;
-      }
-
-      .nav-links li {
-        padding: 1.2rem;
-        border-bottom: 1px solid #2c2c2e;
-      }
-
-      #nav-toggle {
-        display: block;
-      }
-
-      .floating-whatsapp {
-        width: 60px;
-        height: 60px;
-        font-size: 2rem;
-      }
-
-      header h1 {
-        font-size: 2.5rem;
-      }
-    }
-  </style>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="css/styles.css">
 </head>
-<body>
-  <!-- WebGL Background -->
-  <canvas id="webgl-background"></canvas>
-
-  <!-- Splash Screen -->
-  <div id="splash-screen">
-    <img src="images/AD.png" alt="Loading Logo" class="splash-logo" />
-    <div class="lottie-animation-container" style="width: 200px; height: 200px; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);"></div>
-  </div>
-
-  <!-- Custom Cursor -->
-  <div class="cursor cursor--hidden">
-    <canvas class="cursor__canvas" width="120" height="120"></canvas>
-    <svg class="cursor__circle" viewBox="0 0 600 600" xmlns="http://www.w3.org/2000/svg">
-      <circle cx="300" cy="300" r="270" />
-    </svg>
-    <svg class="egg egg--light" width="195" height="263" viewBox="0 0 195 263" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path class="egg__inner" d="M145.772 150.639L145.77 150.65L145.769 150.66C144.149 163.559 140.408 173.399 134.224 181.902C132.762 183.897 128.427 188.536 126.496 190.163C121.647 194.224 115.101 197.642 109.261 199.179L109.249 199.182C104.413 200.464 97.8192 201.001 92.9584 200.502L92.949 200.501C73.2785 198.51 57.2957 184.366 51.2035 161.884L51.202 161.879C48.3304 151.317 47.8382 137.75 50.0562 124.456L50.057 124.452C52.743 108.287 59.137 92.6338 67.852 80.538C70.6214 76.7195 76.0473 71.0092 79.0171 68.7308L79.0258 68.7241L79.0345 68.7174C84.4445 64.5397 89.7587 62.3368 94.9523 61.7651C97.1853 61.5275 97.9536 61.5253 100.289 61.7856C105.092 62.3453 110.552 64.6393 115.934 68.7949C118.345 70.6949 123.864 76.3284 125.968 79.103C136.207 92.6069 143.074 110.212 145.653 130.325C145.852 131.91 146.009 136.066 146.036 140.63C146.063 145.239 145.949 149.261 145.772 150.639Z" />
-    </svg>
-    <div class="cursor__text">Click &amp; hold</div>
-    <div class="lottie-animation-container cursor__animation" style="width: 72px; height: 72px; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);"></div>
-  </div>
-
-  <!-- Navigation Bar -->
-  <nav class="navbar">
-    <div class="nav-container">
-      <a href="index.html">
-        <img src="images/AD.png" alt="Aishwarya Logo" class="nav-logo" />
-      </a>
-      <span class="brand-name">Aishwarya InnovateX</span>
-      <ul class="nav-links" id="navLinks">
-        <li><a href="#">Home</a></li>
-        <li><a href="about_us.html">About Us</a></li>
-        <li><a href="contact_us.html">Contact Us</a></li>
-        <li><a href="our_vision.html">Our Vision</a></li>
-      </ul>
-      <button class="sound-button">
-        <p>Sound</p>
-        <svg width="13" height="18" viewBox="0 0 13 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path class="sound-button_egg sound-button_egg-inner" d="M9.45438 10.2646L9.45438 10.2646L9.45421 10.266C9.34909 11.1026 9.10645 11.7409 8.70533 12.2925C8.61051 12.4219 8.32934 12.7227 8.20406 12.8282C7.88956 13.0917 7.46499 13.3133 7.08618 13.4131L7.08542 13.4133C6.77172 13.4964 6.34402 13.5312 6.02874 13.4989L6.02812 13.4988C4.75223 13.3697 3.71554 12.4522 3.32038 10.994L3.32028 10.9936C3.13402 10.3086 3.1021 9.4286 3.24597 8.5663L3.24601 8.56601C3.42023 7.51755 3.83495 6.50225 4.40022 5.71769C4.57984 5.47001 4.93181 5.09959 5.12446 4.95179L5.12558 4.95092C5.47649 4.67994 5.82119 4.53705 6.15806 4.49997C6.30291 4.48456 6.35274 4.48441 6.50425 4.5013C6.81581 4.53761 7.16996 4.68642 7.51908 4.95599C7.67546 5.07927 8.0333 5.44454 8.16981 5.6245C8.83395 6.50041 9.2794 7.64234 9.44665 8.94695C9.45955 9.04981 9.46976 9.31933 9.4715 9.61535C9.47325 9.91435 9.46589 10.1752 9.45438 10.2646Z" stroke="white" stroke-width="0.90219"></path>
-          <path class="sound-button_line" d="M4 17L9 1" stroke="white"></path>
+<body class="antialiased font-sans text-gray-900 bg-gray-50 dark:bg-gray-900 dark:text-gray-100 overflow-x-hidden">
+  <canvas id="webgl-background" class="fixed inset-0 z-0"></canvas>
+  <div id="splash-screen" class="fixed inset-0 flex items-center justify-center bg-gray-900 bg-opacity-80 z-50">
+    <div class="flex flex-col items-center">
+      <img id="splash-logo" src="images/AD.png" alt="Loading Logo" class="w-12 h-12 md:w-16 md:h-16">
+      <div class="animation-container" style="width: 120px; height: 120px;">
+        <svg viewBox="0 0 100 100" class="spin-ring">
+          <circle cx="50" cy="50" r="40" stroke="#3b82f6" stroke-width="8" fill="none" />
         </svg>
-      </button>
-      <button id="nav-toggle"><i class="fas fa-bars"></i></button>
+      </div>
     </div>
-  </nav>
-
-  <!-- Hero Section -->
-  <header>
-    <canvas class="hero-canvas" data-engine="three.js r165"></canvas>
-    <a href="index.html"><img src="images/AD.png" alt="Aishwarya Logo" class="logo" /></a>
-    <h1 class="glitch-title">
-      <div>Aishwarya</div>
-      <div>InnovateX</div>
-    </h1>
-    <p id="typed-text">Empowering students with real-world projects and mentoring.</p>
-  </header>
-
-  <!-- Announcements Area -->
-  <div class="announcements">
-    <i class="fas fa-bullhorn"></i>
-    <span>New: Summer Project Bootcamp registrations open! <a href="contact_us.html" style="color: var(--green); text-decoration: underline;">Join now</a></span>
   </div>
 
-  <!-- Dashboard Layout -->
-  <div class="dashboard">
-    <main>
-      <!-- Phase 1: Services -->
-      <section class="phase phase--1">
-        <div class="phase_content">
-          <div class="phase_content_caption">Phase 01</div>
-          <div class="glitch-title phase_content_title">
-            <div>Our</div>
-            <div>Services</div>
-          </div>
-          <div class="card-grid">
-            <div class="card">
-              <h3>Mini Projects & Final Year Projects</h3>
-              <p>Get unique, working projects in Web, Python, Android, and more.</p>
-              <div class="lottie-animation-container" style="width: 100%; height: 100%;"></div>
-            </div>
-            <div class="card">
-              <h3>Documentation Help</h3>
-              <p>Professional synopsis, SRS, UML diagrams, and reports.</p>
-              <div class="lottie-animation-container" style="width: 100%; height: 100%;"></div>
-            </div>
-            <div class="card">
-              <h3>Mentoring & Explanation</h3>
-              <p>We explain the code and help you prepare for your viva.</p>
-              <div class="lottie-animation-container" style="width: 100%; height: 100%;"></div>
-            </div>
-            <div class="card">
-              <h3>College ERP Modules</h3>
-              <p>Attendance, internal marks, timetable – customized solutions.</p>
-              <div class="lottie-animation-container" style="width: 100%; height: 100%;"></div>
-            </div>
-          </div>
-          <div class="phase_bottom">
-            <button class="focus-button">
-              <span>Find Out More</span>
-              <svg class="focus-button_line focus-button_line-1" width="127" height="2" viewBox="0 0 127 2" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M0 1H127"></path>
-              </svg>
-              <svg class="focus-button_line focus-button_line-2" width="127" height="2" viewBox="0 0 127 2" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M0 1H127"></path>
-              </svg>
-              <svg class="focus-button_line focus-button_line-3" width="127" height="2" viewBox="0 0 127 2" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M0 1H127"></path>
-              </svg>
-            </button>
-          </div>
-        </div>
-      </section>
+  <!-- Hamburger Toggle (Mobile Only) -->
+  <button id="hamburger-toggle" class="md:hidden fixed top-2 left-2 z-50 p-2 bg-gray-800 dark:bg-gray-700 text-white rounded-full shadow-lg hover:bg-gray-700 dark:hover:bg-gray-600 transition-colors">
+    <span class="hamburger-icon">
+      <span class="block w-5 h-0.5 bg-white mb-1"></span>
+      <span class="block w-5 h-0.5 bg-white mb-1"></span>
+      <span class="block w-5 h-0.5 bg-white"></span>
+    </span>
+  </button>
 
-      <!-- Phase 2: Projects -->
-      <section class="phase phase--2">
-        <div class="phase_content">
-          <div class="phase_content_caption">Phase 02</div>
-          <div class="glitch-title phase_content_title">
-            <div>Make</div>
-            <div>Projects</div>
-            <div>Yours</div>
+  <!-- Sidebar -->
+  <div id="sidebar" class="fixed inset-y-0 left-0 w-64 bg-white dark:bg-gray-800 shadow-lg z-40 transform transition-transform md:translate-x-0 -translate-x-full">
+    <div class="flex items-center justify-between p-3 border-b border-gray-200 dark:border-gray-700">
+      <a href="/" class="flex items-center space-x-2">
+        <img src="images/AD.png" alt="Aishwarya Logo" class="w-6 h-6">
+        <span class="text-base font-bold">Aishwarya InnovateX</span>
+      </a>
+    </div>
+    <nav class="flex-1 p-3">
+      <ul class="space-y-1">
+        <li><a href="/index.html" class="block p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 text-sm">Home</a></li>
+        <li><a href="/about_us.html" class="block p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 text-sm">About Us</a></li>
+        <li><a href="/contact_us.html" class="block p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 text-sm">Contact Us</a></li>
+        <li><a href="/our_vision.html" class="block p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 text-sm">Our Vision</a></li>
+      </ul>
+    </nav>
+    <div class="p-3 border-t border-gray-200 dark:border-gray-700">
+      <button class="sound-button flex items-center space-x-2 text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-gray-100 text-sm">
+        <svg width="13" height="18" viewBox="0 0 13 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path class="sound-button_egg sound-button_egg-inner" d="M9.45438 10.2646L9.45438 10.2646L9.45421 10.266C9.34909 11.1026 9.10645 11.7409 8.70533 12.2925C8.61051 12.4219 8.32934 12.7227 8.20406 12.8282C7.88956 13.0917 7.46499 13.3133 7.08618 13.4131L7.08542 13.4133C6.77172 13.4964 6.34402 13.5312 6.02874 13.4989L6.02812 13.4988C4.75223 13.3697 3.71554 12.4522 3.32038 10.994L3.32028 10.9936C3.13402 10.3086 3.1021 9.4286 3.24597 8.5663L3.24601 8.56601C3.42023 7.51755 3.83495 6.50225 4.40022 5.71769C4.57984 5.47001 4.93181 5.09959 5.12446 4.95179L5.12558 4.95092C5.47649 4.67994 5.82119 4.53705 6.15806 4.49997C6.30291 4.48456 6.35274 4.48441 6.50425 4.5013C6.81581 4.53761 7.16996 4.68642 7.51908 4.95599C7.67546 5.07927 8.0333 5.44454 8.16981 5.6245C8.83395 6.50041 9.2794 7.64234 9.44665 8.94695C9.45955 9.04981 9.46976 9.31933 9.4715 9.61535C9.47325 9.91435 9.46589 10.1752 9.45438 10.2646Z" stroke="currentColor" stroke-width="0.90219"></path>
+          <path class="sound-button_line" d="M4 17L9 1" stroke="currentColor"></path>
+        </svg>
+        <span>Sound</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Main Content -->
+  <div class="md:ml-64 p-2 sm:p-4 max-w-full">
+    <header class="relative text-center py-8 sm:py-12">
+      <canvas class="hero-canvas absolute inset-0 z-0" data-engine="three.js r165"></canvas>
+      <div class="relative z-10">
+        <a href="/"><img src="images/AD.png" alt="Aishwarya Logo" class="mx-auto w-10 h-10 sm:w-12 sm:h-12 mb-2"></a>
+        <h1 class="text-2xl sm:text-3xl md:text-4xl font-bold mb-2">Aishwarya InnovateX</h1>
+        <p class="text-sm sm:text-base text-gray-600 dark:text-gray-400">Empowering students with real-world projects and mentoring.</p>
+      </div>
+    </header>
+
+    <div class="announcements flex items-center justify-center bg-blue-100 dark:bg-blue-900 p-3 rounded-lg mb-4 text-xs sm:text-sm">
+      <i class="fas fa-bullhorn mr-1"></i>
+      <span>New: Summer Project Bootcamp registrations open! <a href="/contact_us" class="text-blue-600 dark:text-blue-400 underline">Join now</a></span>
+    </div>
+
+    <div class="flex flex-col md:flex-row gap-3 sm:gap-4">
+      <main class="flex-1">
+        <section class="mb-6 sm:mb-8">
+          <h2 class="text-xl sm:text-2xl font-bold mb-3">Our Services</h2>
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
+            <div class="card bg-white dark:bg-gray-800 p-3 sm:p-4 rounded-lg shadow-md hover:shadow-lg transition-shadow">
+              <h3 class="text-base sm:text-lg font-semibold mb-1">Mini & Final Year Projects</h3>
+              <p class="text-xs sm:text-sm text-gray-600 dark:text-gray-400">Get unique, working projects in Web, Python, Android, and more.</p>
+              <div class="animation-container h-16 sm:h-20">
+                <svg viewBox="0 0 200 200" class="spin-gear">
+                  <path d="M50 20a3 3 0 0 1 3 3v14l10-5.8a3 3 0 0 1 4 1.4l7 12a3 3 0 0 1-1.4 4L62 54.4v14a3 3 0 0 1-3 3h-14a3 3 0 0 1-3-3v-14l-10 5.8a3 3 0 0 1-4-1.4l-7-12a3 3 0 0 1 1.4-4l10-5.8V23a3 3 0 0 1 3-3h14z" fill="#3b82f6" />
+                </svg>
+              </div>
+            </div>
+            <div class="card bg-white dark:bg-gray-800 p-3 sm:p-4 rounded-lg shadow-md hover:shadow-lg transition-shadow">
+              <h3 class="text-base sm:text-lg font-semibold mb-1">Documentation Help</h3>
+              <p class="text-xs sm:text-sm text-gray-600 dark:text-gray-400">Professional synopsis, SRS, UML diagrams, and reports.</p>
+              <div class="animation-container h-16 sm:h-20">
+                <svg viewBox="0 0 100 100" class="pulse-document">
+                  <path d="M30 20h40a5 5 0 0 1 5 5v50a5 5 0 0 1-5 5H30a5 5 0 0 1-5-5V25a5 5 0 0 1 5-5zm10 20h20m-20 10h20m-20 10h10" stroke="#3b82f6" stroke-width="6" fill="none" />
+                </svg>
+              </div>
+            </div>
+            <div class="card bg-white dark:bg-gray-800 p-3 sm:p-4 rounded-lg shadow-md hover:shadow-lg transition-shadow">
+              <h3 class="text-base sm:text-lg font-semibold mb-1">Mentoring & Explanation</h3>
+              <p class="text-xs sm:text-sm text-gray-600 dark:text-gray-400">We explain the code and help you prepare for your viva.</p>
+              <div class="animation-container h-16 sm:h-20">
+                <svg viewBox="0 0 100 100" class="bounce-lightbulb">
+                  <path d="M50 30a20 20 0 0 0-20 20c0 10 20 30 20 30s20-20 20-30a20 20 0 0 0-20-20zm0 40v10" stroke="#3b82f6" stroke-width="6" fill="none" />
+                </svg>
+              </div>
+            </div>
+            <div class="card bg-white dark:bg-gray-800 p-3 sm:p-4 rounded-lg shadow-md hover:shadow-lg transition-shadow">
+              <h3 class="text-base sm:text-lg font-semibold mb-1">College ERP Modules</h3>
+              <p class="text-xs sm:text-sm text-gray-600 dark:text-gray-400">Attendance, internal marks, timetable – customized solutions.</p>
+              <div class="animation-container h-16 sm:h-20">
+                <svg viewBox="0 0 200 200" class="spin-dashboard">
+                  <rect x="30" y="30" width="40" height="40" rx="5" fill="#3b82f6" />
+                  <circle cx="50" cy="50" r="10" fill="#fff" />
+                </svg>
+              </div>
+            </div>
           </div>
-          <div class="filter-section">
-            <label for="project-filter">Filter by:</label>
-            <select id="project-filter">
+          <div class="mt-4 text-center">
+            <button class="bg-blue-600 text-white px-3 sm:px-4 py-1.5 rounded-full hover:bg-blue-700 transition-colors text-xs sm:text-sm">Find Out More</button>
+          </div>
+        </section>
+
+        <section class="mb-6 sm:mb-8">
+          <h2 class="text-xl sm:text-2xl font-bold mb-3">Make Projects Yours</h2>
+          <div class="flex items-center mb-3">
+            <label for="project-filter" class="mr-1 text-xs sm:text-sm">Filter by:</label>
+            <select id="project-filter" class="border border-gray-300 dark:border-gray-600 rounded-lg p-1.5 bg-white dark:bg-gray-800 text-xs sm:text-sm">
               <option value="all">All</option>
               <option value="web">Web</option>
               <option value="android">Android</option>
               <option value="fullstack">Full Stack</option>
             </select>
           </div>
-          <div class="card-grid" id="projects-list">
-            <div class="card project-card" data-type="android">
-              <h3>Attendance Marking App</h3>
-              <p>React Native</p>
-              <span class="price">₹2000</span>
-              <div class="lottie-animation-container" style="width: 100%; height: 100%;"></div>
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4" id="projects-list">
+            <div class="card project-card bg-white dark:bg-gray-800 p-3 sm:p-4 rounded-lg shadow-md hover:shadow-lg transition-shadow" data-type="android">
+              <h3 class="text-base sm:text-lg font-semibold mb-1">Attendance Marking App</h3>
+              <p class="text-xs sm:text-sm text-gray-600 dark:text-gray-400">React Native</p>
+              <span class="block text-blue-600 dark:text-blue-400 font-bold text-xs sm:text-sm">₹2000</span>
+              <div class="animation-container h-16 sm:h-20">
+                <svg viewBox="0 0 100 100" class="draw-checkmark">
+                  <path d="M20 50l20 20l40-40" stroke="#3b82f6" stroke-width="8" fill="none" />
+                </svg>
+              </div>
             </div>
-            <div class="card project-card" data-type="android">
-              <h3>Messenger App</h3>
-              <p>React Native + Firebase | Realtime Chat</p>
-              <span class="price">₹2500</span>
-              <div class="lottie-animation-container" style="width: 100%; height: 100%;"></div>
+            <div class="card project-card bg-white dark:bg-gray-800 p-3 sm:p-4 rounded-lg shadow-md hover:shadow-lg transition-shadow" data-type="android">
+              <h3 class="text-base sm:text-lg font-semibold mb-1">Messenger App</h3>
+              <p class="text-xs sm:text-sm text-gray-600 dark:text-gray-400">React Native + Firebase | Realtime Chat</p>
+              <span class="block text-blue-600 dark:text-blue-400 font-bold text-xs sm:text-sm">₹2500</span>
+              <div class="animation-container h-16 sm:h-20">
+                <svg viewBox="0 0 100 100" class="pulse-chat">
+                  <path d="M30 20h40a10 10 0 0 1 10 10v30a10 10 0 0 1-10 10H40l-10 10v-10H30a10 10 0 0 1-10-10V30a10 10 0 0 1 10-10z" fill="#3b82f6" />
+                </svg>
+              </div>
             </div>
-            <div class="card project-card" data-type="web">
-              <h3>College Student Dashboard</h3>
-              <p>PHP + MySQL | Student Dashboard</p>
-              <span class="price">₹2500</span>
-              <div class="lottie-animation-container" style="width: 100%; height: 100%;"></div>
+            <div class="card project-card bg-white dark:bg-gray-800 p-3 sm:p-4 rounded-lg shadow-md hover:shadow-lg transition-shadow" data-type="web">
+              <h3 class="text-base sm:text-lg font-semibold mb-1">College Student Dashboard</h3>
+              <p class="text-xs sm:text-sm text-gray-600 dark:text-gray-400">PHP + MySQL | Student Dashboard</p>
+              <span class="block text-blue-600 dark:text-blue-400 font-bold text-xs sm:text-sm">₹2500</span>
+              <div class="animation-container h-16 sm:h-20">
+                <svg viewBox="0 0 100 100" class="spin-pie">
+                  <circle cx="50" cy="50" r="40" fill="none" stroke="#3b82f6" stroke-width="8" stroke-dasharray="100 150" />
+                </svg>
+              </div>
             </div>
-            <div class="card project-card" data-type="fullstack">
-              <h3>Project Management System</h3>
-              <p>React, Node.js, MongoDB | Full Stack</p>
-              <span class="price">₹3500</span>
-              <div class="lottie-animation-container" style="width: 100%; height: 100%;"></div>
+            <div class="card project-card bg-white dark:bg-gray-800 p-3 sm:p-4 rounded-lg shadow-md hover:shadow-lg transition-shadow" data-type="fullstack">
+              <h3 class="text-base sm:text-lg font-semibold mb-1">Project Management System</h3>
+              <p class="text-xs sm:text-sm text-gray-600 dark:text-gray-400">React, Node.js, MongoDB | Full Stack</p>
+              <span class="block text-blue-600 dark:text-blue-400 font-bold text-xs sm:text-sm">₹3500</span>
+              <div class="animation-container h-16 sm:h-20">
+                <svg viewBox="0 0 100 100" class="move-board">
+                  <rect x="20" y="30" width="60" height="10" fill="#3b82f6" />
+                  <rect x="20" y="50" width="60" height="10" fill="#3b82f6" />
+                  <rect x="20" y="70" width="60" height="10" fill="#3b82f6" />
+                </svg>
+              </div>
             </div>
           </div>
-          <div class="phase_bottom">
-            <button class="focus-button">
-              <span>Find Out More</span>
-              <svg class="focus-button_line focus-button_line-1" width="127" height="2" viewBox="0 0 127 2" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M0 1H127"></path>
-              </svg>
-              <svg class="focus-button_line focus-button_line-2" width="127" height="2" viewBox="0 0 127 2" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M0 1H127"></path>
-              </svg>
-              <svg class="focus-button_line focus-button_line-3" width="127" height="2" viewBox="0 0 127 2" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M0 1H127"></path>
-              </svg>
-            </button>
+          <div class="mt-4 text-center">
+            <button class="bg-blue-600 text-white px-3 sm:px-4 py-1.5 rounded-full hover:bg-blue-700 transition-colors text-xs sm:text-sm">Find Out More</button>
           </div>
-        </div>
-      </section>
-    </main>
-    <aside>
-      <!-- Progress & Badges -->
-      <section class="progressContainer">
-        <h2 class="glitch-title">
-          <div>Your</div>
-          <div>Progress</div>
-        </h2>
-        <div id="progressContainer">
-          <div id="progressBar">60%</div>
-        </div>
-        <div id="badges">
-          <h3>Unlocked Badges</h3>
-          <ul id="badgeList">
-            <li title="Starter"><i class="fas fa-star"></i></li>
-            <li title="Achiever"><i class="fas fa-trophy"></i></li>
-          </ul>
-        </div>
-      </section>
-      <!-- CTA -->
-      <section class="cta" id="contact-us">
-        <div class="lottie-animation-container" style="width: 100%; height: 100%;"></div>
-        <h2 class="glitch-title">
-          <div>Need</div>
-          <div>Project</div>
-          <div>Help?</div>
-        </h2>
-        <p>We’re here to assist you 24x7 on WhatsApp!</p>
-        <a href="https://wa.me/918825527193" target="_blank" class="whatsapp-btn">
-          <i class="fab fa-whatsapp"></i> Chat Now
-          <div class="lottie-animation-container" style="width: 100px; height: 100px; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); opacity: 0;"></div>
-        </a>
-      </section>
-      <!-- Vision -->
-      <section class="our-vision" id="our-vision">
-        <h2 class="glitch-title">
-          <div>Our</div>
-          <div>Vision</div>
-        </h2>
-        <p>To empower every student with practical project experience and industry-standard mentoring for a brighter tech future.</p>
-      </section>
-    </aside>
+        </section>
+      </main>
+
+      <aside class="w-full md:w-72">
+        <section class="mb-3 sm:mb-4 bg-white dark:bg-gray-800 p-3 sm:p-4 rounded-lg shadow-md">
+          <h2 class="text-lg sm:text-xl font-bold mb-3">Your Progress</h2>
+          <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-3">
+            <div class="bg-blue-600 h-3 rounded-full" style="width: 60%;"></div>
+          </div>
+          <div class="mt-3">
+            <h3 class="text-sm sm:text-base font-semibold">Unlocked Badges</h3>
+            <ul class="flex space-x-2">
+              <li title="Starter"><i class="fas fa-star text-yellow-400 text-base"></i></li>
+              <li title="Achiever"><i class="fas fa-trophy text-yellow-400 text-base"></i></li>
+            </ul>
+          </div>
+        </section>
+        <section class="mb-3 sm:mb-4 bg-white dark:bg-gray-800 p-3 sm:p-4 rounded-lg shadow-md">
+          <h2 class="text-lg sm:text-xl font-bold mb-3">Need Project Help?</h2>
+          <p class="text-xs sm:text-sm text-gray-600 dark:text-gray-400 mb-3">We’re here to assist you 24x7 on WhatsApp!</p>
+          <a href="https://wa.me/918825527193" target="_blank" class="flex items-center justify-center bg-green-600 text-white px-3 py-1.5 rounded-full hover:bg-green-700 transition-colors text-xs sm:text-sm">
+            <i class="fab fa-whatsapp mr-1 text-base"></i> Chat Now
+          </a>
+        </section>
+        <section class="bg-white dark:bg-gray-800 p-3 sm:p-4 rounded-lg shadow-md">
+          <h2 class="text-lg sm:text-xl font-bold mb-3">Our Vision</h2>
+          <p class="text-xs sm:text-sm text-gray-600 dark:text-gray-400">To empower every student with practical project experience and industry-standard mentoring for a brighter tech future.</p>
+        </section>
+      </aside>
+    </div>
+
+    <div class="pagination flex justify-center space-x-2 my-4">
+      <button class="w-2 h-2 rounded-full bg-gray-300 dark:bg-gray-600"></button>
+      <button class="w-2 h-2 rounded-full bg-gray-300 dark:bg-gray-600"></button>
+      <button class="w-2 h-2 rounded-full bg-blue-600"></button>
+      <button class="w-2 h-2 rounded-full bg-gray-300 dark:bg-gray-600"></button>
+    </div>
+
+    <a href="https://wa.me/918825527193" class="fixed bottom-2 right-2 bg-green-600 text-white p-2 sm:p-3 rounded-full shadow-lg hover:bg-green-700 transition-colors" target="_blank" title="Chat with us!">
+      <i class="fab fa-whatsapp text-lg sm:text-xl"></i>
+    </a>
+
+    <section class="text-center my-6 sm:my-8">
+      <h2 class="text-lg sm:text-xl font-bold mb-3">Need More Help?</h2>
+      <p class="text-xs sm:text-sm">Contact us at <a href="mailto:dineshkanna2601@gmail.com" class="text-blue-600 dark:text-blue-400 underline">dineshkanna2601@gmail.com</a></p>
+    </section>
+
+    <footer class="text-center py-4 border-t border-gray-200 dark:border-gray-700">
+      <p class="text-xs sm:text-sm">All Rights Reserved © 2025 Aishwarya InnovateX | Built with 🤍💚</p>
+      <span id="live-clock" class="text-gray-600 dark:text-gray-400 text-xs sm:text-sm">12:55 PM IST</span>
+    </footer>
   </div>
 
-  <!-- Pagination -->
-  <div class="pagination">
-    <button class="pagination_item"><div class="pagination_dot"></div></button>
-    <button class="pagination_item"><div class="pagination_dot"></div></button>
-    <button class="pagination_item pagination_item--active"><div class="pagination_dot"></div></button>
-    <button class="pagination_item"><div class="pagination_dot"></div></button>
-  </div>
-
-  <!-- Floating WhatsApp -->
-  <a href="https://wa.me/918825527193" class="floating-whatsapp" target="_blank" title="Chat with us!">
-    <i class="fab fa-whatsapp"></i>
-    <div class="lottie-animation-container" style="width: 120px; height: 120px;"></div>
-  </a>
-
-  <!-- Live Comments -->
-  <section class="live-comments" id="live-comments">
-    <h2 class="glitch-title">
-      <div>Need</div>
-      <div>More</div>
-      <div>Help?</div>
-    </h2>
-    <p>Contact us at <a href="mailto:dineshkanna2601@gmail.com">dineshkanna2601@gmail.com</a></p>
-  </section>
-
-  <!-- Footer -->
-  <footer>
-    All Rights Reserved &copy; 2025 Aishwarya InnovateX | Built with 🤍💚
-    <span id="live-clock"></span>
-  </footer>
-
-  <script>
-    // Initialize Lenis for smooth scrolling with parallax
-    const lenis = new Lenis({
-      duration: 1.5,
-      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-      smooth: true,
-    });
-
-    function raf(time) {
-      lenis.raf(time);
-      requestAnimationFrame(raf);
-    }
-
-    requestAnimationFrame(raf);
-
-    // Parallax effect on scroll
-    lenis.on('scroll', ({ scroll }) => {
-      document.querySelectorAll('.phase, .progressContainer, .cta, .our-vision, .live-comments').forEach((section, index) => {
-        const offset = scroll - section.offsetTop;
-        section.style.transform = `translateY(${offset * (0.05 * (index + 1))}px)`;
-        if (section.classList.contains('phase')) {
-          const caption = section.querySelector('.phase_content_caption');
-          if (caption && scroll > section.offsetTop - window.innerHeight / 2) {
-            caption.style.opacity = '1';
-            caption.style.transform = 'translateY(0)';
-          }
-        }
-      });
-    });
-
-    // Navbar toggle
-    const navToggle = document.getElementById('nav-toggle');
-    const navLinks = document.getElementById('navLinks');
-    const navIcon = navToggle.querySelector('i');
-    navToggle.addEventListener('click', () => {
-      navLinks.classList.toggle('active');
-      if (navLinks.classList.contains('active')) {
-        navIcon.classList.remove('fa-bars');
-        navIcon.classList.add('fa-times');
-      } else {
-        navIcon.classList.remove('fa-times');
-        navIcon.classList.add('fa-bars');
-      }
-    });
-
-    // Splash screen
-    window.addEventListener('load', () => {
-      setTimeout(() => {
-        document.body.classList.add('loaded');
-      }, 2000);
-    });
-
-    // Project filter
-    document.getElementById('project-filter').addEventListener('change', function () {
-      const val = this.value;
-      document.querySelectorAll('.project-card').forEach((card) => {
-        card.style.display = val === 'all' || card.dataset.type === val ? '' : 'none';
-      });
-    });
-
-    // Live clock
-    function updateClock() {
-      const now = new Date();
-      document.getElementById('live-clock').textContent = now.toLocaleTimeString([], {
-        hour: '2-digit',
-        minute: '2-digit',
-        second: '2-digit',
-      });
-    }
-    setInterval(updateClock, 1000);
-    updateClock();
-
-    // Custom Cursor
-    const cursor = document.querySelector('.cursor');
-    const cursorText = document.querySelector('.cursor__text');
-    document.addEventListener('mousemove', (e) => {
-      cursor.style.transform = `translate(${e.clientX}px, ${e.clientY}px)`;
-      cursor.classList.remove('cursor--hidden');
-    });
-
-    document.addEventListener('mouseleave', () => {
-      cursor.classList.add('cursor--hidden');
-    });
-
-    document.querySelectorAll('a, button, .card').forEach((el) => {
-      el.addEventListener('mouseenter', () => {
-        cursor.classList.add('cursor--active');
-      });
-      el.addEventListener('mouseleave', () => {
-        cursor.classList.remove('cursor--active');
-      });
-    });
-
-    // Three.js Particle Background
-    const canvas = document.getElementById('webgl-background');
-    const scene = new THREE.Scene();
-    const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-    const renderer = new THREE.WebGLRenderer({ canvas, alpha: true });
-    renderer.setSize(window.innerWidth, window.innerHeight);
-
-    const particlesGeometry = new THREE.BufferGeometry();
-    const particleCount = 8000;
-    const posArray = new Float32Array(particleCount * 3);
-    const velocities = new Float32Array(particleCount * 3);
-    const colors = new Float32Array(particleCount * 3);
-
-    for (let i = 0; i < particleCount * 3; i += 3) {
-      posArray[i] = (Math.random() - 0.5) * 100;
-      posArray[i + 1] = (Math.random() - 0.5) * 100;
-      posArray[i + 2] = (Math.random() - 0.5) * 100;
-      velocities[i] = (Math.random() - 0.5) * 0.02;
-      velocities[i + 1] = (Math.random() - 0.5) * 0.02;
-      velocities[i + 2] = (Math.random() - 0.5) * 0.02;
-      colors[i] = Math.random();
-      colors[i + 1] = Math.random();
-      colors[i + 2] = 1;
-    }
-
-    particlesGeometry.setAttribute('position', new THREE.BufferAttribute(posArray, 3));
-    particlesGeometry.setAttribute('color', new THREE.BufferAttribute(colors, 3));
-    const material = new THREE.PointsMaterial({
-      size: 0.05,
-      vertexColors: true,
-      transparent: true,
-      opacity: 0.6,
-    });
-
-    const particles = new THREE.Points(particlesGeometry, material);
-    scene.add(particles);
-
-    camera.position.z = 5;
-
-    let mouseX = 0, mouseY = 0;
-    document.addEventListener('mousemove', (e) => {
-      mouseX = (e.clientX / window.innerWidth) * 2 - 1;
-      mouseY = -(e.clientY / window.innerHeight) * 2 + 1;
-    });
-
-    function animate() {
-      requestAnimationFrame(animate);
-      particles.rotation.y += 0.002;
-      const positions = particlesGeometry.attributes.position.array;
-      for (let i = 0; i < particleCount * 3; i += 3) {
-        positions[i] += velocities[i] + mouseX * 0.002;
-        positions[i + 1] += velocities[i + 1] + mouseY * 0.002;
-        positions[i + 2] += velocities[i + 2];
-        if (Math.abs(positions[i]) > 50) velocities[i] *= -1;
-        if (Math.abs(positions[i + 1]) > 50) velocities[i + 1] *= -1;
-        if (Math.abs(positions[i + 2]) > 50) velocities[i + 2] *= -1;
-      }
-      particlesGeometry.attributes.position.needsUpdate = true;
-      renderer.render(scene, camera);
-    }
-    animate();
-
-    window.addEventListener('resize', () => {
-      renderer.setSize(window.innerWidth, window.innerHeight);
-      camera.aspect = window.innerWidth / window.innerHeight;
-      camera.updateProjectionMatrix();
-    });
-
-    // Hero Section Three.js Effect
-    const heroCanvas = document.querySelector('.hero-canvas');
-    const heroScene = new THREE.Scene();
-    const heroCamera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-    const heroRenderer = new THREE.WebGLRenderer({ canvas: heroCanvas, alpha: true });
-    heroRenderer.setSize(window.innerWidth, window.innerHeight);
-
-    const heroGeometry = new THREE.TorusKnotGeometry(2, 0.4, 100, 16);
-    const heroMaterial = new THREE.MeshBasicMaterial({ color: 0x97c80e, wireframe: true });
-    const torusKnot = new THREE.Mesh(heroGeometry, heroMaterial);
-    heroScene.add(torusKnot);
-
-    heroCamera.position.z = 5;
-
-    function animateHero() {
-      requestAnimationFrame(animateHero);
-      torusKnot.rotation.x += 0.01;
-      torusKnot.rotation.y += 0.01;
-      heroRenderer.render(heroScene, heroCamera);
-    }
-    animateHero();
-
-    window.addEventListener('resize', () => {
-      heroRenderer.setSize(window.innerWidth, window.innerHeight);
-      heroCamera.aspect = window.innerWidth / window.innerHeight;
-      heroCamera.updateProjectionMatrix();
-    });
-
-    // Lottie Animations
-    const lottieContainers = document.querySelectorAll('.lottie-animation-container');
-    lottieContainers.forEach((container, index) => {
-      lottie.loadAnimation({
-        container,
-        renderer: 'svg',
-        loop: true,
-        autoplay: true,
-        path: `https://assets.lottiefiles.com/packages/lf20_${index % 3 ? '3pgxyh' : 'j3t2y0'}.json`,
-      });
-    });
-
-    // Lottie for Cursor
-    const cursorLottie = document.querySelector('.cursor__animation');
-    lottie.loadAnimation({
-      container: cursorLottie,
-      renderer: 'svg',
-      loop: true,
-      autoplay: true,
-      path: 'https://assets.lottiefiles.com/packages/lf20_3pgxyh.json',
-    });
-
-    // Lottie for Splash Screen
-    const splashLottie = document.querySelector('#splash-screen .lottie-animation-container');
-    lottie.loadAnimation({
-      container: splashLottie,
-      renderer: 'svg',
-      loop: true,
-      autoplay: true,
-      path: 'https://assets.lottiefiles.com/packages/lf20_1z4b6k.json',
-    });
-
-    // Lottie for WhatsApp Button
-    const whatsappBtn = document.querySelector('.whatsapp-btn');
-    const whatsappLottie = whatsappBtn.querySelector('.lottie-animation-container');
-    whatsappBtn.addEventListener('mouseenter', () => {
-      whatsappLottie.style.opacity = '1';
-    });
-    whatsappBtn.addEventListener('mouseleave', () => {
-      whatsappLottie.style.opacity = '0';
-    });
-
-    // Lottie for Floating WhatsApp
-    const floatingWhatsapp = document.querySelector('.floating-whatsapp');
-    const floatingLottie = floatingWhatsapp.querySelector('.lottie-animation-container');
-    floatingWhatsapp.addEventListener('mouseenter', () => {
-      floatingLottie.style.opacity = '0.4';
-    });
-    floatingWhatsapp.addEventListener('mouseleave', () => {
-      floatingLottie.style.opacity = '0';
-    });
-
-    // Pagination
-    const paginationItems = document.querySelectorAll('.pagination_item');
-    paginationItems.forEach((item, index) => {
-      item.addEventListener('click', () => {
-        document.querySelector('.pagination_item--active').classList.remove('pagination_item--active');
-        item.classList.add('pagination_item--active');
-        const section = document.querySelectorAll('.phase, .cta')[index];
-        lenis.scrollTo(section, { duration: 1.5 });
-      });
-    });
-  </script>
+  <script src="js/script.js"></script>
 </body>
 </html>
