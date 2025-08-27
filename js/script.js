@@ -1,4 +1,4 @@
-* Debounce Utility */
+/* Debounce Utility */
 function debounce(func, wait) {
   let timeout;
   return function executedFunction(...args) {
@@ -881,3 +881,5 @@ document.addEventListener('DOMContentLoaded', () => {
 /* CSS Custom Properties Update */
 document.documentElement.style.setProperty('--dynamic-gradient', 
   'linear-gradient(45deg, rgba(59, 130, 246, 0.05), rgba(168, 85, 247, 0.05))');
+  
+  

@@ -18,11 +18,12 @@
   <canvas id="webgl-background" class="fixed inset-0 z-0"></canvas>
   <div id="splash-screen" class="fixed inset-0 flex items-center justify-center bg-gray-900 bg-opacity-80 z-50">
     <div class="flex flex-col items-center">
-      <img id="splash-logo" src="images/AD.png" alt="Loading Logo" class="w-12 h-12 md:w-16 md:h-16">
+      <img id="slide-out-blurred-right" src="images/AD.png" alt="Loading Logo" class="w-12 h-12 md:w-16 md:h-16">
+      <img id="slide-out-blurred-left" src="images/AD.png" alt="Loading Logo" class="w-12 h-12 md:w-16 md:h-16">
+      <img id="slide-out-blurred-top" src="images/AD.png" alt="Loading Logo" class="w-12 h-12 md:w-16 md:h-16">
+      <img id="slide-out-blurred-bottom" src="images/AD.png" alt="Loading Logo" class="w-12 h-12 md:w-16 md:h-16">
       <div class="animation-container" style="width: 120px; height: 120px;">
-        <svg viewBox="0 0 100 100" class="spin-ring">
-          <circle cx="50" cy="50" r="40" stroke="#3b82f6" stroke-width="8" fill="none" />
-        </svg>
+        <img id="splash-logo" src="images/AD.png" alt="Loading Logo" class="w-12 h-12 md:w-16 md:h-16">
       </div>
     </div>
   </div>
@@ -37,44 +38,82 @@
   </button>
 
   <!-- Sidebar -->
-  <div id="sidebar" class="fixed inset-y-0 left-0 w-64 bg-white dark:bg-gray-800 shadow-lg z-40 transform transition-transform md:translate-x-0 -translate-x-full">
-    <div class="flex items-center justify-between p-3 border-b border-gray-200 dark:border-gray-700">
-      <a href="/" class="flex items-center space-x-2">
-        <img src="images/AD.png" alt="Aishwarya Logo" class="w-6 h-6">
-        <span class="text-base font-bold">Aishwarya InnovateX</span>
+  <div id="sidebar" class="fixed inset-y-0 left-0 w-64 bg-gradient-to-b from-gray-100 to-white dark:from-gray-800 dark:to-gray-900 shadow-2xl z-40 transform transition-transform md:translate-x-0 -translate-x-full">
+    <div class="flex items-center justify-between p-4 border-b border-gray-200 dark:border-gray-700">
+      <a href="/innovate/index.html" class="sidebar-item flex items-center space-x-3">
+        <img src="images/AD.png" alt="Aishwarya Logo" class="w-8 h-8 transition-transform duration-300 hover:scale-110" id="bounce-in-top">
+        <span class="text-lg font-extrabold text-gray-900 dark:text-gray-100" id="bounce-in-top">Aishwarya InnovateX</span>
       </a>
     </div>
-    <nav class="flex-1 p-3">
-      <ul class="space-y-1">
-        <li><a href="/index.html" class="block p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 text-sm">Home</a></li>
-        <li><a href="/about_us.html" class="block p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 text-sm">About Us</a></li>
-        <li><a href="/contact_us.html" class="block p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 text-sm">Contact Us</a></li>
-        <li><a href="/our_vision.html" class="block p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 text-sm">Our Vision</a></li>
-      </ul>
+    <nav class="flex-1 p-4 space-y-2">
+      <ul class="space-y-2">
+  <li>
+    <a href="/innovate/index.html" class="sidebar-item flex items-center p-3 rounded-lg bg-gray-50 dark:bg-gray-700 hover:bg-blue-100 dark:hover:bg-blue-900 transition-all duration-300 text-sm font-medium" id="bounce-in-top">
+      <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path>
+      </svg>
+      Home
+    </a>
+  </li>
+  <li>
+    <a href="/innovate/about_us.html" class="sidebar-item flex items-center p-3 rounded-lg bg-gray-50 dark:bg-gray-700 hover:bg-blue-100 dark:hover:bg-blue-900 transition-all duration-300 text-sm font-medium" id="bounce-in-top">
+      <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+      </svg>
+      About Us
+    </a>
+  </li>
+  <li>
+    <a href="/innovate/contact_us.html" class="sidebar-item flex items-center p-3 rounded-lg bg-gray-50 dark:bg-gray-700 hover:bg-blue-100 dark:hover:bg-blue-900 transition-all duration-300 text-sm font-medium" id="bounce-in-top">
+      <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+      </svg>
+      Contact Us
+    </a>
+  </li>
+  <li>
+    <a href="/innovate/our_vision.html" class="sidebar-item flex items-center p-3 rounded-lg bg-gray-50 dark:bg-gray-700 hover:bg-blue-100 dark:hover:bg-blue-900 transition-all duration-300 text-sm font-medium" id="bounce-in-top">
+      <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path>
+      </svg>
+      Our Vision
+    </a>
+  </li>
+</ul>
     </nav>
-    <div class="p-3 border-t border-gray-200 dark:border-gray-700">
-      <button class="sound-button flex items-center space-x-2 text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-gray-100 text-sm">
-        <svg width="13" height="18" viewBox="0 0 13 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <div class="p-4 border-t border-gray-200 dark:border-gray-700 space-y-2">
+      <button class="sidebar-item sound-button flex items-center space-x-3 p-3 rounded-lg bg-gray-50 dark:bg-gray-700 hover:bg-blue-100 dark:hover:bg-blue-900 transition-all duration-300 text-sm font-medium text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-gray-100 w-full" id="bounce-in-top">
+        <svg width="14" height="18" viewBox="0 0 13 18" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path class="sound-button_egg sound-button_egg-inner" d="M9.45438 10.2646L9.45438 10.2646L9.45421 10.266C9.34909 11.1026 9.10645 11.7409 8.70533 12.2925C8.61051 12.4219 8.32934 12.7227 8.20406 12.8282C7.88956 13.0917 7.46499 13.3133 7.08618 13.4131L7.08542 13.4133C6.77172 13.4964 6.34402 13.5312 6.02874 13.4989L6.02812 13.4988C4.75223 13.3697 3.71554 12.4522 3.32038 10.994L3.32028 10.9936C3.13402 10.3086 3.1021 9.4286 3.24597 8.5663L3.24601 8.56601C3.42023 7.51755 3.83495 6.50225 4.40022 5.71769C4.57984 5.47001 4.93181 5.09959 5.12446 4.95179L5.12558 4.95092C5.47649 4.67994 5.82119 4.53705 6.15806 4.49997C6.30291 4.48456 6.35274 4.48441 6.50425 4.5013C6.81581 4.53761 7.16996 4.68642 7.51908 4.95599C7.67546 5.07927 8.0333 5.44454 8.16981 5.6245C8.83395 6.50041 9.2794 7.64234 9.44665 8.94695C9.45955 9.04981 9.46976 9.31933 9.4715 9.61535C9.47325 9.91435 9.46589 10.1752 9.45438 10.2646Z" stroke="currentColor" stroke-width="0.90219"></path>
           <path class="sound-button_line" d="M4 17L9 1" stroke="currentColor"></path>
         </svg>
         <span>Sound</span>
       </button>
+      <!-- <button class="sidebar-item theme-button flex items-center space-x-3 p-3 rounded-lg bg-gray-50 dark:bg-gray-700 hover:bg-blue-100 dark:hover:bg-blue-900 transition-all duration-300 text-sm font-medium text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-gray-100 w-full">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <span>Toggle Theme</span>
+      </button> -->
     </div>
   </div>
+  <!-- Sidebar Backdrop (Mobile Only) -->
+  <div id="sidebar-backdrop" class="fixed inset-0 bg-black bg-opacity-50 z-30 hidden md:hidden"></div>
 
   <!-- Main Content -->
   <div class="md:ml-64 p-2 sm:p-4 max-w-full">
     <header class="relative text-center py-8 sm:py-12">
-      <canvas class="hero-canvas absolute inset-0 z-0" data-engine="three.js r165"></canvas>
+      
       <div class="relative z-10">
-        <a href="/"><img src="images/AD.png" alt="Aishwarya Logo" class="mx-auto w-10 h-10 sm:w-12 sm:h-12 mb-2"></a>
-        <h1 class="text-2xl sm:text-3xl md:text-4xl font-bold mb-2">Aishwarya InnovateX</h1>
-        <p class="text-sm sm:text-base text-gray-600 dark:text-gray-400">Empowering students with real-world projects and mentoring.</p>
+        <a href="/innovate/index.html"><img src="images/AD.png" alt="Aishwarya Logo" class="mx-auto w-10 h-10 sm:w-12 sm:h-12 mb-2" id="tracking-in-contract-bck-top"></a>
+        <h1 class="text-2xl sm:text-3xl md:text-4xl font-bold mb-2" id="tracking-in-contract-bck-top">Aishwarya InnovateX</h1>
+        <p class="text-sm sm:text-base text-gray-600 dark:text-gray-400" id="tracking-in-contract-bck-top">Empowering students with real-world projects and mentoring.</p>
       </div>
     </header>
+    
 
-    <div class="announcements flex items-center justify-center bg-blue-100 dark:bg-blue-900 p-3 rounded-lg mb-4 text-xs sm:text-sm">
+    <div class="announcements flex items-center justify-center bg-blue-100 dark:bg-blue-900 p-3 rounded-lg mb-4 text-xs sm:text-sm" id="focus-in-expand">
       <i class="fas fa-bullhorn mr-1"></i>
       <span>New: Summer Project Bootcamp registrations open! <a href="/contact_us" class="text-blue-600 dark:text-blue-400 underline">Join now</a></span>
     </div>
@@ -82,53 +121,53 @@
     <div class="flex flex-col md:flex-row gap-3 sm:gap-4">
       <main class="flex-1">
         <section class="mb-6 sm:mb-8">
-          <h2 class="text-xl sm:text-2xl font-bold mb-3">Our Services</h2>
+          <h2 class="text-xl sm:text-2xl font-bold mb-3" id="focus-in-expand">Our Services</h2>
           <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
             <div class="card bg-white dark:bg-gray-800 p-3 sm:p-4 rounded-lg shadow-md hover:shadow-lg transition-shadow">
-              <h3 class="text-base sm:text-lg font-semibold mb-1">Mini & Final Year Projects</h3>
-              <p class="text-xs sm:text-sm text-gray-600 dark:text-gray-400">Get unique, working projects in Web, Python, Android, and more.</p>
-              <div class="animation-container h-16 sm:h-20">
-                <svg viewBox="0 0 200 200" class="spin-gear">
-                  <path d="M50 20a3 3 0 0 1 3 3v14l10-5.8a3 3 0 0 1 4 1.4l7 12a3 3 0 0 1-1.4 4L62 54.4v14a3 3 0 0 1-3 3h-14a3 3 0 0 1-3-3v-14l-10 5.8a3 3 0 0 1-4-1.4l-7-12a3 3 0 0 1 1.4-4l10-5.8V23a3 3 0 0 1 3-3h14z" fill="#3b82f6" />
-                </svg>
-              </div>
-            </div>
-            <div class="card bg-white dark:bg-gray-800 p-3 sm:p-4 rounded-lg shadow-md hover:shadow-lg transition-shadow">
-              <h3 class="text-base sm:text-lg font-semibold mb-1">Documentation Help</h3>
-              <p class="text-xs sm:text-sm text-gray-600 dark:text-gray-400">Professional synopsis, SRS, UML diagrams, and reports.</p>
-              <div class="animation-container h-16 sm:h-20">
-                <svg viewBox="0 0 100 100" class="pulse-document">
-                  <path d="M30 20h40a5 5 0 0 1 5 5v50a5 5 0 0 1-5 5H30a5 5 0 0 1-5-5V25a5 5 0 0 1 5-5zm10 20h20m-20 10h20m-20 10h10" stroke="#3b82f6" stroke-width="6" fill="none" />
-                </svg>
-              </div>
-            </div>
-            <div class="card bg-white dark:bg-gray-800 p-3 sm:p-4 rounded-lg shadow-md hover:shadow-lg transition-shadow">
-              <h3 class="text-base sm:text-lg font-semibold mb-1">Mentoring & Explanation</h3>
-              <p class="text-xs sm:text-sm text-gray-600 dark:text-gray-400">We explain the code and help you prepare for your viva.</p>
-              <div class="animation-container h-16 sm:h-20">
-                <svg viewBox="0 0 100 100" class="bounce-lightbulb">
-                  <path d="M50 30a20 20 0 0 0-20 20c0 10 20 30 20 30s20-20 20-30a20 20 0 0 0-20-20zm0 40v10" stroke="#3b82f6" stroke-width="6" fill="none" />
-                </svg>
-              </div>
-            </div>
-            <div class="card bg-white dark:bg-gray-800 p-3 sm:p-4 rounded-lg shadow-md hover:shadow-lg transition-shadow">
-              <h3 class="text-base sm:text-lg font-semibold mb-1">College ERP Modules</h3>
-              <p class="text-xs sm:text-sm text-gray-600 dark:text-gray-400">Attendance, internal marks, timetable – customized solutions.</p>
-              <div class="animation-container h-16 sm:h-20">
-                <svg viewBox="0 0 200 200" class="spin-dashboard">
-                  <rect x="30" y="30" width="40" height="40" rx="5" fill="#3b82f6" />
-                  <circle cx="50" cy="50" r="10" fill="#fff" />
-                </svg>
-              </div>
-            </div>
+      <h3 class="text-base sm:text-lg font-semibold mb-1">Mini & Final Year Projects</h3>
+      <p class="text-xs sm:text-sm text-gray-600 dark:text-gray-400">Get unique, working projects in Web, Python, Android, and more.</p>
+      <div class="animation-container h-25 sm:h-25">
+        <svg viewBox="0 0 100 100" class="spin-gear w-12 h-12">
+          <path d="M50 20a3 3 0 0 1 3 3v14l10-5.8a3 3 0 0 1 4 1.4l7 12a3 3 0 0 1-1.4 4L62 54.4v14a3 3 0 0 1-3 3h-14a3 3 0 0 1-3-3v-14l-10 5.8a3 3 0 0 1-4-1.4l-7-12a3 3 0 0 1 1.4-4l10-5.8V23a3 3 0 0 1 3-3h14z" fill="#3b82f6" />
+        </svg>
+      </div>
+    </div>
+    <div class="card bg-white dark:bg-gray-800 p-3 sm:p-4 rounded-lg shadow-md hover:shadow-lg transition-shadow">
+      <h3 class="text-base sm:text-lg font-semibold mb-1">Documentation Help</h3>
+      <p class="text-xs sm:text-sm text-gray-600 dark:text-gray-400">Professional synopsis, SRS, UML diagrams, and reports.</p>
+      <div class="animation-container h-25 sm:h-25">
+        <svg viewBox="0 0 100 100" class="pulse-document w-12 h-12">
+          <path d="M30 20h40a5 5 0 0 1 5 5v50a5 5 0 0 1-5 5H30a5 5 0 0 1-5-5V25a5 5 0 0 1 5-5zm10 20h20m-20 10h20m-20 10h10" stroke="#3b82f6" stroke-width="6" fill="none" />
+        </svg>
+      </div>
+    </div>
+    <div class="card bg-white dark:bg-gray-800 p-3 sm:p-4 rounded-lg shadow-md hover:shadow-lg transition-shadow">
+      <h3 class="text-base sm:text-lg font-semibold mb-1">Mentoring & Explanation</h3>
+      <p class="text-xs sm:text-sm text-gray-600 dark:text-gray-400">We explain the code and help you prepare for your viva.</p>
+      <div class="animation-container h-25 sm:h-25">
+        <svg viewBox="0 0 100 100" class="bounce-lightbulb w-12 h-12">
+          <path d="M50 30a20 20 0 0 0-20 20c0 10 20 30 20 30s20-20 20-30a20 20 0 0 0-20-20zm0 40v10" stroke="#3b82f6" stroke-width="6" fill="none" />
+        </svg>
+      </div>
+    </div>
+    <div class="card bg-white dark:bg-gray-800 p-3 sm:p-4 rounded-lg shadow-md hover:shadow-lg transition-shadow">
+      <h3 class="text-base sm:text-lg font-semibold mb-1">College ERP Modules</h3>
+      <p class="text-xs sm:text-sm text-gray-600 dark:text-gray-400">Attendance, internal marks, timetable – customized solutions.</p>
+      <div class="animation-container h-25 sm:h-25">
+        <svg viewBox="0 0 100 100" class="spin-dashboard w-12 h-12">
+          <rect x="30" y="30" width="40" height="40" rx="5" fill="#3b82f6" />
+          <circle cx="50" cy="50" r="10" fill="#fff" />
+        </svg>
+      </div>
+    </div>
           </div>
           <div class="mt-4 text-center">
-            <button class="bg-blue-600 text-white px-3 sm:px-4 py-1.5 rounded-full hover:bg-blue-700 transition-colors text-xs sm:text-sm">Find Out More</button>
+            <button class="btn bg-blue-600 text-white px-3 sm:px-4 py-1.5 rounded-full hover:bg-blue-700 transition-colors text-xs sm:text-sm">View All</button>
           </div>
         </section>
 
         <section class="mb-6 sm:mb-8">
-          <h2 class="text-xl sm:text-2xl font-bold mb-3">Make Projects Yours</h2>
+          <h2 class="text-xl sm:text-2xl font-bold mb-3" id="focus-in-expand">Make Projects Yours</h2>
           <div class="flex items-center mb-3">
             <label for="project-filter" class="mr-1 text-xs sm:text-sm">Filter by:</label>
             <select id="project-filter" class="border border-gray-300 dark:border-gray-600 rounded-lg p-1.5 bg-white dark:bg-gray-800 text-xs sm:text-sm">
@@ -143,7 +182,43 @@
               <h3 class="text-base sm:text-lg font-semibold mb-1">Attendance Marking App</h3>
               <p class="text-xs sm:text-sm text-gray-600 dark:text-gray-400">React Native</p>
               <span class="block text-blue-600 dark:text-blue-400 font-bold text-xs sm:text-sm">₹2000</span>
-              <div class="animation-container h-16 sm:h-20">
+              <br>
+              <button class="pay-btn">
+      <span class="btn-text">Pay Now</span>
+      <div class="icon-container">
+        <svg viewBox="0 0 24 24" class="icon card-icon">
+          <path
+            d="M20,8H4V6H20M20,18H4V12H20M20,4H4C2.89,4 2,4.89 2,6V18C2,19.11 2.89,20 4,20H20C21.11,20 22,19.11 22,18V6C22,4.89 21.11,4 20,4Z"
+            fill="currentColor"
+          ></path>
+        </svg>
+        <svg viewBox="0 0 24 24" class="icon payment-icon">
+          <path
+            d="M2,17H22V21H2V17M6.25,7H9V6H6V3H18V6H15V7H17.75L19,17H5L6.25,7M9,10H15V8H9V10M9,13H15V11H9V13Z"
+            fill="currentColor"
+          ></path>
+        </svg>
+        <svg viewBox="0 0 24 24" class="icon dollar-icon">
+          <path
+            d="M11.8 10.9c-2.27-.59-3-1.2-3-2.15 0-1.09 1.01-1.85 2.7-1.85 1.78 0 2.44.85 2.5 2.1h2.21c-.07-1.72-1.12-3.3-3.21-3.81V3h-3v2.16c-1.94.42-3.5 1.68-3.5 3.61 0 2.31 1.91 3.46 4.7 4.13 2.5.6 3 1.48 3 2.41 0 .69-.49 1.79-2.7 1.79-2.06 0-2.87-.92-2.98-2.1h-2.2c.12 2.19 1.76 3.42 3.68 3.83V21h3v-2.15c1.95-.37 3.5-1.5 3.5-3.55 0-2.84-2.43-3.81-4.7-4.4z"
+            fill="currentColor"
+          ></path>
+        </svg>
+        <svg viewBox="0 0 24 24" class="icon wallet-icon default-icon">
+          <path
+            d="M21,18V19A2,2 0 0,1 19,21H5C3.89,21 3,20.1 3,19V5A2,2 0 0,1 5,3H19A2,2 0 0,1 21,5V6H12C10.89,6 10,6.9 10,8V16A2,2 0 0,0 12,18M12,16H22V8H12M16,13.5A1.5,1.5 0 0,1 14.5,12A1.5,1.5 0 0,1 16,10.5A1.5,1.5 0 0,1 17.5,12A1.5,1.5 0 0,1 16,13.5Z"
+            fill="currentColor"
+          ></path>
+        </svg>
+        <svg viewBox="0 0 24 24" class="icon check-icon">
+          <path
+            d="M9,16.17L4.83,12L3.41,13.41L9,19L21,7L19.59,5.59L9,16.17Z"
+            fill="currentColor"
+          ></path>
+        </svg>
+      </div>
+    </button>
+              <div class="animation-container h-25 sm:h-25">
                 <svg viewBox="0 0 100 100" class="draw-checkmark">
                   <path d="M20 50l20 20l40-40" stroke="#3b82f6" stroke-width="8" fill="none" />
                 </svg>
@@ -153,7 +228,43 @@
               <h3 class="text-base sm:text-lg font-semibold mb-1">Messenger App</h3>
               <p class="text-xs sm:text-sm text-gray-600 dark:text-gray-400">React Native + Firebase | Realtime Chat</p>
               <span class="block text-blue-600 dark:text-blue-400 font-bold text-xs sm:text-sm">₹2500</span>
-              <div class="animation-container h-16 sm:h-20">
+              <br>
+              <button class="pay-btn">
+      <span class="btn-text">Pay Now</span>
+      <div class="icon-container">
+        <svg viewBox="0 0 24 24" class="icon card-icon">
+          <path
+            d="M20,8H4V6H20M20,18H4V12H20M20,4H4C2.89,4 2,4.89 2,6V18C2,19.11 2.89,20 4,20H20C21.11,20 22,19.11 22,18V6C22,4.89 21.11,4 20,4Z"
+            fill="currentColor"
+          ></path>
+        </svg>
+        <svg viewBox="0 0 24 24" class="icon payment-icon">
+          <path
+            d="M2,17H22V21H2V17M6.25,7H9V6H6V3H18V6H15V7H17.75L19,17H5L6.25,7M9,10H15V8H9V10M9,13H15V11H9V13Z"
+            fill="currentColor"
+          ></path>
+        </svg>
+        <svg viewBox="0 0 24 24" class="icon dollar-icon">
+          <path
+            d="M11.8 10.9c-2.27-.59-3-1.2-3-2.15 0-1.09 1.01-1.85 2.7-1.85 1.78 0 2.44.85 2.5 2.1h2.21c-.07-1.72-1.12-3.3-3.21-3.81V3h-3v2.16c-1.94.42-3.5 1.68-3.5 3.61 0 2.31 1.91 3.46 4.7 4.13 2.5.6 3 1.48 3 2.41 0 .69-.49 1.79-2.7 1.79-2.06 0-2.87-.92-2.98-2.1h-2.2c.12 2.19 1.76 3.42 3.68 3.83V21h3v-2.15c1.95-.37 3.5-1.5 3.5-3.55 0-2.84-2.43-3.81-4.7-4.4z"
+            fill="currentColor"
+          ></path>
+        </svg>
+        <svg viewBox="0 0 24 24" class="icon wallet-icon default-icon">
+          <path
+            d="M21,18V19A2,2 0 0,1 19,21H5C3.89,21 3,20.1 3,19V5A2,2 0 0,1 5,3H19A2,2 0 0,1 21,5V6H12C10.89,6 10,6.9 10,8V16A2,2 0 0,0 12,18M12,16H22V8H12M16,13.5A1.5,1.5 0 0,1 14.5,12A1.5,1.5 0 0,1 16,10.5A1.5,1.5 0 0,1 17.5,12A1.5,1.5 0 0,1 16,13.5Z"
+            fill="currentColor"
+          ></path>
+        </svg>
+        <svg viewBox="0 0 24 24" class="icon check-icon">
+          <path
+            d="M9,16.17L4.83,12L3.41,13.41L9,19L21,7L19.59,5.59L9,16.17Z"
+            fill="currentColor"
+          ></path>
+        </svg>
+      </div>
+    </button>
+              <div class="animation-container h-25 sm:h-25">
                 <svg viewBox="0 0 100 100" class="pulse-chat">
                   <path d="M30 20h40a10 10 0 0 1 10 10v30a10 10 0 0 1-10 10H40l-10 10v-10H30a10 10 0 0 1-10-10V30a10 10 0 0 1 10-10z" fill="#3b82f6" />
                 </svg>
@@ -163,7 +274,43 @@
               <h3 class="text-base sm:text-lg font-semibold mb-1">College Student Dashboard</h3>
               <p class="text-xs sm:text-sm text-gray-600 dark:text-gray-400">PHP + MySQL | Student Dashboard</p>
               <span class="block text-blue-600 dark:text-blue-400 font-bold text-xs sm:text-sm">₹2500</span>
-              <div class="animation-container h-16 sm:h-20">
+              <br>
+              <button class="pay-btn">
+      <span class="btn-text">Pay Now</span>
+      <div class="icon-container">
+        <svg viewBox="0 0 24 24" class="icon card-icon">
+          <path
+            d="M20,8H4V6H20M20,18H4V12H20M20,4H4C2.89,4 2,4.89 2,6V18C2,19.11 2.89,20 4,20H20C21.11,20 22,19.11 22,18V6C22,4.89 21.11,4 20,4Z"
+            fill="currentColor"
+          ></path>
+        </svg>
+        <svg viewBox="0 0 24 24" class="icon payment-icon">
+          <path
+            d="M2,17H22V21H2V17M6.25,7H9V6H6V3H18V6H15V7H17.75L19,17H5L6.25,7M9,10H15V8H9V10M9,13H15V11H9V13Z"
+            fill="currentColor"
+          ></path>
+        </svg>
+        <svg viewBox="0 0 24 24" class="icon dollar-icon">
+          <path
+            d="M11.8 10.9c-2.27-.59-3-1.2-3-2.15 0-1.09 1.01-1.85 2.7-1.85 1.78 0 2.44.85 2.5 2.1h2.21c-.07-1.72-1.12-3.3-3.21-3.81V3h-3v2.16c-1.94.42-3.5 1.68-3.5 3.61 0 2.31 1.91 3.46 4.7 4.13 2.5.6 3 1.48 3 2.41 0 .69-.49 1.79-2.7 1.79-2.06 0-2.87-.92-2.98-2.1h-2.2c.12 2.19 1.76 3.42 3.68 3.83V21h3v-2.15c1.95-.37 3.5-1.5 3.5-3.55 0-2.84-2.43-3.81-4.7-4.4z"
+            fill="currentColor"
+          ></path>
+        </svg>
+        <svg viewBox="0 0 24 24" class="icon wallet-icon default-icon">
+          <path
+            d="M21,18V19A2,2 0 0,1 19,21H5C3.89,21 3,20.1 3,19V5A2,2 0 0,1 5,3H19A2,2 0 0,1 21,5V6H12C10.89,6 10,6.9 10,8V16A2,2 0 0,0 12,18M12,16H22V8H12M16,13.5A1.5,1.5 0 0,1 14.5,12A1.5,1.5 0 0,1 16,10.5A1.5,1.5 0 0,1 17.5,12A1.5,1.5 0 0,1 16,13.5Z"
+            fill="currentColor"
+          ></path>
+        </svg>
+        <svg viewBox="0 0 24 24" class="icon check-icon">
+          <path
+            d="M9,16.17L4.83,12L3.41,13.41L9,19L21,7L19.59,5.59L9,16.17Z"
+            fill="currentColor"
+          ></path>
+        </svg>
+      </div>
+    </button>
+              <div class="animation-container h-25 sm:h-25">
                 <svg viewBox="0 0 100 100" class="spin-pie">
                   <circle cx="50" cy="50" r="40" fill="none" stroke="#3b82f6" stroke-width="8" stroke-dasharray="100 150" />
                 </svg>
@@ -173,7 +320,43 @@
               <h3 class="text-base sm:text-lg font-semibold mb-1">Project Management System</h3>
               <p class="text-xs sm:text-sm text-gray-600 dark:text-gray-400">React, Node.js, MongoDB | Full Stack</p>
               <span class="block text-blue-600 dark:text-blue-400 font-bold text-xs sm:text-sm">₹3500</span>
-              <div class="animation-container h-16 sm:h-20">
+              <br>
+              <button class="pay-btn">
+      <span class="btn-text">Pay Now</span>
+      <div class="icon-container">
+        <svg viewBox="0 0 24 24" class="icon card-icon">
+          <path
+            d="M20,8H4V6H20M20,18H4V12H20M20,4H4C2.89,4 2,4.89 2,6V18C2,19.11 2.89,20 4,20H20C21.11,20 22,19.11 22,18V6C22,4.89 21.11,4 20,4Z"
+            fill="currentColor"
+          ></path>
+        </svg>
+        <svg viewBox="0 0 24 24" class="icon payment-icon">
+          <path
+            d="M2,17H22V21H2V17M6.25,7H9V6H6V3H18V6H15V7H17.75L19,17H5L6.25,7M9,10H15V8H9V10M9,13H15V11H9V13Z"
+            fill="currentColor"
+          ></path>
+        </svg>
+        <svg viewBox="0 0 24 24" class="icon dollar-icon">
+          <path
+            d="M11.8 10.9c-2.27-.59-3-1.2-3-2.15 0-1.09 1.01-1.85 2.7-1.85 1.78 0 2.44.85 2.5 2.1h2.21c-.07-1.72-1.12-3.3-3.21-3.81V3h-3v2.16c-1.94.42-3.5 1.68-3.5 3.61 0 2.31 1.91 3.46 4.7 4.13 2.5.6 3 1.48 3 2.41 0 .69-.49 1.79-2.7 1.79-2.06 0-2.87-.92-2.98-2.1h-2.2c.12 2.19 1.76 3.42 3.68 3.83V21h3v-2.15c1.95-.37 3.5-1.5 3.5-3.55 0-2.84-2.43-3.81-4.7-4.4z"
+            fill="currentColor"
+          ></path>
+        </svg>
+        <svg viewBox="0 0 24 24" class="icon wallet-icon default-icon">
+          <path
+            d="M21,18V19A2,2 0 0,1 19,21H5C3.89,21 3,20.1 3,19V5A2,2 0 0,1 5,3H19A2,2 0 0,1 21,5V6H12C10.89,6 10,6.9 10,8V16A2,2 0 0,0 12,18M12,16H22V8H12M16,13.5A1.5,1.5 0 0,1 14.5,12A1.5,1.5 0 0,1 16,10.5A1.5,1.5 0 0,1 17.5,12A1.5,1.5 0 0,1 16,13.5Z"
+            fill="currentColor"
+          ></path>
+        </svg>
+        <svg viewBox="0 0 24 24" class="icon check-icon">
+          <path
+            d="M9,16.17L4.83,12L3.41,13.41L9,19L21,7L19.59,5.59L9,16.17Z"
+            fill="currentColor"
+          ></path>
+        </svg>
+      </div>
+    </button>
+              <div class="animation-container h-25 sm:h-25">
                 <svg viewBox="0 0 100 100" class="move-board">
                   <rect x="20" y="30" width="60" height="10" fill="#3b82f6" />
                   <rect x="20" y="50" width="60" height="10" fill="#3b82f6" />
@@ -182,15 +365,12 @@
               </div>
             </div>
           </div>
-          <div class="mt-4 text-center">
-            <button class="bg-blue-600 text-white px-3 sm:px-4 py-1.5 rounded-full hover:bg-blue-700 transition-colors text-xs sm:text-sm">Find Out More</button>
-          </div>
         </section>
       </main>
 
       <aside class="w-full md:w-72">
         <section class="mb-3 sm:mb-4 bg-white dark:bg-gray-800 p-3 sm:p-4 rounded-lg shadow-md">
-          <h2 class="text-lg sm:text-xl font-bold mb-3">Your Progress</h2>
+          <h2 class="text-lg sm:text-xl font-bold mb-3" id="focus-in-expand">Your Progress</h2>
           <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-3">
             <div class="bg-blue-600 h-3 rounded-full" style="width: 60%;"></div>
           </div>
@@ -203,27 +383,20 @@
           </div>
         </section>
         <section class="mb-3 sm:mb-4 bg-white dark:bg-gray-800 p-3 sm:p-4 rounded-lg shadow-md">
-          <h2 class="text-lg sm:text-xl font-bold mb-3">Need Project Help?</h2>
+          <h2 class="text-lg sm:text-xl font-bold mb-3" id="focus-in-expand">Need Project Help?</h2>
           <p class="text-xs sm:text-sm text-gray-600 dark:text-gray-400 mb-3">We’re here to assist you 24x7 on WhatsApp!</p>
           <a href="https://wa.me/918825527193" target="_blank" class="flex items-center justify-center bg-green-600 text-white px-3 py-1.5 rounded-full hover:bg-green-700 transition-colors text-xs sm:text-sm">
-            <i class="fab fa-whatsapp mr-1 text-base"></i> Chat Now
+            <i class="fab fa-whatsapp mr-1 text-base" id="focus-in-expand"></i> Chat Now
           </a>
         </section>
         <section class="bg-white dark:bg-gray-800 p-3 sm:p-4 rounded-lg shadow-md">
-          <h2 class="text-lg sm:text-xl font-bold mb-3">Our Vision</h2>
+          <h2 class="text-lg sm:text-xl font-bold mb-3" id="focus-in-expand">Our Vision</h2>
           <p class="text-xs sm:text-sm text-gray-600 dark:text-gray-400">To empower every student with practical project experience and industry-standard mentoring for a brighter tech future.</p>
         </section>
       </aside>
     </div>
 
-    <div class="pagination flex justify-center space-x-2 my-4">
-      <button class="w-2 h-2 rounded-full bg-gray-300 dark:bg-gray-600"></button>
-      <button class="w-2 h-2 rounded-full bg-gray-300 dark:bg-gray-600"></button>
-      <button class="w-2 h-2 rounded-full bg-blue-600"></button>
-      <button class="w-2 h-2 rounded-full bg-gray-300 dark:bg-gray-600"></button>
-    </div>
-
-    <a href="https://wa.me/918825527193" class="fixed bottom-2 right-2 bg-green-600 text-white p-2 sm:p-3 rounded-full shadow-lg hover:bg-green-700 transition-colors" target="_blank" title="Chat with us!">
+    <a href="https://wa.me/918825527193" class="fixed bottom-2 right-2 bg-green-600 text-white p-2 sm:p-3 rounded-full shadow-lg hover:bg-green-700 transition-colors" id="bounce-in-top" target="_blank" title="Chat with us!">
       <i class="fab fa-whatsapp text-lg sm:text-xl"></i>
     </a>
 
@@ -231,6 +404,99 @@
       <h2 class="text-lg sm:text-xl font-bold mb-3">Need More Help?</h2>
       <p class="text-xs sm:text-sm">Contact us at <a href="mailto:dineshkanna2601@gmail.com" class="text-blue-600 dark:text-blue-400 underline">dineshkanna2601@gmail.com</a></p>
     </section>
+
+    <!-- From Uiverse.io by wilsondesouza --> 
+<ul class="example-2">
+  <li class="icon-content">
+    <a
+      href="https://linkedin.com/"
+      aria-label="LinkedIn"
+      data-social="linkedin"
+    >
+      <div class="filled"></div>
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="16"
+        height="16"
+        fill="currentColor"
+        class="bi bi-linkedin"
+        viewBox="0 0 16 16"
+        xml:space="preserve"
+      >
+        <path
+          d="M0 1.146C0 .513.526 0 1.175 0h13.65C15.474 0 16 .513 16 1.146v13.708c0 .633-.526 1.146-1.175 1.146H1.175C.526 16 0 15.487 0 14.854zm4.943 12.248V6.169H2.542v7.225zm-1.2-8.212c.837 0 1.358-.554 1.358-1.248-.015-.709-.52-1.248-1.342-1.248S2.4 3.226 2.4 3.934c0 .694.521 1.248 1.327 1.248zm4.908 8.212V9.359c0-.216.016-.432.08-.586.173-.431.568-.878 1.232-.878.869 0 1.216.662 1.216 1.634v3.865h2.401V9.25c0-2.22-1.184-3.252-2.764-3.252-1.274 0-1.845.7-2.165 1.193v.025h-.016l.016-.025V6.169h-2.4c.03.678 0 7.225 0 7.225z"
+          fill="currentColor"
+        ></path>
+      </svg>
+    </a>
+    <div class="tooltip">LinkedIn</div>
+  </li>
+  <li class="icon-content">
+    <a href="https://www.github.com/" aria-label="GitHub" data-social="github">
+      <div class="filled"></div>
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="16"
+        height="16"
+        fill="currentColor"
+        class="bi bi-github"
+        viewBox="0 0 16 16"
+        xml:space="preserve"
+      >
+        <path
+          d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8"
+          fill="currentColor"
+        ></path>
+      </svg>
+    </a>
+    <div class="tooltip">GitHub</div>
+  </li>
+  <li class="icon-content">
+    <a
+      href="https://www.instagram.com/"
+      aria-label="Instagram"
+      data-social="instagram"
+    >
+      <div class="filled"></div>
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="16"
+        height="16"
+        fill="currentColor"
+        class="bi bi-instagram"
+        viewBox="0 0 16 16"
+        xml:space="preserve"
+      >
+        <path
+          d="M8 0C5.829 0 5.556.01 4.703.048 3.85.088 3.269.222 2.76.42a3.9 3.9 0 0 0-1.417.923A3.9 3.9 0 0 0 .42 2.76C.222 3.268.087 3.85.048 4.7.01 5.555 0 5.827 0 8.001c0 2.172.01 2.444.048 3.297.04.852.174 1.433.372 1.942.205.526.478.972.923 1.417.444.445.89.719 1.416.923.51.198 1.09.333 1.942.372C5.555 15.99 5.827 16 8 16s2.444-.01 3.298-.048c.851-.04 1.434-.174 1.943-.372a3.9 3.9 0 0 0 1.416-.923c.445-.445.718-.891.923-1.417.197-.509.332-1.09.372-1.942C15.99 10.445 16 10.173 16 8s-.01-2.445-.048-3.299c-.04-.851-.175-1.433-.372-1.941a3.9 3.9 0 0 0-.923-1.417A3.9 3.9 0 0 0 13.24.42c-.51-.198-1.092-.333-1.943-.372C10.443.01 10.172 0 7.998 0zm-.717 1.442h.718c2.136 0 2.389.007 3.232.046.78.035 1.204.166 1.486.275.373.145.64.319.92.599s.453.546.598.92c.11.281.24.705.275 1.485.039.843.047 1.096.047 3.231s-.008 2.389-.047 3.232c-.035.78-.166 1.203-.275 1.485a2.5 2.5 0 0 1-.599.919c-.28.28-.546.453-.92.598-.28.11-.704.24-1.485.276-.843.038-1.096.047-3.232.047s-2.39-.009-3.233-.047c-.78-.036-1.203-.166-1.485-.276a2.5 2.5 0 0 1-.92-.598 2.5 2.5 0 0 1-.6-.92c-.109-.281-.24-.705-.275-1.485-.038-.843-.046-1.096-.046-3.233s.008-2.388.046-3.231c.036-.78.166-1.204.276-1.486.145-.373.319-.64.599-.92s.546-.453.92-.598c.282-.11.705-.24 1.485-.276.738-.034 1.024-.044 2.515-.045zm4.988 1.328a.96.96 0 1 0 0 1.92.96.96 0 0 0 0-1.92m-4.27 1.122a4.109 4.109 0 1 0 0 8.217 4.109 4.109 0 0 0 0-8.217m0 1.441a2.667 2.667 0 1 1 0 5.334 2.667 2.667 0 0 1 0-5.334"
+          fill="currentColor"
+        ></path>
+      </svg>
+    </a>
+    <div class="tooltip">Instagram</div>
+  </li>
+  <li class="icon-content">
+    <a href="https://youtube.com/" aria-label="Youtube" data-social="youtube">
+      <div class="filled"></div>
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="16"
+        height="16"
+        fill="currentColor"
+        class="bi bi-youtube"
+        viewBox="0 0 16 16"
+        xml:space="preserve"
+      >
+        <path
+          d="M8.051 1.999h.089c.822.003 4.987.033 6.11.335a2.01 2.01 0 0 1 1.415 1.42c.101.38.172.883.22 1.402l.01.104.022.26.008.104c.065.914.073 1.77.074 1.957v.075c-.001.194-.01 1.108-.082 2.06l-.008.105-.009.104c-.05.572-.124 1.14-.235 1.558a2.01 2.01 0 0 1-1.415 1.42c-1.16.312-5.569.334-6.18.335h-.142c-.309 0-1.587-.006-2.927-.052l-.17-.006-.087-.004-.171-.007-.171-.007c-1.11-.049-2.167-.128-2.654-.26a2.01 2.01 0 0 1-1.415-1.419c-.111-.417-.185-.986-.235-1.558L.09 9.82l-.008-.104A31 31 0 0 1 0 7.68v-.123c.002-.215.01-.958.064-1.778l.007-.103.003-.052.008-.104.022-.26.01-.104c.048-.519.119-1.023.22-1.402a2.01 2.01 0 0 1 1.415-1.42c.487-.13 1.544-.21 2.654-.26l.17-.007.172-.006.086-.003.171-.007A100 100 0 0 1 7.858 2zM6.4 5.209v4.818l4.157-2.408z"
+          fill="currentColor"
+        ></path>
+      </svg>
+    </a>
+    <div class="tooltip">Youtube</div>
+  </li>
+</ul>
+<br>
 
     <footer class="text-center py-4 border-t border-gray-200 dark:border-gray-700">
       <p class="text-xs sm:text-sm">All Rights Reserved © 2025 Aishwarya InnovateX | Built with 🤍💚</p>
